@@ -1,17 +1,18 @@
 import S from "@sanity/desk-tool/structure-builder";
-import { pages } from "./desk/pages";
-import { settings } from "./desk/settings";
+
+import job from "./desk/job";
+
+import settings from "./desk/settings";
+import globals from "./desk/globals";
+import about from "./desk/about";
+import contact from "./desk/contact";
 
 const DOCUMENT_TYPES_IN_STRUCTURE = [
-  `article.editorial`,
-  `article.info`,
-  `collection`,
-  `home`,
-  `media.tag`,
-  `page`,
-  `product`,
-  `productVariant`,
-  `settings`
+  `job`,
+  `settings`,
+  `globals`,
+  `about`,
+  `contact`
 ];
 
 export default () =>
@@ -20,7 +21,10 @@ export default () =>
   S.list()
     .title(`Content`)
     .items([
-      pages,
+      globals,
+      about,
+      job,
+      contact,
       S.divider(),
       settings,
       S.divider(),
