@@ -232,7 +232,6 @@ const hostingPlugins = () => {
           headers: securityHeaders,
           allPageHeaders: [],
           mergeSecurityHeaders: true,
-          mergeLinkHeaders: true,
           mergeCachingHeaders: true
         }
       });
