@@ -39,21 +39,113 @@ module.exports = {
       purple: `#610F72`
     },
     fontFamily: {
-      main: [`FK Grotesk`, ...defaultTheme.fontFamily.sans]
+      main: [`Helvetica Neue`, ...defaultTheme.fontFamily.sans]
     },
     fontSize: {
-      desktop: [
-        `62px`,
+      "d-h1": [
+        `106px`,
         {
-          lineHeight: `68.2px`,
-          letterSpacing: `0em`
+          lineHeight: `95.4px`,
+          letterSpacing: `-4%`
         }
       ],
-      mobile: [
-        `30px`,
+      "d-h2": [
+        `76px`,
         {
-          lineHeight: `33px`,
-          letterSpacing: `0em`
+          lineHeight: `68.4px`,
+          letterSpacing: `-2%`
+        }
+      ],
+      "d-h3": [
+        `40px`,
+        {
+          lineHeight: `37.6px`,
+          letterSpacing: `-2%`
+        }
+      ],
+      "d-h4": [
+        `28px`,
+        {
+          lineHeight: `26.32px`,
+          letterSpacing: `-2%`
+        }
+      ],
+      "d-b1": [
+        `22px`,
+        {
+          lineHeight: `24.2px`,
+          letterSpacing: `-2%`
+        }
+      ],
+      "d-b2": [
+        `14px`,
+        {
+          lineHeight: `16.8px`,
+          letterSpacing: `1%`
+        }
+      ],
+      "d-b3": [
+        `14px`,
+        {
+          lineHeight: `16px`,
+          letterSpacing: ``
+        }
+      ],
+      //
+      "m-h1": [
+        `66px`,
+        {
+          lineHeight: `59.4px`,
+          letterSpacing: `-4%`
+        }
+      ],
+      "m-h2": [
+        `32px`,
+        {
+          lineHeight: `31.36px`,
+          letterSpacing: `-2%`
+        }
+      ],
+      "m-h3": [
+        `24px`,
+        {
+          lineHeight: `22.56px`,
+          letterSpacing: `-2%`
+        }
+      ],
+      "m-h4": [
+        `18px`,
+        {
+          lineHeight: `18.36px`,
+          letterSpacing: `-2%`
+        }
+      ],
+      "m-b1": [
+        `20px`,
+        {
+          lineHeight: `22px`,
+          letterSpacing: `-2%`
+        }
+      ],
+      "m-b2": [
+        `14px`,
+        {
+          lineHeight: `16.8px`,
+          letterSpacing: `1%`
+        }
+      ],
+      "m-b3": [
+        `12px`,
+        {
+          lineHeight: `14.4px`,
+          letterSpacing: ``
+        }
+      ],
+      caption: [
+        `10px`,
+        {
+          lineHeight: `12px`,
+          letterSpacing: ``
         }
       ]
     },

@@ -2,8 +2,6 @@ import React from "react";
 import { Global } from "@emotion/react";
 import { GlobalStyles as BaseStyles, css } from "twin.macro";
 
-import { Fonts } from "~components";
-
 import "~node_modules/modern-normalize/modern-normalize.css";
 
 const Theme = () => (
@@ -82,8 +80,6 @@ const Theme = () => (
         }
       `}
     />
-
-    <Fonts />
   </>
 );
 
