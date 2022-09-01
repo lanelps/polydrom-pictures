@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { css } from "@emotion/react";
+import { css } from "twin.macro";
 import styled from "@emotion/styled";
 import useEmblaCarousel from "embla-carousel-react";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { css } from "@emotion/react";
+import { css } from "twin.macro";
 import {
   GatsbyImage,
   getImage,
