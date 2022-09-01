@@ -26,16 +26,17 @@ module.exports = {
   theme: {
     colors: {
       transparent: `transparent`,
-      black: `#000000`,
-      white: `#FFFFFF`,
       //
-      "grey-70": `#1E1E1E`,
-      "grey-60": `#323232`,
-      "grey-50": `#4F4F4F`,
-      "grey-40": `#969696`,
-      "grey-30": `#BEBEBE`,
-      "grey-20": `#DDDEE2`,
-      "grey-10": `#F0F0F0`
+      offblack: `#101010`,
+      grey: `#8F8F8F`,
+      offwhite: `#FBFBFB`,
+      //
+      babyblue: `#0674E5`,
+      cobalt: `#1E189E`,
+      green: `#84D673`,
+      lime: `#C7CD47`,
+      orange: `#DF7100`,
+      purple: `#610F72`
     },
     fontFamily: {
       main: [`FK Grotesk`, ...defaultTheme.fontFamily.sans]
