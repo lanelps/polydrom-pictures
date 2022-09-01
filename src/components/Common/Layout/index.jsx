@@ -1,18 +1,17 @@
 import React from "react";
-import { css } from "@emotion/react";
+import tw, { css } from "twin.macro";
 
-import { Theme } from "~components";
+import { Theme, Footer } from "~components";
+
+const Container = tw.div`relative h-screen flex`;
 
 const Layout = ({ children, className }) => (
   <>
     <Theme />
-    <div
-      css={css`
-        display: flex;
-      `}
-    >
+    <Container>
       <main className={className}>{children}</main>
-    </div>
+      <Footer />
+    </Container>
   </>
 );
 

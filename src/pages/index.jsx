@@ -17,8 +17,7 @@ const Index = ({ data, location }) => {
 
   return (
     <Layout>
-      <h1 className="h1">Hello world!</h1>
-      <Image image={tinderbox} />
+      <div />
     </Layout>
   );
 };
