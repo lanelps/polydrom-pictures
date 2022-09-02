@@ -150,18 +150,18 @@ module.exports = {
       ]
     },
     screens: {
-      "xl-d": `2200px`,
-      "lg-d": `1600px`,
-      "md-d": `1440px`,
-      "sm-d": `1260px`,
-      //
-      "lg-t": `1025px`,
-      "md-t": `769px`,
-      "sm-t": `660px`,
-      //
-      "lg-m": `500px`,
+      "sm-m": `375px`,
       "md-m": `400px`,
-      "sm-m": `375px`
+      "lg-m": `500px`,
+      //
+      "sm-t": `660px`,
+      "md-t": `769px`,
+      "lg-t": `1025px`,
+      //
+      "sm-d": `1260px`,
+      "md-d": `1440px`,
+      "lg-d": `1600px`,
+      "xl-d": `2200px`
     },
     transitionTimingFunction: {
       DEFAULT: `cubic-bezier(0.215, 0.61, 0.355, 1)`
