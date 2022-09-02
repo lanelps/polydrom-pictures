@@ -26,7 +26,7 @@ const Grid = forwardRef((props, ref) => {
           grid-gap: ${gap[0]};
           margin: ${margin[0]};
           padding: ${padding[0]};
-          maxwidth: ${maxWidth};
+          max-width: ${maxWidth};
 
           ${breakpoint(`sm-t`)} {
             grid-template-columns: repeat(${columns[1]}, minmax(0, 1fr));

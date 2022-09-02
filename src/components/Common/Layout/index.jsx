@@ -1,5 +1,5 @@
 import React from "react";
-import tw, { css } from "twin.macro";
+import tw from "twin.macro";
 
 import { Theme, Footer } from "~components";
 
@@ -9,7 +9,9 @@ const Layout = ({ children, className }) => (
   <>
     <Theme />
     <Container>
-      <main className={className}>{children}</main>
+      <main tw="relative w-full" className={className}>
+        {children}
+      </main>
       <Footer />
     </Container>
   </>

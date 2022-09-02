@@ -1,5 +1,5 @@
 import React from "react";
-import tw, { css } from "twin.macro";
+import tw from "twin.macro";
 
 import { Grid } from "~components";
 
@@ -7,6 +7,7 @@ const Container = tw.footer`absolute bottom-6 sm-t:bottom-4 w-full`;
 const Wrapper = tw.div`relative w-full col-span-full flex flex-col sm-t:flex-row gap-y-2 justify-between`;
 const NavList = tw.ul`relative w-auto flex gap-x-2`;
 const Button = tw.button`font-main text-m-h3 sm-t:text-d-h3`;
+const Title = tw.h1`font-main text-m-h3 sm-t:text-d-h3 text-offblack`;
 
 const Footer = () => (
   <Container>
@@ -25,9 +26,7 @@ const Footer = () => (
             </li>
           </NavList>
         </nav>
-        <h1 tw="font-main text-m-h3 sm-t:text-d-h3 text-offblack">
-          Polydrom Pictures
-        </h1>
+        <Title>Polydrom Pictures</Title>
       </Wrapper>
     </Grid>
   </Container>

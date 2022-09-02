@@ -61,40 +61,47 @@ const Go = ({ children, className, debug, onClick, parameters, to }) => {
 
   //
 
-  const href = `${to.slice(-1) === `/` ? to : `${to}/`}${
-    parameterString !== `` ? parameterString : ``
-  }`;
+  const href =
+    to &&
+    `${to.slice(-1) === `/` ? to : `${to}/`}${
+      parameterString !== `` ? parameterString : ``
+    }`;
 
+  if (!href) {
+    return <span>{children}</span>;
+  }
+
+  if (
+    href.includes(`http`) ||
+    href.includes(`mailto`) ||
+    href.includes(`tel`)
+  ) {
+    return (
+      <a
+        href={href}
+        onClick={onClick}
+        rel="noopener noreferrer"
+        target="_blank"
+        className={className}
+        css={css`
+          display: inline-block;
+        `}
+      >
+        {children}
+      </a>
+    );
+  }
   return (
-    <>
-      {href.includes(`http`) ||
-        href.includes(`mailto`) ||
-        href.includes(`tel`) || (
-          <a
-            href={href}
-            onClick={onClick}
-            rel="noopener noreferrer"
-            target="_blank"
-            className={className}
-            css={css`
-              display: inline-block;
-            `}
-          >
-            {children}
-          </a>
-        ) || (
-          <Link
-            to={href}
-            className={className}
-            css={css`
-              display: inline-block;
-            `}
-            onClick={onClick}
-          >
-            {children}
-          </Link>
-        )}
-    </>
+    <Link
+      to={href}
+      className={className}
+      css={css`
+        display: inline-block;
+      `}
+      onClick={onClick}
+    >
+      {children}
+    </Link>
   );
 };
 
