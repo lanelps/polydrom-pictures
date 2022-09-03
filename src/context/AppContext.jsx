@@ -13,7 +13,10 @@ const AppProvider = ({ children }) => {
   // context / ref / state
 
   const [pathname, setPathname] = useState(null);
-  const [menuActive, setMenuActive] = useState(false);
+
+  const [aboutActive, setAboutActive] = useState(false);
+  const [jobsActive, setJobsActive] = useState(false);
+  const [contactActive, setContactActive] = useState(false);
 
   // ---------------------------------------------------------------------------
   // methods
@@ -38,8 +41,12 @@ const AppProvider = ({ children }) => {
 
   const providerProps = useMemo(() => ({
     pathname,
-    menuActive,
-    setMenuActive
+    aboutActive,
+    setAboutActive,
+    jobsActive,
+    setJobsActive,
+    contactActive,
+    setContactActive
   }));
 
   return (
