@@ -309,6 +309,7 @@ module.exports = {
         icon: `${__dirname}/static/favicon.jpg`
       }
     },
+    `gatsby-plugin-svgr`,
     ...seoPlugins(),
     ...trackingPlugins(),
     ...hostingPlugins(),
