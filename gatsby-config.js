@@ -89,38 +89,17 @@ const seoPlugins = () => {
           path
         }
       }
-      // allSanityPage {
-      //   edges {
-      //     node {
-      //       _updatedAt(formatString: "YYYY-MM-DDTHH:mm:ss.sssZ")
-      //       slug {
-      //         current
-      //       }
-      //     }
-      //   }
-      // }
     }
     `,
       resolveSiteUrl: ({ site }) => site.siteMetadata.siteUrl,
       resolvePages: ({
         allSitePage: { nodes: sitePages },
-        // allSanityPage: { edges: sanityPages },
         siteBuildMetadata
       }) =>
-        sitePages.map((page) =>
-          // const sanityPageIndex = sanityPages.findIndex(({ node }) => {
-          //   const slug =
-          //     node.slug.current === `/` ? `/` : `/${node.slug.current}/`;
-          //   return page.path === slug;
-          // });
-          // return sanityPageIndex > -1
-          //   ? {
-          //       path: page.path,
-          //       updatedAt: sanityPages[sanityPageIndex].node._updatedAt
-          //     }
-          //   : { path: page.path, updatedAt: siteBuildMetadata.buildTime };
-          ({ path: page.path, updatedAt: siteBuildMetadata.buildTime })
-        ),
+        sitePages.map((page) => ({
+          path: page.path,
+          updatedAt: siteBuildMetadata.buildTime
+        })),
       serialize: (page) => ({ url: page.path, lastmod: page.updatedAt }),
       createLinkInHead: true
     }
