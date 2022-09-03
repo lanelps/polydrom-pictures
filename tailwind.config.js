@@ -46,42 +46,42 @@ module.exports = {
         `106px`,
         {
           lineHeight: `95.4px`,
-          letterSpacing: `-4%`
+          letterSpacing: `-0.04em`
         }
       ],
       "d-h2": [
         `76px`,
         {
           lineHeight: `68.4px`,
-          letterSpacing: `-2%`
+          letterSpacing: `-0.02em`
         }
       ],
       "d-h3": [
         `40px`,
         {
           lineHeight: `37.6px`,
-          letterSpacing: `-2%`
+          letterSpacing: `-0.02em`
         }
       ],
       "d-h4": [
         `28px`,
         {
           lineHeight: `26.32px`,
-          letterSpacing: `-2%`
+          letterSpacing: `-0.02em`
         }
       ],
       "d-b1": [
         `22px`,
         {
           lineHeight: `24.2px`,
-          letterSpacing: `-2%`
+          letterSpacing: `-0.02em`
         }
       ],
       "d-b2": [
         `14px`,
         {
           lineHeight: `16.8px`,
-          letterSpacing: `1%`
+          letterSpacing: `0.01em`
         }
       ],
       "d-b3": [
@@ -96,42 +96,42 @@ module.exports = {
         `66px`,
         {
           lineHeight: `59.4px`,
-          letterSpacing: `-4%`
+          letterSpacing: `-0.04em`
         }
       ],
       "m-h2": [
         `32px`,
         {
           lineHeight: `31.36px`,
-          letterSpacing: `-2%`
+          letterSpacing: `-0.02em`
         }
       ],
       "m-h3": [
         `24px`,
         {
           lineHeight: `22.56px`,
-          letterSpacing: `-2%`
+          letterSpacing: `-0.02em`
         }
       ],
       "m-h4": [
         `18px`,
         {
           lineHeight: `18.36px`,
-          letterSpacing: `-2%`
+          letterSpacing: `-0.02em`
         }
       ],
       "m-b1": [
         `20px`,
         {
           lineHeight: `22px`,
-          letterSpacing: `-2%`
+          letterSpacing: `-0.02em`
         }
       ],
       "m-b2": [
         `14px`,
         {
           lineHeight: `16.8px`,
-          letterSpacing: `1%`
+          letterSpacing: `-0.01em`
         }
       ],
       "m-b3": [
