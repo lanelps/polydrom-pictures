@@ -3,7 +3,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import tw from "twin.macro";
 
-import { Layout, Grid, Nav, LandingImage } from "~components";
+import { Layout, Nav, LandingImage, Jobs } from "~components";
 
 const Index = ({ data, location }) => {
   const {
@@ -14,10 +14,13 @@ const Index = ({ data, location }) => {
     sanitySettings
   } = data;
 
+  const jobs = allSanityJob?.edges.map(({ node }) => node);
+
   return (
     <Layout>
       <Nav navLinks={sanityGlobals?.navLinks} />
       <LandingImage image={sanityGlobals?.landingImage} />
+      <Jobs jobs={jobs} />
     </Layout>
   );
 };
@@ -70,6 +73,7 @@ export const query = graphql`
     allSanityJob {
       edges {
         node {
+          _createdAt(fromNow: true)
           _key
           title
           timeline
