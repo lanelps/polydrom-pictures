@@ -98,7 +98,7 @@ const seoPlugins = () => {
     options: {
       name: `Polydrom Pictures`,
       short_name: `Polydrom Pictures`,
-      description: ``,
+      description: `Independant entertainment company that specializes in film and television production`,
       start_url: `/`,
       background_color: `#000000`,
       theme_color: `#000000`,
@@ -269,12 +269,6 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/assets/images`
-      }
-    },
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        icon: `${__dirname}/static/favicon.jpg`
       }
     },
     `gatsby-plugin-svgr`,
