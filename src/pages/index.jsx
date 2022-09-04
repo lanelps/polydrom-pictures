@@ -3,7 +3,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import tw from "twin.macro";
 
-import { Layout, Nav, LandingImage, Jobs } from "~components";
+import { Layout, Nav, LandingImage, Jobs, About } from "~components";
 
 const Index = ({ data, location }) => {
   const {
@@ -21,6 +21,7 @@ const Index = ({ data, location }) => {
       <Nav navLinks={sanityGlobals?.navLinks} />
       <LandingImage image={sanityGlobals?.landingImage} />
       <Jobs jobs={jobs} />
+      <About body={sanityAbout?._rawBody} />
     </Layout>
   );
 };

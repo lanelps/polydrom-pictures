@@ -32,7 +32,10 @@ const serializers = {
       <p tw="font-main text-m-h3 sm-t:text-d-h3">{children}</p>
     ),
     small: ({ children }) => (
-      <p tw="font-main text-m-b2 sm-t:text-d-b2">{children}</p>
+      <>
+        <br />
+        <p tw="font-main text-m-b2 sm-t:text-d-b2">{children}</p>
+      </>
     )
   },
   marks: {
