@@ -18,9 +18,9 @@ const Background = styled(Position)(() => [
   `
 ]);
 const Content = tw(Position)`relative overflow-y-scroll overflow-x-hidden z-10`;
-const Circle = styled.div(({ offSet, position, size, hidden }) => [
-  tw`fixed bg-babyblue rounded-full z-[5]`,
-  hidden && tw`hidden`,
+const Circle = styled.div(({ offSet, position, size, show }) => [
+  tw`fixed hidden bg-babyblue rounded-full z-[5]`,
+  show && tw`block`,
   css`
     width: ${size}px;
     height: ${size}px;
@@ -42,6 +42,7 @@ const About = ({ body }) => {
 
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [offSet, setOffSet] = useState({ x: 0, y: 0 });
+  const [show, setShow] = useState(false);
 
   const size = 718;
 
@@ -60,6 +61,14 @@ const About = ({ body }) => {
   }, []);
 
   useEffect(() => {
+    if (deviceType() !== `desktop`) {
+      setShow(false);
+    } else {
+      setShow(true);
+    }
+  }, []);
+
+  useEffect(() => {
     if (!backgroundRef?.current) return;
 
     const { top, left } = backgroundRef.current.getBoundingClientRect();
@@ -71,12 +80,7 @@ const About = ({ body }) => {
     <Conatiner active={aboutActive}>
       <Grid css={[tw`h-full`]}>
         <Background ref={backgroundRef}>
-          <Circle
-            offSet={offSet}
-            position={position}
-            size={size}
-            hidden={deviceType() !== `desktop`}
-          />
+          <Circle offSet={offSet} position={position} size={size} show={show} />
         </Background>
 
         <Content>
