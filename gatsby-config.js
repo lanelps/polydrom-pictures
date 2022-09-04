@@ -63,17 +63,6 @@ const seoPlugins = () => {
   plugins.push({
     resolve: `gatsby-plugin-sitemap`,
     options: {
-      excludes: [
-        {
-          policy: [
-            {
-              userAgent: `*`,
-              allow: `/`,
-              disallow: [``]
-            }
-          ]
-        }
-      ],
       query: `
     {
       site {
@@ -107,9 +96,9 @@ const seoPlugins = () => {
   plugins.push({
     resolve: `gatsby-plugin-manifest`,
     options: {
-      name: `Sane Gatsby Tinderbox`,
-      short_name: `SGT`,
-      description: `A bare bones Sanity Gatsby boilerplate`,
+      name: `Polydrom Pictures`,
+      short_name: `Polydrom Pictures`,
+      description: ``,
       start_url: `/`,
       background_color: `#000000`,
       theme_color: `#000000`,
@@ -258,15 +247,15 @@ module.exports = {
   /* Your site config here */
   siteMetadata: {
     author: `Lane Le Prevost-Smith`,
-    description: `A bare bones Sanity Gatsby boilerplate`,
+    description: ``,
     facebook: ``,
     instagram: ``,
     image: `/share.jpg`,
     keywords: ``,
     siteLanguage: `en`,
     siteUrl: GATSBY_SITE_URL + pathPrefix,
-    title: `Sane Gatsby Tinderbox`,
-    titleTemplate: `%s - Sane Gatsby Tinderbox`
+    title: `Polydrom Pictures`,
+    titleTemplate: `%s - Polydrom Pictures`
   },
   trailingSlash: `always`,
   pathPrefix,
