@@ -1,13 +1,5 @@
-/**
- * This is the schema definition for the rich text fields used for
- * for this blog studio. When you import it in schemas.js it can be
- * reused in other parts of the studio with:
- *  {
- *    name: 'someName',
- *    title: 'Some title',
- *    type: 'blockContent'
- *  }
- */
+import React from "react";
+
 export default {
   title: `Block Content`,
   name: `blockContent`,
@@ -22,7 +14,15 @@ export default {
       // use your content.
       styles: [
         { title: `Normal`, value: `normal` },
-        { title: `small`, value: `small` }
+        {
+          title: `Small`,
+          value: `small`,
+          blockEditor: {
+            render: ({ children }) => (
+              <span style={{ fontSize: `12px` }}>{children}</span>
+            )
+          }
+        }
       ],
       lists: [{ title: `Bullet`, value: `bullet` }],
       // Marks let you mark up inline text in the block editor.
