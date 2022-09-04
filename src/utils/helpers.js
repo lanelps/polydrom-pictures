@@ -118,6 +118,8 @@ export const arrayHasDuplicateValues = (array) =>
   array.length !== new Set(array).size;
 
 export const deviceType = () => {
+  if (typeof window === `undefined`) return null;
+
   const ua = navigator.userAgent;
   if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
     return `tablet`;
