@@ -51,14 +51,14 @@ const About = ({ body }) => {
   };
 
   useEffect(() => {
-    if (typeof window === `undefined`) return null;
+    if (typeof window === `undefined` || !aboutActive) return () => {};
 
     window.addEventListener(`mousemove`, handleMouseMove);
 
     return () => {
       window.removeEventListener(`mousemove`, handleMouseMove);
     };
-  }, []);
+  }, [aboutActive]);
 
   useEffect(() => {
     if (deviceType() !== `desktop`) {
