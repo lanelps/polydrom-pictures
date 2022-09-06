@@ -10,7 +10,7 @@ import { ReactComponent as Clock } from "~assets/svg/icons/info/clock.svg";
 import { ReactComponent as Globe } from "~assets/svg/icons/info/globe.svg";
 import { ReactComponent as Wallet } from "~assets/svg/icons/info/wallet.svg";
 
-const Conatiner = styled.secton(({ active }) => [
+const Conatiner = styled.section(({ active }) => [
   tw`absolute top-0 bottom-0 left-0 right-0 py-4 bg-offwhite/60 backdrop-blur-[7px] z-30 opacity-0 pointer-events-none transition-opacity overflow-y-scroll`,
   active && tw`opacity-100 pointer-events-auto`
 ]);

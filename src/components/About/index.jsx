@@ -6,7 +6,7 @@ import { useApp, useSize } from "~hooks";
 
 import { deviceType } from "~utils/helpers";
 
-const Conatiner = styled.secton(({ active }) => [
+const Conatiner = styled.section(({ active }) => [
   tw`absolute top-0 bottom-0 left-0 right-0 z-30 py-4 opacity-0 pointer-events-none overflow-hidden transition-opacity`,
   active && tw`opacity-100 pointer-events-auto`
 ]);
