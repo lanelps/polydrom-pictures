@@ -8,18 +8,22 @@ import { deviceType } from "~utils/helpers";
 
 const Conatiner = styled.section(({ active }) => [
   tw`absolute top-0 bottom-0 left-0 right-0 z-30 py-4 opacity-0 pointer-events-none overflow-hidden transition-opacity`,
-  active && tw`opacity-100 pointer-events-auto`
+  active && tw`opacity-100`
 ]);
 const Position = tw.div`w-[calc(100% + 1.5rem)] sm-t:w-[calc(100% + 1rem)] h-[90%] sm-t:h-[85%] col-span-full sm-t:col-start-2 col-span-3 translate-x--3 sm-t:translate-x-0 translate-y-4 self-end p-3 sm-t:p-4 pb-24 sm-t:pb-16 sm-d:pb-[4.75rem]`;
 const Background = styled(Position)(() => [
-  tw`absolute bg-green z-[1]`,
+  tw`absolute bg-green dark:bg-purple transition-colors z-[1]`,
   css`
     clip-path: inset(0px 0px 0px 0px);
   `
 ]);
-const Content = tw(Position)`relative overflow-y-scroll overflow-x-hidden z-10`;
+const Content = styled(Position)(({ active }) => [
+  tw`relative overflow-y-scroll overflow-x-hidden z-10 pointer-events-none`,
+  active && tw`pointer-events-auto`
+]);
+
 const Circle = styled.div(({ offSet, position, size, show }) => [
-  tw`fixed hidden bg-babyblue rounded-full z-[5]`,
+  tw`fixed hidden bg-babyblue dark:bg-orange rounded-full z-[5]`,
   show && tw`block`,
   css`
     width: ${size}px;
@@ -83,7 +87,7 @@ const About = ({ body }) => {
           <Circle offSet={offSet} position={position} size={size} show={show} />
         </Background>
 
-        <Content>
+        <Content active={aboutActive}>
           <PortableText blocks={body} css={[tw`z-10`]} />
         </Content>
       </Grid>

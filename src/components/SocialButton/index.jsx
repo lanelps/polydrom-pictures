@@ -9,7 +9,7 @@ import { ReactComponent as Twitter } from "~assets/svg/icons/social/twitter.svg"
 import { ReactComponent as Vimeo } from "~assets/svg/icons/social/vimeo.svg";
 import { ReactComponent as Youtube } from "~assets/svg/icons/social/youtube.svg";
 
-const Container = tw.button`relative flex items-center justify-center p-[0.84rem] sm-t:p-[1.125rem] bg-transparent hover:bg-offblack active:bg-transparent rounded-full border active:border-grey transition-colors`;
+const Container = tw.button`relative flex items-center justify-center p-[0.84rem] sm-t:p-[1.125rem] bg-transparent hover:bg-offblack dark:hover:bg-offwhite active:bg-transparent rounded-full border border-offblack dark:border-offwhite active:border-grey transition-colors`;
 
 const SocialButton = ({ type, to }) => {
   let iconJSX = <></>;
@@ -19,7 +19,7 @@ const SocialButton = ({ type, to }) => {
       iconJSX = (
         <Facebook
           css={[
-            tw`w-4 sm-t:w-5 group-hover:text-offwhite group-active:text-offblack group-active:text-grey transition-colors`
+            tw`w-4 sm-t:w-5 text-offblack dark:text-offwhite group-hover:text-offwhite dark:group-hover:text-offblack group-active:text-offblack group-active:text-grey transition-colors`
           ]}
         />
       );
@@ -29,7 +29,7 @@ const SocialButton = ({ type, to }) => {
       iconJSX = (
         <Instagram
           css={[
-            tw`w-4 sm-t:w-5 group-hover:text-offwhite group-active:text-grey transition-colors`
+            tw`w-4 sm-t:w-5 text-offblack dark:text-offwhite group-hover:text-offwhite dark:group-hover:text-offblack group-active:text-grey transition-colors`
           ]}
         />
       );
@@ -39,7 +39,7 @@ const SocialButton = ({ type, to }) => {
       iconJSX = (
         <Twitter
           css={[
-            tw`w-4 sm-t:w-5 group-hover:text-offwhite group-active:text-grey transition-colors`
+            tw`w-4 sm-t:w-5 text-offblack dark:text-offwhite group-hover:text-offwhite dark:group-hover:text-offblack group-active:text-grey transition-colors`
           ]}
         />
       );
@@ -49,7 +49,7 @@ const SocialButton = ({ type, to }) => {
       iconJSX = (
         <Vimeo
           css={[
-            tw`w-4 sm-t:w-5 group-hover:text-offwhite group-active:text-grey transition-colors`
+            tw`w-4 sm-t:w-5 text-offblack dark:text-offwhite group-hover:text-offwhite dark:group-hover:text-offblack group-active:text-grey transition-colors`
           ]}
         />
       );
@@ -59,7 +59,7 @@ const SocialButton = ({ type, to }) => {
       iconJSX = (
         <Youtube
           css={[
-            tw`w-4 sm-t:w-5 group-hover:text-offwhite group-active:text-grey transition-colors`
+            tw`w-4 sm-t:w-5 text-offblack dark:text-offwhite group-hover:text-offwhite dark:group-hover:text-offblack group-active:text-grey transition-colors`
           ]}
         />
       );

@@ -4,10 +4,7 @@ import tw, { css, styled } from "twin.macro";
 import { ReactComponent as Dark } from "~assets/svg/dark.svg";
 import { ReactComponent as Light } from "~assets/svg/light.svg";
 
-const Container = styled.article(({ isDark }) => [
-  tw`relative sm-t:absolute sm-t:right-4 w-max flex gap-x-[0.11rem] sm-t:gap-x-[0.1875rem] p-[0.125rem] sm-t:p-1 ml-3 sm-t:m-0 rounded bg-offblack transition-colors z-10`,
-  isDark && tw`bg-offwhite`
-]);
+const Container = tw.article`relative sm-t:absolute sm-t:right-4 w-max flex gap-x-[0.11rem] sm-t:gap-x-[0.1875rem] p-[0.125rem] sm-t:p-1 ml-3 sm-t:m-0 rounded bg-offblack dark:bg-offwhite transition-colors z-50`;
 const ButtonWrapper = tw.button`relative w-[1.64rem] sm-t:w-10 h-[1.64rem] sm-t:h-10 flex items-center justify-center rounded`;
 
 const ThemeToggle = () => {

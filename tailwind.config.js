@@ -18,6 +18,7 @@ const createTailWindGrid = (size = 12) => {
 const { gridSpan, gridColumns } = createTailWindGrid();
 
 module.exports = {
+  darkMode: `class`,
   content: [
     `./components/**/*.{js,ts,jsx,tsx}`,
     `./pages/**/*.{js,ts,jsx,tsx}`,

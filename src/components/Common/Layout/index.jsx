@@ -3,7 +3,7 @@ import tw from "twin.macro";
 
 import { Theme, Footer } from "~components";
 
-const Container = tw.div`relative h-screen flex bg-offwhite`;
+const Container = tw.div`relative h-screen flex bg-offwhite dark:bg-offblack transition-colors`;
 
 const Layout = ({ children, className }) => (
   <>
