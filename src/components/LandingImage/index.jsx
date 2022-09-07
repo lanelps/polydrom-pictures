@@ -7,7 +7,7 @@ const ImageWrapper = tw.div`relative w-full h-full col-span-full flex items-cent
 const Figure = tw.figure`relative sm-t:max-w-[70vw] sm-d:max-w-[50vw]`;
 
 const LandingImage = ({ image }) => (
-  <Grid css={[tw`h-full`]}>
+  <Grid css={[tw`h-auto sm-t:h-full`]}>
     <ImageWrapper>
       <Figure>
         <Image image={image} css={[tw`w-full`]} />
