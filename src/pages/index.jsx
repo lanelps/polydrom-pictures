@@ -3,7 +3,15 @@ import React from "react";
 import { graphql } from "gatsby";
 import tw from "twin.macro";
 
-import { Layout, Nav, LandingImage, Jobs, About, Contact } from "~components";
+import {
+  Layout,
+  Nav,
+  LandingImage,
+  Jobs,
+  About,
+  Contact,
+  DVD
+} from "~components";
 
 const Index = ({ data, location }) => {
   const {
@@ -18,6 +26,7 @@ const Index = ({ data, location }) => {
 
   return (
     <Layout>
+      <DVD dvd={sanityGlobals?.dvd} />
       <Nav navLinks={sanityGlobals?.navLinks} />
       <LandingImage image={sanityGlobals?.landingImage} />
       <Jobs jobs={jobs} />
@@ -41,6 +50,7 @@ export const query = graphql`
               placeholder: BLURRED
               formats: [AUTO, WEBP, AVIF]
             )
+            url
           }
           altText
         }

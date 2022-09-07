@@ -34,10 +34,6 @@ const ThemeToggle = () => {
     }
   }, [isDark]);
 
-  useEffect(() => {
-    console.log(`isDark`, isDark);
-  }, [isDark]);
-
   return (
     <Container isDark={isDark}>
       <ButtonWrapper

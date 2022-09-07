@@ -6,12 +6,18 @@ import { useApp } from "~hooks";
 
 const Container = styled.section(({ active }) => [
   tw`absolute top-0 left-0 right-0 z-30 opacity-0 pointer-events-none overflow-hidden transition-opacity`,
-  active && tw`opacity-100 pointer-events-auto`
+  active && tw`opacity-100`
 ]);
-const EmailWrapper = tw.div`relative w-full pt-4 pb-8 sm-t:pb-16 bg-lime dark:bg-cobalt transition-colors`;
+const EmailWrapper = styled.div(({ active }) => [
+  tw`relative w-full pt-4 pb-8 sm-t:pb-16 bg-lime dark:bg-cobalt transition-colors pointer-events-none`,
+  active && tw`pointer-events-auto`
+]);
 const EmailHeading = tw.h2`col-span-full text-m-h3 sm-t:text-d-h3 text-offblack dark:text-offwhite transition-colors`;
 const LinksWrapper = tw.div`col-span-full flex items-center gap-x-2 mt-4`;
-const FormWrapper = tw.div`relative w-full pt-4 pb-8 sm-t:pb-16 bg-offwhite/60 backdrop-blur-[7px] border-b`;
+const FormWrapper = styled.div(({ active }) => [
+  tw`relative w-full pt-4 pb-8 sm-t:pb-16 bg-offwhite/60 backdrop-blur-[7px] border-b pointer-events-none`,
+  active && tw`pointer-events-auto`
+]);
 const FormHeading = tw.h3`col-span-full text-m-h3 sm-t:text-d-h3`;
 
 const Contact = ({ contact }) => {
@@ -21,7 +27,7 @@ const Contact = ({ contact }) => {
 
   return (
     <Container active={contactActive}>
-      <EmailWrapper>
+      <EmailWrapper active={contactActive}>
         <Grid css={[tw`gap-y-0 sm-t:gap-y-0`]}>
           <EmailHeading>General Enquiries:</EmailHeading>
           <LinksWrapper>
@@ -53,7 +59,7 @@ const Contact = ({ contact }) => {
         </Grid>
       </EmailWrapper>
 
-      <FormWrapper>
+      <FormWrapper active={contactActive}>
         <Grid css={[tw`gap-y-0 sm-t:gap-y-0`]}>
           <FormHeading>Join our mailing list</FormHeading>
           <ContactForm mailchimpID={mailchimpID} css={[tw`col-span-full`]} />
