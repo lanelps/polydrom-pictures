@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import tw, { css, styled } from "twin.macro";
 
 import { Button, Go, Image } from "~components";
 import { useApp } from "~hooks";
 
-const Container = tw.div`fixed top-[60%] left-[10%] w-[10vw] max-w-[10.25rem] flex items-center justify-center z-30 mix-blend-difference`;
+const Container = styled.div(({ position }) => [
+  tw`fixed w-[10vw] max-w-[10.25rem] flex items-center justify-center z-30 mix-blend-difference`,
+  css`
+    will-change: transform;
+    transform: translate3d(${position.x}px, ${position.y}px, 0);
+  `
+]);
 const DVDButton = tw(
   Button
 )`bg-offblack backdrop-blur-[10rem] border-white text-white hover:(bg-offwhite border-offwhite text-offblack) dark:(bg-offwhite border-white text-offblack hover:(bg-offblack text-offwhite))`;
@@ -13,8 +19,58 @@ const DVD = ({ dvd }) => {
   const { image, linkText, linkUrl } = dvd;
   const { contactActive, setContactActive } = useApp();
 
+  const dvdRef = useRef();
+  const [position, setPosition] = useState({ x: 1, y: 2 });
+  const speedRef = useRef({ x: 3, y: 1 });
+
+  const requestRef = useRef();
+  const previousTimeRef = useRef();
+
+  const checkHitbox = (prev) => {
+    // x
+    if (
+      prev.x + dvdRef.current.clientWidth >= window.innerWidth ||
+      prev.x < 0
+    ) {
+      speedRef.current.x *= -1;
+    }
+
+    // y
+    if (
+      prev.y + dvdRef.current.clientHeight >= window.innerHeight ||
+      prev.y < 0
+    ) {
+      speedRef.current.y *= -1;
+    }
+  };
+
+  const animate = (time) => {
+    if (previousTimeRef.current !== undefined) {
+      setPosition((prev) => {
+        checkHitbox(prev);
+
+        return {
+          x: prev.x + speedRef.current.x,
+          y: prev.y + speedRef.current.y
+        };
+      });
+    }
+    previousTimeRef.current = time;
+    requestRef.current = requestAnimationFrame(animate);
+  };
+
+  useEffect(() => {
+    if (typeof window === `undefined`) return () => {};
+
+    const animationID = window.requestAnimationFrame(animate);
+
+    return () => {
+      window.cancelAnimationFrame(animationID);
+    };
+  }, []);
+
   return (
-    <Container>
+    <Container ref={dvdRef} position={position}>
       <Image image={image} />
       {linkUrl ? (
         <Go to={linkUrl} css={[tw`absolute`]}>
