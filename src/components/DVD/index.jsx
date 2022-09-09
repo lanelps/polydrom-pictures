@@ -20,25 +20,23 @@ const DVD = ({ dvd }) => {
   const { contactActive, setContactActive } = useApp();
 
   const dvdRef = useRef();
-  const [position, setPosition] = useState({ x: 1, y: 2 });
-  const speedRef = useRef({ x: 3, y: 1 });
+  const [position, setPosition] = useState({ x: 0, y: 100 });
+  const speedRef = useRef({ x: 3, y: 2 });
+  const speedScale = 1;
 
   const requestRef = useRef();
   const previousTimeRef = useRef();
 
-  const checkHitbox = (prev) => {
+  const checkHitbox = (pos) => {
     // x
-    if (
-      prev.x + dvdRef.current.clientWidth >= window.innerWidth ||
-      prev.x < 0
-    ) {
+    if (pos.x + dvdRef.current.clientWidth >= window.innerWidth || pos.x < 0) {
       speedRef.current.x *= -1;
     }
 
     // y
     if (
-      prev.y + dvdRef.current.clientHeight >= window.innerHeight ||
-      prev.y < 0
+      pos.y + dvdRef.current.clientHeight >= window.innerHeight ||
+      pos.y < 0
     ) {
       speedRef.current.y *= -1;
     }
@@ -46,12 +44,12 @@ const DVD = ({ dvd }) => {
 
   const animate = (time) => {
     if (previousTimeRef.current !== undefined) {
-      setPosition((prev) => {
-        checkHitbox(prev);
+      setPosition((prevPosition) => {
+        checkHitbox(prevPosition);
 
         return {
-          x: prev.x + speedRef.current.x,
-          y: prev.y + speedRef.current.y
+          x: prevPosition.x + speedRef.current.x * speedScale,
+          y: prevPosition.y + speedRef.current.y * speedScale
         };
       });
     }
