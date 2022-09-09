@@ -18,6 +18,8 @@ const AppProvider = ({ children }) => {
   const [jobsActive, setJobsActive] = useState(false);
   const [contactActive, setContactActive] = useState(false);
 
+  const [activeWindows, setActiveWindows] = useState([]);
+
   // ---------------------------------------------------------------------------
   // methods
 
@@ -36,6 +38,35 @@ const AppProvider = ({ children }) => {
     });
   }, []);
 
+  useEffect(() => {
+    if (aboutActive) {
+      setActiveWindows((prev) => [...prev, `about`]);
+    } else {
+      const filteredWindows = activeWindows.filter((item) => item !== `about`);
+      setActiveWindows(filteredWindows);
+    }
+  }, [aboutActive]);
+
+  useEffect(() => {
+    if (jobsActive) {
+      setActiveWindows((prev) => [...prev, `jobs`]);
+    } else {
+      const filteredWindows = activeWindows.filter((item) => item !== `jobs`);
+      setActiveWindows(filteredWindows);
+    }
+  }, [jobsActive]);
+
+  useEffect(() => {
+    if (contactActive) {
+      setActiveWindows((prev) => [...prev, `contact`]);
+    } else {
+      const filteredWindows = activeWindows.filter(
+        (item) => item !== `contact`
+      );
+      setActiveWindows(filteredWindows);
+    }
+  }, [contactActive]);
+
   // ---------------------------------------------------------------------------
   // render
 
@@ -46,7 +77,9 @@ const AppProvider = ({ children }) => {
     jobsActive,
     setJobsActive,
     contactActive,
-    setContactActive
+    setContactActive,
+    activeWindows,
+    setActiveWindows
   }));
 
   return (

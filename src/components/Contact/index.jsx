@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import tw, { css, styled } from "twin.macro";
 
 import { Grid, Button, SocialButton, ContactForm } from "~components";
 import { useApp } from "~hooks";
 
-const Container = styled.section(({ active }) => [
+const Container = styled.section(({ active, zIndex }) => [
   tw`absolute top-0 left-0 right-0 z-30 opacity-0 pointer-events-none overflow-hidden transition-opacity`,
-  active && tw`opacity-100`
+  active && tw`opacity-100`,
+  css`
+    z-index: ${zIndex};
+  `
 ]);
 const EmailWrapper = styled.div(({ active }) => [
   tw`relative w-full pt-4 pb-8 sm-t:pb-16 bg-lime dark:bg-cobalt transition-colors pointer-events-none`,
@@ -23,10 +26,34 @@ const FormHeading = tw.h3`col-span-full text-m-h3 sm-t:text-d-h3`;
 const Contact = ({ contact }) => {
   const { email, socialLinks, mailchimpID } = contact;
 
-  const { contactActive } = useApp();
+  const { contactActive, activeWindows } = useApp();
+
+  const [zIndex, setZIndex] = useState();
+
+  useEffect(() => {
+    const windowIndex = activeWindows.findIndex((el) => el === `contact`);
+
+    switch (windowIndex) {
+      case 0:
+        setZIndex(`30`);
+        break;
+
+      case 1:
+        setZIndex(`40`);
+        break;
+
+      case 2:
+        setZIndex(`50`);
+        break;
+
+      default:
+        setZIndex(`auto`);
+        break;
+    }
+  }, [activeWindows]);
 
   return (
-    <Container active={contactActive}>
+    <Container active={contactActive} zIndex={zIndex}>
       <EmailWrapper active={contactActive}>
         <Grid css={[tw`gap-y-0 sm-t:gap-y-0`]}>
           <EmailHeading>General Enquiries:</EmailHeading>

@@ -6,9 +6,12 @@ import { useApp, useSize } from "~hooks";
 
 import { deviceType } from "~utils/helpers";
 
-const Conatiner = styled.section(({ active }) => [
-  tw`absolute top-0 bottom-0 left-0 right-0 z-30 py-4 opacity-0 pointer-events-none overflow-hidden transition-opacity`,
-  active && tw`opacity-100`
+const Conatiner = styled.section(({ active, zIndex }) => [
+  tw`absolute top-0 bottom-0 left-0 right-0 py-4 opacity-0 pointer-events-none overflow-hidden transition-opacity`,
+  active && tw`opacity-100`,
+  css`
+    z-index: ${zIndex};
+  `
 ]);
 const Position = tw.div`w-[calc(100% + 1.5rem)] sm-t:w-[calc(100% + 1rem)] h-[90%] sm-t:h-[85%] col-span-full sm-t:col-start-2 col-span-3 translate-x--3 sm-t:translate-x-0 translate-y-4 self-end p-3 sm-t:p-4 pb-24 sm-t:pb-16 sm-d:pb-[4.75rem]`;
 const Background = styled(Position)(() => [
@@ -41,12 +44,13 @@ const Circle = styled.div(({ offSet, position, size, show }) => [
 ]);
 
 const About = ({ body }) => {
-  const { aboutActive } = useApp();
+  const { aboutActive, activeWindows } = useApp();
   const [backgroundRef, backgroundSize] = useSize();
 
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [offSet, setOffSet] = useState({ x: 0, y: 0 });
   const [show, setShow] = useState(false);
+  const [zIndex, setZIndex] = useState();
 
   const size = 718;
 
@@ -80,8 +84,29 @@ const About = ({ body }) => {
     setOffSet({ x: left, y: top });
   }, [backgroundRef, backgroundSize]);
 
+  useEffect(() => {
+    const windowIndex = activeWindows.findIndex((el) => el === `about`);
+
+    switch (windowIndex) {
+      case 0:
+        setZIndex(`30`);
+        break;
+
+      case 1:
+        setZIndex(`40`);
+        break;
+
+      case 2:
+        setZIndex(`50`);
+        break;
+
+      default:
+        break;
+    }
+  }, [activeWindows]);
+
   return (
-    <Conatiner active={aboutActive}>
+    <Conatiner active={aboutActive} zIndex={zIndex}>
       <Grid css={[tw`h-full`]}>
         <Background ref={backgroundRef}>
           <Circle offSet={offSet} position={position} size={size} show={show} />

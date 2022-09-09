@@ -1,5 +1,5 @@
-import React from "react";
-import tw, { styled } from "twin.macro";
+import React, { useState, useEffect } from "react";
+import tw, { css, styled } from "twin.macro";
 
 import { Grid, Button } from "~components";
 import { useApp } from "~hooks";
@@ -10,17 +10,43 @@ import { ReactComponent as Clock } from "~assets/svg/icons/info/clock.svg";
 import { ReactComponent as Globe } from "~assets/svg/icons/info/globe.svg";
 import { ReactComponent as Wallet } from "~assets/svg/icons/info/wallet.svg";
 
-const Conatiner = styled.section(({ active }) => [
-  tw`absolute top-0 bottom-0 left-0 right-0 py-4 bg-offwhite/60 backdrop-blur-[7px] z-30 opacity-0 pointer-events-none transition-opacity overflow-y-scroll`,
-  active && tw`opacity-100 pointer-events-auto`
+const Conatiner = styled.section(({ active, zIndex }) => [
+  tw`absolute top-0 bottom-0 left-0 right-0 py-4 bg-offwhite/60 backdrop-blur-[7px] opacity-0 pointer-events-none transition-opacity overflow-y-scroll`,
+  active && tw`opacity-100 pointer-events-auto`,
+  css`
+    z-index: ${zIndex};
+  `
 ]);
 const EmptyCard = tw.li`relative w-full col-span-full p-4 bg-offwhite/60 border rounded-[5px]`;
 
 const Jobs = ({ jobs }) => {
-  const { jobsActive } = useApp();
+  const { jobsActive, activeWindows } = useApp();
+
+  const [zIndex, setZIndex] = useState();
+
+  useEffect(() => {
+    const windowIndex = activeWindows.findIndex((el) => el === `jobs`);
+
+    switch (windowIndex) {
+      case 0:
+        setZIndex(`30`);
+        break;
+
+      case 1:
+        setZIndex(`40`);
+        break;
+
+      case 2:
+        setZIndex(`50`);
+        break;
+
+      default:
+        break;
+    }
+  }, [activeWindows]);
 
   return (
-    <Conatiner active={jobsActive}>
+    <Conatiner active={jobsActive} zIndex={zIndex}>
       <Grid node="ul">
         {jobs?.length > 0 ? (
           jobs?.map((job) => <JobCard key={job?._key} job={job} />)

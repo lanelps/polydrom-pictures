@@ -29,8 +29,8 @@ const Index = ({ data, location }) => {
       <DVD dvd={sanityGlobals?.dvd} />
       <Nav navLinks={sanityGlobals?.navLinks} />
       <LandingImage image={sanityGlobals?.landingImage} />
-      <Jobs jobs={jobs} />
       <About body={sanityAbout?._rawBody} />
+      <Jobs jobs={jobs} />
       <Contact contact={sanityContact} />
     </Layout>
   );
