@@ -10,11 +10,14 @@ export default {
       type: `array`,
       of: [{ type: `linkGroup` }]
     },
-    // Landing Image
+    // Landing Media
     {
-      name: `landingImage`,
-      title: `Landing Image`,
-      type: `altImage`
+      name: `landingMedia`,
+      title: `Landing Media`,
+      type: `media`,
+      initialValue: {
+        type: `image`
+      }
     },
     //  DVD Icon
     {

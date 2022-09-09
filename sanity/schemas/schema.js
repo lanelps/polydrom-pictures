@@ -19,6 +19,7 @@ import blockContent from "./objects/blockContent";
 import dvd from "./objects/dvd";
 import link from "./objects/link";
 import linkGroup from "./objects/linkGroup";
+import media from "./objects/media";
 import seo from "./objects/seo";
 import socialLink from "./objects/socialLink";
 
@@ -43,6 +44,7 @@ export default createSchema({
     dvd,
     link,
     linkGroup,
+    media,
     seo,
     socialLink
   ])

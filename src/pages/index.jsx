@@ -6,7 +6,7 @@ import tw from "twin.macro";
 import {
   Layout,
   Nav,
-  LandingImage,
+  LandingMedia,
   Jobs,
   About,
   Contact,
@@ -28,7 +28,7 @@ const Index = ({ data, location }) => {
     <Layout>
       <DVD dvd={sanityGlobals?.dvd} />
       <Nav navLinks={sanityGlobals?.navLinks} />
-      <LandingImage image={sanityGlobals?.landingImage} />
+      <LandingMedia media={sanityGlobals?.landingMedia} />
       <About body={sanityAbout?._rawBody} />
       <Jobs jobs={jobs} />
       <Contact contact={sanityContact} />
@@ -57,15 +57,19 @@ export const query = graphql`
         linkText
         linkUrl
       }
-      landingImage {
-        asset {
-          gatsbyImageData(
-            width: 720
-            placeholder: BLURRED
-            formats: [AUTO, WEBP, AVIF]
-          )
+      landingMedia {
+        type
+        image {
+          asset {
+            gatsbyImageData(
+              width: 720
+              placeholder: BLURRED
+              formats: [AUTO, WEBP, AVIF]
+            )
+          }
+          altText
         }
-        altText
+        video
       }
       navLinks {
         _key
