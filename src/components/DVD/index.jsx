@@ -69,14 +69,14 @@ const DVD = ({ dvd }) => {
 
   return (
     <Container ref={dvdRef} position={position}>
-      <Image image={image} />
+      {image && <Image image={image} />}
       {linkUrl ? (
-        <Go to={linkUrl} css={[tw`absolute`]}>
+        <Go to={linkUrl} css={[!image ? tw`relative` : tw`absolute`]}>
           <DVDButton>{linkText}</DVDButton>
         </Go>
       ) : (
         <DVDButton
-          css={[tw`absolute`]}
+          css={[!image ? tw`relative` : tw`absolute`]}
           onClick={() => setContactActive(!contactActive)}
         >
           {linkText}
