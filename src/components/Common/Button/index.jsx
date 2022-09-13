@@ -9,14 +9,21 @@ const Container = styled.button(({ buttonType }) => [
   buttonType === 3 && tw`py-2 px-3 sm-t:px-4 text-m-h3 sm-t:text-d-h3`
 ]);
 
-const Button = ({ children, className, onClick, to, type = 2 }) => {
+const Button = ({
+  children,
+  className,
+  onClick,
+  to,
+  kind = 2,
+  type = `button`
+}) => {
   if (to) {
     return (
       <Go to={to}>
         <Container
-          type="button"
+          type={type}
           className={className}
-          buttonType={type}
+          buttonType={kind}
           onClick={onClick}
         >
           {children}
@@ -26,9 +33,9 @@ const Button = ({ children, className, onClick, to, type = 2 }) => {
   }
   return (
     <Container
-      type="button"
+      type={type}
       className={className}
-      buttonType={type}
+      buttonType={kind}
       onClick={onClick}
     >
       {children}

@@ -33,6 +33,7 @@ module.exports = {
       //
       offblack: `#101010`,
       grey: `#8F8F8F`,
+      offgrey: `#1F1F1F`,
       offwhite: `#FBFBFB`,
       //
       babyblue: `#0674E5`,

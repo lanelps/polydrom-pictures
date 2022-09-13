@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import tw, { css, styled } from "twin.macro";
 
+import { Button } from "~components";
+
 const Container = styled.form(({ disable }) => [
   tw`relative w-full mt-6 sm-t:mt-8 transition-opacity`,
   disable && tw`pointer-events-none opacity-50`
 ]);
-const Input = tw.input`relative w-full text-m-h3 sm-t:text-d-h3 pb-2 sm-t:pb-4 bg-transparent border-b`;
+const Input = tw.input`relative w-full bg-transparent font-main text-m-h3 sm-t:text-d-h3 placeholder:text-grey dark:placeholder:text-offgrey`;
 
 const ContactForm = ({ className, mailchimpID }) => {
   const [email, setEmail] = useState(``);
@@ -48,17 +50,21 @@ const ContactForm = ({ className, mailchimpID }) => {
       onSubmit={handleSubmit}
       disable={submitting}
     >
-      <Input
-        required
-        type="email"
-        name="email"
-        value={email}
-        onChange={handleChange}
-        placeholder={
-          submitted ? `We’ve sent you a confirmation email!` : `Email Address`
-        }
-        disabled={submitting || submitted}
-      />
+      <div tw="relative w-full flex gap-x-2 border-b pb-1 sm-t:pb-4">
+        <Input
+          required
+          type="email"
+          name="email"
+          value={email}
+          onChange={handleChange}
+          placeholder={
+            submitted ? `We’ve sent you a confirmation email!` : `Email Address`
+          }
+          disabled={submitting || submitted}
+        />
+
+        <Button type="submit">SUBMIT</Button>
+      </div>
     </Container>
   );
 };
