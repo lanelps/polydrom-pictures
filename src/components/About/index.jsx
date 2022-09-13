@@ -21,7 +21,7 @@ const Background = styled(Position)(() => [
   `
 ]);
 const Content = styled(Position)(({ active }) => [
-  tw`relative overflow-y-scroll overflow-x-hidden z-10 pointer-events-none`,
+  tw`relative overflow-y-scroll overflow-x-hidden z-10 pointer-events-none text-offblack dark:text-offwhite transition-colors`,
   active && tw`pointer-events-auto`
 ]);
 
