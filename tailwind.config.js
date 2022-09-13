@@ -61,16 +61,16 @@ module.exports = {
         }
       ],
       "d-h3": [
-        `40px`,
+        `32px`,
         {
-          lineHeight: `37.6px`,
+          lineHeight: `30px`,
           letterSpacing: `-0.02em`
         }
       ],
       "d-h4": [
-        `28px`,
+        `22px`,
         {
-          lineHeight: `26.32px`,
+          lineHeight: `20px`,
           letterSpacing: `-0.02em`
         }
       ],
