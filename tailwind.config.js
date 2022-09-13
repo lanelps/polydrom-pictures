@@ -1,4 +1,5 @@
 const defaultTheme = require(`tailwindcss/defaultTheme`);
+const twAnimationDelay = require(`tailwindcss-animation`);
 
 const createTailWindGrid = (size = 12) => {
   const gridSpan = { "span-full": `1 / -1` };
@@ -170,22 +171,46 @@ module.exports = {
       DEFAULT: `cubic-bezier(0.215, 0.61, 0.355, 1)`
     },
     transitionDuration: {
-      DEFAULT: `300ms`
-      // 1000: `1000ms`
+      DEFAULT: `300ms`,
+      1000: `1000ms`
     },
     keyframes: {
       appear: {
-        "0%": { opacity: `0`, transform: `translate3d(0, 1rem, 0)` },
-        "100%": { opacity: `1`, transform: `translate3d(0, 0, 0)` }
+        "0%": { opacity: `0` },
+        "100%": { opacity: `1` }
+      },
+      "appear-up": {
+        "0%": { opacity: `0`, transform: `translateY(calc(100% + 1rem))` },
+        "100%": { opacity: `1`, transform: `translateY(0%)` }
+      },
+      "appear-down": {
+        "0%": { opacity: `0`, transform: `translateY(calc(-100% - 1rem))` },
+        "100%": { opacity: `1`, transform: `translateY(0%)` }
       }
     },
     animation: {
-      appear: `appear 1s ease-in-out infinite`
+      appear: `appear 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) forwards`,
+      "appear-up": `appear-up 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) forwards`,
+      "appear-down": `appear-down 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) forwards`
+    },
+    animationDelay: {
+      300: `300ms`,
+      1000: `1000ms`
+    },
+    animationDuration: {
+      // 300: `300ms`,
+      // 1000: `1000ms`
+    },
+    animationIteration: {
+      // 2: `2`
+    },
+    animationTiming: {
+      // cubic: `cubic-bezier(0.215, 0.61, 0.355, 1)`
     },
     gridColumn: gridSpan,
     gridColumnStart: gridColumns,
     gridColumnEnd: gridColumns
   },
   variants: {},
-  plugins: []
+  plugins: [twAnimationDelay]
 };

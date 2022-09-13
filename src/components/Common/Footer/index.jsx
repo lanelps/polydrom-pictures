@@ -1,15 +1,25 @@
 import React from "react";
-import tw, { styled } from "twin.macro";
+import tw, { css, styled } from "twin.macro";
 
 import { Grid } from "~components";
 import { useApp } from "~hooks";
 
-const Container = tw.footer`absolute bottom-6 sm-t:bottom-4 w-full z-50 mix-blend-difference`;
+const Container = styled.footer(() => [
+  tw`absolute bottom-6 sm-t:bottom-4 w-full z-50 mix-blend-difference animate-appear-up animation-delay-1000 opacity-0`,
+  css`
+    transform: translateY(calc(100% + 1rem));
+  `
+]);
 const Wrapper = tw.div`relative w-full col-span-full flex flex-col sm-t:flex-row gap-y-2 justify-between`;
 const NavList = tw.ul`relative w-auto flex gap-x-2`;
 const Button = styled.button(({ active }) => [
-  tw`font-main text-m-h3 sm-t:text-d-h3 text-offwhite`,
-  active && tw`font-bold`
+  tw`font-main text-m-h3 sm-t:text-d-h3 text-offwhite transition-all`,
+  active && tw`font-bold`,
+  css`
+    &:hover {
+      -webkit-text-stroke: 2px white;
+    }
+  `
 ]);
 const Title = tw.h1`font-main text-m-h3 sm-t:text-d-h3 text-offwhite`;
 
