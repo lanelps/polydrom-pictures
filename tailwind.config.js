@@ -189,9 +189,9 @@ module.exports = {
       }
     },
     animation: {
-      appear: `appear 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) forwards`,
-      "appear-up": `appear-up 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) forwards`,
-      "appear-down": `appear-down 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) forwards`
+      appear: `appear 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) forwards`,
+      "appear-up": `appear-up 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) forwards`,
+      "appear-down": `appear-down 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) forwards`
     },
     animationDelay: {
       300: `300ms`,
