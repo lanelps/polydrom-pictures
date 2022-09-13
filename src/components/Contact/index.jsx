@@ -16,7 +16,7 @@ const EmailWrapper = styled.div(({ active }) => [
   active && tw`pointer-events-auto`
 ]);
 const EmailHeading = tw.h2`col-span-full text-m-h3 sm-t:text-d-h3 text-offblack dark:text-offwhite transition-colors`;
-const LinksWrapper = tw.div`col-span-full flex items-center gap-x-2 mt-4`;
+const LinksWrapper = tw.div`col-span-full flex flex-col sm-t:flex-row sm-t:items-center gap-x-2 gap-y-3 mt-4`;
 const FormWrapper = styled.div(({ active }) => [
   tw`relative w-full pt-4 pb-8 sm-t:pb-16 bg-offwhite/60 backdrop-blur-[7px] border-b pointer-events-none`,
   active && tw`pointer-events-auto`
@@ -58,29 +58,31 @@ const Contact = ({ contact }) => {
         <Grid css={[tw`gap-y-0 sm-t:gap-y-0`]}>
           <EmailHeading>General Enquiries:</EmailHeading>
           <LinksWrapper>
-            <Button
-              type={3}
-              to={`mailto:${email}`}
-              css={[tw`text-offblack dark:text-offwhite transition-colors`]}
-            >
-              Email Us
-            </Button>
-
-            {socialLinks?.length > 0 && (
-              <>
+            <div tw="flex items-center gap-x-2">
+              <Button
+                type={3}
+                to={`mailto:${email}`}
+                css={[tw`text-offblack dark:text-offwhite transition-colors`]}
+              >
+                Email Us
+              </Button>
+              {socialLinks?.length > 0 && (
                 <p tw="text-m-h3 sm-t:text-d-h3 text-offblack dark:text-offwhite transition-colors">
                   or
                 </p>
-                <div tw="flex flex-wrap gap-x-2 gap-y-2">
-                  {socialLinks.map((socialLink) => (
-                    <SocialButton
-                      key={socialLink._key}
-                      type={socialLink.type}
-                      to={socialLink.url}
-                    />
-                  ))}
-                </div>
-              </>
+              )}
+            </div>
+
+            {socialLinks?.length > 0 && (
+              <div tw="flex flex-wrap gap-x-2 gap-y-2">
+                {socialLinks.map((socialLink) => (
+                  <SocialButton
+                    key={socialLink._key}
+                    type={socialLink.type}
+                    to={socialLink.url}
+                  />
+                ))}
+              </div>
             )}
           </LinksWrapper>
         </Grid>
