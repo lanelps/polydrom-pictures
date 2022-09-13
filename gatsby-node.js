@@ -16,3 +16,14 @@ exports.onCreateWebpackConfig = ({ actions }) => {
     }
   });
 };
+
+exports.createPages = async ({ actions }) => {
+  const { createRedirect } = actions;
+
+  if (process?.env?.SANITY_STUDIO_URL) {
+    createRedirect({
+      fromPath: `/admin`,
+      toPath: process.env.SANITY_STUDIO_URL
+    });
+  }
+};
