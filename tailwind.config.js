@@ -1,5 +1,5 @@
 const defaultTheme = require(`tailwindcss/defaultTheme`);
-const twAnimationDelay = require(`tailwindcss-animation`);
+const twAnimation = require(`tailwindcss-animation`);
 
 const createTailWindGrid = (size = 12) => {
   const gridSpan = { "span-full": `1 / -1` };
@@ -25,6 +25,7 @@ module.exports = {
     `./pages/**/*.{js,ts,jsx,tsx}`,
     `./templates/**/*.{js,ts,jsx,tsx}`
   ],
+  plugins: [twAnimation],
   theme: {
     colors: {
       transparent: `transparent`,
@@ -198,20 +199,19 @@ module.exports = {
       300: `300ms`,
       1000: `1000ms`
     },
-    animationDuration: {
-      // 300: `300ms`,
-      // 1000: `1000ms`
-    },
-    animationIteration: {
-      // 2: `2`
-    },
-    animationTiming: {
-      // cubic: `cubic-bezier(0.215, 0.61, 0.355, 1)`
-    },
+    // animationDuration: {
+    //   // 300: `300ms`,
+    //   // 1000: `1000ms`
+    // },
+    // animationIteration: {
+    //   // 2: `2`
+    // },
+    // animationTiming: {
+    //   // cubic: `cubic-bezier(0.215, 0.61, 0.355, 1)`
+    // },
     gridColumn: gridSpan,
     gridColumnStart: gridColumns,
     gridColumnEnd: gridColumns
   },
-  variants: {},
-  plugins: [twAnimationDelay]
+  variants: {}
 };

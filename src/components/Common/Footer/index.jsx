@@ -5,7 +5,7 @@ import { Grid } from "~components";
 import { useApp } from "~hooks";
 
 const Container = styled.footer(() => [
-  tw`absolute bottom-6 sm-t:bottom-4 w-full z-50 mix-blend-difference animate-appear-up animation-delay-1000 opacity-0`,
+  tw`absolute bottom-6 sm-t:bottom-4 w-full z-50 mix-blend-difference opacity-0 animate-appear-up animation-delay-1000`,
   css`
     transform: translateY(calc(100% + 1rem));
   `
