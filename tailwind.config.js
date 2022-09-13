@@ -163,7 +163,7 @@ module.exports = {
       //
       "sm-d": `1260px`,
       "md-d": `1440px`,
-      "lg-d": `1600px`,
+      "lg-d": `1920px`,
       "xl-d": `2200px`
     },
     transitionTimingFunction: {
