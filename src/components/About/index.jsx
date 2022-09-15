@@ -6,22 +6,25 @@ import { useApp, useSize } from "~hooks";
 
 import { deviceType } from "~utils/helpers";
 
-const Conatiner = styled.section(({ active, zIndex }) => [
-  tw`absolute top-0 bottom-0 left-0 right-0 py-4 opacity-0 pointer-events-none overflow-hidden transition-opacity`,
-  active && tw`opacity-100`,
+const Conatiner = styled.section(({ zIndex }) => [
+  tw`absolute top-0 bottom-0 left-0 right-0 py-4 pointer-events-none overflow-hidden`,
   css`
     z-index: ${zIndex};
   `
 ]);
-const Position = tw.div`w-[calc(100% + 1.5rem)] sm-t:w-[calc(100% + 1rem)] h-[90%] sm-t:h-[85%] col-span-full sm-t:col-start-2 col-span-3 translate-x--3 sm-t:translate-x-0 translate-y-4 self-end p-3 sm-t:p-4 pb-24 sm-t:pb-16 sm-d:pb-[4.75rem]`;
-const Background = styled(Position)(() => [
-  tw`absolute bg-green dark:bg-purple transition-colors z-[1]`,
+const TransformWrapper = styled.div(({ active }) => [
+  tw`relative w-[calc(100% + 1.5rem)] sm-t:w-[calc(100% + 1rem)] h-[90%] sm-t:h-[85%] col-span-full sm-t:col-start-2 col-span-3 self-end translate-x-[100%] transition-transform duration-[600ms]`,
+  active && tw`translate-x-0`
+]);
+const Wrapper = tw.div`w-full h-full translate-x--3 sm-t:translate-x-0 translate-y-4`;
+const Background = styled.div(() => [
+  tw`w-full h-full absolute p-3 sm-t:p-4 pb-24 sm-t:pb-16 sm-d:pb-[4.75rem] bg-green dark:bg-purple transition-colors z-[1]`,
   css`
     clip-path: inset(0px 0px 0px 0px);
   `
 ]);
-const Content = styled(Position)(({ active }) => [
-  tw`relative overflow-y-scroll overflow-x-hidden z-10 pointer-events-none text-offblack dark:text-offwhite transition-colors`,
+const Content = styled.div(({ active }) => [
+  tw`w-full h-full relative p-3 sm-t:p-4 pb-24 sm-t:pb-16 sm-d:pb-[4.75rem] overflow-y-scroll overflow-x-hidden z-10 pointer-events-none text-offblack dark:text-offwhite transition-colors`,
   active && tw`pointer-events-auto`
 ]);
 
@@ -31,7 +34,8 @@ const Circle = styled.div(({ offSet, position, size, show }) => [
   css`
     width: ${size}px;
     height: ${size}px;
-
+  `,
+  css`
     top: -${offSet.y}px;
     left: -${offSet.x}px;
 
@@ -56,10 +60,16 @@ const About = ({ body }) => {
 
   const handleMouseMove = (e) => {
     setPosition({ x: e.clientX, y: e.clientY });
+
+    const { top, left } = backgroundRef.current.getBoundingClientRect();
+    setOffSet({ x: left, y: top });
   };
 
   useEffect(() => {
-    if (typeof window === `undefined` || !aboutActive) return () => {};
+    if (typeof window === `undefined` || !aboutActive)
+      return () => {
+        window.removeEventListener(`mousemove`, handleMouseMove);
+      };
 
     window.addEventListener(`mousemove`, handleMouseMove);
 
@@ -77,12 +87,12 @@ const About = ({ body }) => {
   }, []);
 
   useEffect(() => {
-    if (!backgroundRef?.current) return;
+    if (!backgroundRef?.current || !aboutActive) return;
 
     const { top, left } = backgroundRef.current.getBoundingClientRect();
 
     setOffSet({ x: left, y: top });
-  }, [backgroundRef, backgroundSize]);
+  }, [backgroundRef, backgroundSize, aboutActive]);
 
   useEffect(() => {
     const windowIndex = activeWindows.findIndex((el) => el === `about`);
@@ -108,13 +118,22 @@ const About = ({ body }) => {
   return (
     <Conatiner active={aboutActive} zIndex={zIndex}>
       <Grid css={[tw`h-full`]}>
-        <Background ref={backgroundRef}>
-          <Circle offSet={offSet} position={position} size={size} show={show} />
-        </Background>
+        <TransformWrapper active={aboutActive}>
+          <Wrapper>
+            <Background ref={backgroundRef}>
+              <Circle
+                offSet={offSet}
+                position={position}
+                size={size}
+                show={show}
+              />
+            </Background>
 
-        <Content active={aboutActive}>
-          <PortableText blocks={body} css={[tw`z-10`]} />
-        </Content>
+            <Content active={aboutActive}>
+              <PortableText blocks={body} css={[tw`z-10`]} />
+            </Content>
+          </Wrapper>
+        </TransformWrapper>
       </Grid>
     </Conatiner>
   );

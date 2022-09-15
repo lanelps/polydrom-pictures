@@ -10,7 +10,7 @@ const Layout = ({ children, className }) => (
     <Theme />
     <Container>
       <main
-        tw="relative w-full min-h-[667px] overflow-y-scroll"
+        tw="relative w-full min-h-[667px] overflow-y-scroll overflow-x-hidden"
         className={className}
       >
         {children}
