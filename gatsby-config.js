@@ -55,9 +55,7 @@ const seoPlugins = () => {
   plugins.push({
     resolve: `gatsby-plugin-robots-txt`,
     options: {
-      configFile: isPreview
-        ? path.join(__dirname, `config/robots-txt.staging.js`)
-        : path.join(__dirname, `config/robots-txt.production.js`)
+      configFile: path.join(__dirname, `config/robots-txt.js`)
     }
   });
   plugins.push({
