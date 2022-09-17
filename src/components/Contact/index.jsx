@@ -5,8 +5,8 @@ import { Grid, Button, SocialButton, ContactForm } from "~components";
 import { useApp } from "~hooks";
 
 const Container = styled.section(({ active, zIndex }) => [
-  tw`absolute top-0 left-0 right-0 z-30 opacity-0 pointer-events-none overflow-hidden transition-opacity`,
-  active && tw`opacity-100`,
+  tw`absolute top-0 left-0 right-0 z-30 translate-y-[-100%] pointer-events-none overflow-hidden transition-[opacity,transform]`,
+  active && tw`translate-y-0`,
   css`
     z-index: ${zIndex};
   `
