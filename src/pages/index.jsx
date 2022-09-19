@@ -26,7 +26,7 @@ const Index = ({ data, location }) => {
 
   return (
     <Layout>
-      {/* <DVD dvd={sanityGlobals?.dvd} /> */}
+      <DVD dvd={sanityGlobals?.dvd} />
       <Nav navLinks={sanityGlobals?.navLinks} />
       <LandingMedia media={sanityGlobals?.landingMedia} />
       <About body={sanityAbout?._rawBody} />
