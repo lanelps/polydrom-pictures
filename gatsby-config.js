@@ -55,7 +55,9 @@ const seoPlugins = () => {
   plugins.push({
     resolve: `gatsby-plugin-robots-txt`,
     options: {
-      configFile: path.join(__dirname, `config/robots-txt.js`)
+      host: GATSBY_SITE_URL + pathPrefix,
+      sitemap: `${GATSBY_SITE_URL}/sitemap.xml`,
+      policy: [{ userAgent: `*`, allow: `/` }]
     }
   });
   plugins.push({
