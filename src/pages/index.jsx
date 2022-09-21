@@ -25,7 +25,7 @@ const Index = ({ data, location }) => {
   const jobs = allSanityJob?.edges.map(({ node }) => node);
 
   return (
-    <Layout>
+    <Layout data={sanityGlobals?.footer}>
       <DVD dvd={sanityGlobals?.dvd} />
       <Nav navLinks={sanityGlobals?.navLinks} />
       <LandingMedia media={sanityGlobals?.landingMedia} />
@@ -80,6 +80,14 @@ export const query = graphql`
           url
         }
       }
+      footer {
+        title
+        font {
+          asset {
+            url
+          }
+        }
+      }
     }
     # About
     sanityAbout {
@@ -98,9 +106,7 @@ export const query = graphql`
           description
           jobFile {
             asset {
-              source {
-                url
-              }
+              url
             }
           }
         }

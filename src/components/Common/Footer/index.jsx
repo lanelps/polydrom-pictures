@@ -22,9 +22,21 @@ const Button = styled.button(({ active }) => [
     ${active && `-webkit-text-stroke: 2px white;`}
   `
 ]);
-const Title = tw.h1`font-main text-m-h3 sm-t:text-d-h3 text-offwhite`;
+const Title = styled.h1(({ font }) => [
+  tw`font-main text-m-h3 sm-t:text-d-h3 text-offwhite`,
+  font &&
+    css`
+      @font-face {
+        font-family: "Custom";
+        src: url("${font}") format("woff2");
+      }
 
-const Footer = () => {
+      font-family: "Custom", Helvetica Neue, Helvetica, Arial, sans-serif;
+    `
+]);
+
+const Footer = ({ data: { title, font } }) => {
+  // state
   const {
     aboutActive,
     setAboutActive,
@@ -33,6 +45,7 @@ const Footer = () => {
     contactActive,
     setContactActive
   } = useApp();
+
   return (
     <Container>
       <Grid>
@@ -68,7 +81,7 @@ const Footer = () => {
               </li>
             </NavList>
           </nav>
-          <Title>Polydrom Pictures</Title>
+          <Title font={font?.asset?.url}>{title}</Title>
         </Wrapper>
       </Grid>
     </Container>
