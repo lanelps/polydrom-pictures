@@ -51,7 +51,6 @@ if (GATSBY_CMD !== `serve`) {
 const seoPlugins = () => {
   const plugins = [];
 
-  plugins.push(`gatsby-plugin-react-helmet`);
   plugins.push({
     resolve: `gatsby-plugin-robots-txt`,
     options: {
@@ -173,6 +172,7 @@ const hostingPlugins = () => {
   const securityHeaders = {
     "/*": [
       `X-Frame-Options: DENY`,
+      `Content-Security-Policy: frame-ancestors DENY`,
       `X-XSS-Protection: 1; mode=block`,
       `X-Content-Type-Options: nosniff`
     ]
