@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import styled from "@emotion/styled";
+import tw, { styled, css } from "twin.macro";
 
 const Container = styled.div`
   width: 100%;
@@ -14,12 +14,14 @@ const Container = styled.div`
   }
 `;
 
-const VideoElement = styled.video`
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  transition: opacity 1s;
-`;
+const VideoElement = styled.video(({ contain }) => [
+  css`
+    object-fit: ${contain ? `contain` : `cover`};
+    width: 100%;
+    height: 100%;
+    transition: opacity 1s;
+  `
+]);
 
 const Video = ({
   autoPlay = true,
@@ -28,7 +30,8 @@ const Video = ({
   isMuted = true,
   loop = true,
   src,
-  type = `video/mp4`
+  type = `video/mp4`,
+  contain = false
 }) => {
   const ref = useRef(null);
 
@@ -52,6 +55,7 @@ const Video = ({
         autoPlay={autoPlay}
         playsInline
         loop={loop}
+        contain={contain}
       >
         <source src={src} type={type} />
         Sorry, your browser doesn&#39;t support embedded videos.
