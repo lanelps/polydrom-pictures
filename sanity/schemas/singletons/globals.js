@@ -24,6 +24,12 @@ export default {
       name: `dvd`,
       title: `DVD Icon`,
       type: `dvd`
+    },
+    // Footer
+    {
+      name: `footer`,
+      title: `Footer`,
+      type: `footer`
     }
   ],
   preview: {

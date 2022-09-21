@@ -17,6 +17,7 @@ import contact from "./singletons/contact";
 import altImage from "./objects/altImage";
 import blockContent from "./objects/blockContent";
 import dvd from "./objects/dvd";
+import footer from "./objects/footer";
 import link from "./objects/link";
 import linkGroup from "./objects/linkGroup";
 import media from "./objects/media";
@@ -42,6 +43,7 @@ export default createSchema({
     altImage,
     blockContent,
     dvd,
+    footer,
     link,
     linkGroup,
     media,
