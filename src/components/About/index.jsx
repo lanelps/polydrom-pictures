@@ -6,8 +6,9 @@ import { useApp, useSize } from "~hooks";
 
 import { deviceType } from "~utils/helpers";
 
-const Conatiner = styled.section(({ zIndex }) => [
-  tw`absolute top-0 bottom-0 left-0 right-0 py-4 pointer-events-none overflow-hidden`,
+const Conatiner = styled.section(({ zIndex, active }) => [
+  tw`absolute top-0 bottom-0 left-0 right-0 py-4 pointer-events-none overflow-hidden opacity-0 transition-opacity delay-[300ms]`,
+  active && tw`opacity-100 delay-[0ms]`,
   css`
     z-index: ${zIndex};
   `
