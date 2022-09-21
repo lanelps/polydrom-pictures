@@ -15,6 +15,11 @@ export default {
         Rule.max(50).warning(`Longer titles may be truncated by search engines`)
     },
     {
+      name: `domain`,
+      title: `Website Domain`,
+      type: `url`
+    },
+    {
       name: `description`,
       title: `Description`,
       type: `text`,
@@ -33,9 +38,14 @@ export default {
     },
     {
       name: `image`,
-      title: `Image`,
+      title: `Share Image`,
       type: `image`,
-      description: `Used for both search engine results and social cards`
+      description: `Used for both search engine results and social cards. 16:9 aspect ratio. No larger than 1MB.`
+    },
+    {
+      name: `favicon`,
+      title: `Favicon`,
+      type: `image`
     }
   ]
 };

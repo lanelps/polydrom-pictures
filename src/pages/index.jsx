@@ -14,13 +14,7 @@ import {
 } from "~components";
 
 const Index = ({ data, location }) => {
-  const {
-    allSanityJob,
-    sanityAbout,
-    sanityContact,
-    sanityGlobals,
-    sanitySettings
-  } = data;
+  const { allSanityJob, sanityAbout, sanityContact, sanityGlobals } = data;
 
   const jobs = allSanityJob?.edges.map(({ node }) => node);
 
@@ -37,6 +31,35 @@ const Index = ({ data, location }) => {
 };
 
 export default Index;
+
+export const Head = ({ data }) => {
+  const {
+    sanitySettings: { seo }
+  } = data;
+
+  console.log(`seo`, seo);
+
+  return (
+    <>
+      <title>{seo?.title}</title>
+      <meta name="description" content={seo?.description} />
+      <meta name="keywords" content={seo?.keywords} />
+      <link
+        rel="icon"
+        type={seo?.favicon?.asset?.mimeType}
+        href={seo?.favicon?.asset?.url}
+      />
+
+      {/* open graph/ twitter */}
+      <meta property="og:title" content={seo?.title} />
+      <meta property="og:type" content="website" />
+      <meta property="og:description" content={seo?.description} />
+      <meta property="og:image" content={seo.image.asset.url} />
+      <meta property="og:url" content={seo.domain} />
+      <meta name="twitter:card" content="summary_large_image" />
+    </>
+  );
+};
 
 export const query = graphql`
   query PolydromPictures {
@@ -127,14 +150,17 @@ export const query = graphql`
       seo {
         title
         description
+        domain
         keywords
         image {
           asset {
-            gatsbyImageData(
-              width: 720
-              placeholder: BLURRED
-              formats: [AUTO, WEBP, AVIF]
-            )
+            url
+          }
+        }
+        favicon {
+          asset {
+            mimeType
+            url
           }
         }
       }
