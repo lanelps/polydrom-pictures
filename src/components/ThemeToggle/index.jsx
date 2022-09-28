@@ -41,7 +41,9 @@ const ThemeToggle = () => {
         onClick={() => handleThemetoggle(`light`)}
         css={[tw`bg-offwhite`]}
       >
-        <Light css={[tw`w-5 h-5 sm-t:w-8 sm-t:h-8 text-offblack`]} />
+        <Light
+          css={[tw`w-5 h-5 sm-t:w-8 sm-t:h-8 text-offblack overflow-visible`]}
+        />
       </ButtonWrapper>
 
       <ButtonWrapper
@@ -51,7 +53,7 @@ const ThemeToggle = () => {
       >
         <Dark
           css={[
-            tw`w-[0.423rem] sm-t:w-[0.625rem] h-[0.423rem] sm-t:h-[0.625rem] text-offwhite`
+            tw`w-[0.423rem] sm-t:w-[0.625rem] h-[0.423rem] sm-t:h-[0.625rem] text-offwhite overflow-visible`
           ]}
         />
       </ButtonWrapper>
