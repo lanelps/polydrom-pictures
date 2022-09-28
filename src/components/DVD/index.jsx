@@ -5,7 +5,7 @@ import { Button, Go, Image } from "~components";
 import { useApp } from "~hooks";
 
 const Container = styled.div(({ position }) => [
-  tw`fixed w-auto max-w-[5.25rem] sm-t:max-w-[10.25rem] flex items-center justify-center z-20 mix-blend-difference opacity-0 animate-appear animation-delay-1000`,
+  tw`fixed w-auto max-w-[5.25rem] sm-t:max-w-[10.25rem] flex items-center justify-center z-20 opacity-0 animate-appear animation-delay-1000`,
   css`
     will-change: transform;
     transform: translate3d(${position.x}px, ${position.y}px, 0);
@@ -13,7 +13,7 @@ const Container = styled.div(({ position }) => [
 ]);
 const DVDButton = tw(
   Button
-)`bg-offblack backdrop-blur-[10rem] border-white text-white hover:(bg-offwhite border-offwhite text-offblack) dark:(bg-offwhite border-white text-offblack hover:(bg-offblack text-offwhite))`;
+)`bg-offwhite border-offblack text-offblack backdrop-blur-[10rem] hover:(bg-offblack text-offwhite) dark:(bg-offblack text-offwhite border-offwhite)`;
 
 const DVD = ({ dvd }) => {
   const { image, linkText, linkUrl } = dvd;
