@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import tw, { css, styled } from "twin.macro";
+import * as dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 
 import { Grid, Button } from "~components";
 import { useApp } from "~hooks";
@@ -10,6 +12,12 @@ import { ReactComponent as Clock } from "~assets/svg/icons/info/clock.svg";
 import { ReactComponent as Globe } from "~assets/svg/icons/info/globe.svg";
 import { ReactComponent as Wallet } from "~assets/svg/icons/info/wallet.svg";
 
+//
+
+dayjs.extend(relativeTime);
+
+//
+
 const Conatiner = styled.section(({ active, zIndex }) => [
   tw`absolute top-0 bottom-0 left-0 right-0 py-4 bg-offwhite/60 backdrop-blur-[7px] opacity-0 pointer-events-none transition-opacity overflow-y-scroll`,
   active && tw`opacity-100 pointer-events-auto`,
@@ -18,6 +26,8 @@ const Conatiner = styled.section(({ active, zIndex }) => [
   `
 ]);
 const EmptyCard = tw.li`relative w-full col-span-full p-4 bg-offwhite/60 border rounded-[5px]`;
+
+//
 
 const Jobs = ({ jobs }) => {
   const { jobsActive, activeWindows } = useApp();
@@ -105,7 +115,7 @@ const JobCard = ({ job }) => (
             Apply
           </Button>
         </div>
-        <Created>Posted {job?._createdAt}</Created>
+        <Created>Posted {dayjs(job?._createdAt).fromNow()}</Created>
       </div>
     </JobWrapper>
   </JobContainer>

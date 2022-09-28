@@ -118,7 +118,7 @@ export const query = graphql`
     allSanityJob {
       edges {
         node {
-          _createdAt(fromNow: true)
+          _createdAt
           _key
           title
           timeline
