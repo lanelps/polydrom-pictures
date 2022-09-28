@@ -19,7 +19,7 @@ const Index = ({ data, location }) => {
   const jobs = allSanityJob?.edges.map(({ node }) => node);
 
   return (
-    <Layout data={sanityGlobals?.footer}>
+    <Layout font={sanityGlobals?.font} footer={sanityGlobals?.footer}>
       <DVD dvd={sanityGlobals?.dvd} />
       <Nav navLinks={sanityGlobals?.navLinks} />
       <LandingMedia media={sanityGlobals?.landingMedia} />
@@ -36,8 +36,6 @@ export const Head = ({ data }) => {
   const {
     sanitySettings: { seo }
   } = data;
-
-  console.log(`seo`, seo);
 
   return (
     <>
@@ -105,10 +103,10 @@ export const query = graphql`
       }
       footer {
         title
-        font {
-          asset {
-            url
-          }
+      }
+      font {
+        asset {
+          url
         }
       }
     }

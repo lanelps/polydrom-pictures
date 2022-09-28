@@ -5,9 +5,9 @@ import { Theme, Footer } from "~components";
 
 const Container = tw.div`relative h-screen flex bg-offwhite dark:bg-offblack transition-colors overflow-x-hidden overflow-y-scroll`;
 
-const Layout = ({ children, className, data }) => (
+const Layout = ({ children, className, font, footer }) => (
   <>
-    <Theme />
+    <Theme font={font} />
     <Container>
       <main
         tw="relative w-full min-h-[667px] overflow-y-scroll overflow-x-hidden"
@@ -15,7 +15,7 @@ const Layout = ({ children, className, data }) => (
       >
         {children}
       </main>
-      <Footer data={data} />
+      <Footer data={footer} />
     </Container>
   </>
 );

@@ -22,20 +22,9 @@ const Button = styled.button(({ active }) => [
     ${active && `-webkit-text-stroke: 2px white;`}
   `
 ]);
-const Title = styled.h1(({ font }) => [
-  tw`font-main text-m-h3 sm-t:text-d-h3 text-offwhite`,
-  font &&
-    css`
-      @font-face {
-        font-family: "Custom";
-        src: url("${font}") format("woff2");
-      }
+const Title = tw.h1`font-main text-m-h3 sm-t:text-d-h3 text-offwhite`;
 
-      font-family: "Custom", Helvetica Neue, Helvetica, Arial, sans-serif;
-    `
-]);
-
-const Footer = ({ data: { title, font } }) => {
+const Footer = ({ data: { title } }) => {
   // state
   const {
     aboutActive,
@@ -81,7 +70,7 @@ const Footer = ({ data: { title, font } }) => {
               </li>
             </NavList>
           </nav>
-          <Title font={font?.asset?.url}>{title}</Title>
+          <Title>{title}</Title>
         </Wrapper>
       </Grid>
     </Container>

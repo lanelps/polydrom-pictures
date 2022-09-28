@@ -45,7 +45,7 @@ module.exports = {
       purple: `#610F72`
     },
     fontFamily: {
-      main: [`Helvetica Neue`, ...defaultTheme.fontFamily.sans]
+      main: [`Custome`, `Helvetica Neue`, ...defaultTheme.fontFamily.sans]
     },
     fontSize: {
       "d-h1": [
