@@ -15,13 +15,13 @@ const EmailWrapper = styled.div(({ active }) => [
   tw`relative w-full pt-4 pb-8 sm-t:pb-16 bg-lime dark:bg-cobalt transition-colors pointer-events-none`,
   active && tw`pointer-events-auto`
 ]);
-const EmailHeading = tw.h2`col-span-full text-m-h3 sm-t:text-d-h3 text-offblack dark:text-offwhite transition-colors`;
+const EmailHeading = tw.h2`col-span-full font-main text-m-h3 sm-t:text-d-h3 text-offblack dark:text-offwhite transition-colors`;
 const LinksWrapper = tw.div`col-span-full flex flex-col sm-t:flex-row sm-t:items-center gap-x-2 gap-y-3 mt-4`;
 const FormWrapper = styled.div(({ active }) => [
   tw`relative w-full pt-4 pb-8 sm-t:pb-16 bg-offwhite/60 backdrop-blur-[7px] border-b pointer-events-none`,
   active && tw`pointer-events-auto`
 ]);
-const FormHeading = tw.h3`col-span-full text-m-h3 sm-t:text-d-h3`;
+const FormHeading = tw.h3`col-span-full font-main text-m-h3 sm-t:text-d-h3`;
 
 const Contact = ({ contact }) => {
   const { email, socialLinks, mailchimpID } = contact;

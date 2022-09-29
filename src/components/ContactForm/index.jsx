@@ -57,13 +57,13 @@ const ContactForm = ({ className, mailchimpID }) => {
           name="email"
           value={email}
           onChange={handleChange}
-          placeholder={
-            submitted ? `We’ve sent you a confirmation email!` : `Email Address`
-          }
+          placeholder={submitted ? `Subscribed!` : `Email Address`}
           disabled={submitting || submitted}
         />
 
-        <Button type="submit">SUBMIT</Button>
+        <Button type="submit" disabled={submitting || submitted}>
+          SUBMIT
+        </Button>
       </div>
     </Container>
   );

@@ -17,7 +17,7 @@ const mailchimp = (req, res) => {
     });
   }
 
-  const data = req.body;
+  const data = JSON.parse(req?.body);
 
   if (!process.env.MAILCHIMP_API_KEY) {
     const message = `Required Mailchimp verification parameters missing`;
@@ -47,7 +47,7 @@ const mailchimp = (req, res) => {
   //     });
   //   }
 
-  if (!data.email || !data.listID) {
+  if (!data?.email || !data?.listID) {
     const message = `Required information missing`;
 
     return res.status(400).json({

@@ -3,15 +3,17 @@ import tw, { css, styled } from "twin.macro";
 
 import { Go } from "~components";
 
-const Container = styled.button(({ buttonType }) => [
-  tw`relative w-max bg-transparent hover:bg-offblack dark:hover:bg-offwhite active:bg-transparent text-offblack hover:text-offwhite dark:hover:text-offblack active:text-grey font-main border hover:border-offblack dark:hover:border-offwhite active:border-grey rounded-[3.5rem] transition-colors`,
+const Container = styled.button(({ buttonType, disabled }) => [
+  tw`relative w-max bg-transparent hover:bg-offblack dark:hover:bg-offwhite active:bg-transparent text-offblack hover:text-offwhite dark:hover:text-offblack active:text-grey disabled:text-grey font-main border hover:border-offblack dark:hover:border-offwhite active:border-grey disabled:border-grey rounded-[3.5rem] transition-colors`,
   buttonType === 2 && tw`p-2 sm-t:p-3 text-m-b3 sm-t:text-d-b3`,
-  buttonType === 3 && tw`py-2 px-3 sm-t:px-4 text-m-h3 sm-t:text-d-h3`
+  buttonType === 3 && tw`py-2 px-3 sm-t:px-4 text-m-h3 sm-t:text-d-h3`,
+  disabled && tw`pointer-events-none`
 ]);
 
 const Button = ({
   children,
   className,
+  disabled,
   onClick,
   to,
   kind = 2,
@@ -25,6 +27,7 @@ const Button = ({
           className={className}
           buttonType={kind}
           onClick={onClick}
+          disabled={disabled ? `true` : ``}
         >
           {children}
         </Container>
@@ -37,6 +40,7 @@ const Button = ({
       className={className}
       buttonType={kind}
       onClick={onClick}
+      disabled={disabled ? `true` : ``}
     >
       {children}
     </Container>
