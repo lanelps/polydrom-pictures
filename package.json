@@ -7,11 +7,13 @@
   "scripts": {
     "build": "gatsby build",
     "dev": "gatsby develop -H 0.0.0.0",
-    "start": "npm run develop",
+    "start": "npm run dev",
     "serve": "gatsby serve",
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "@cloudinary/transformation-builder-sdk": "^1.0.1",
+    "@cloudinary/url-gen": "^1.8.6",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@portabletext/react": "^1.0.6",

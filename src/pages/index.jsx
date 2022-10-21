@@ -90,7 +90,10 @@ export const query = graphql`
           }
           altText
         }
-        video
+        video {
+          format
+          public_id
+        }
       }
       navLinks {
         _key

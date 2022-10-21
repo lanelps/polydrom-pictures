@@ -30,7 +30,7 @@ const Video = ({
   isMuted = true,
   loop = true,
   src,
-  type = `video/mp4`,
+  type = `mp4`,
   contain = false
 }) => {
   const ref = useRef(null);
@@ -57,7 +57,7 @@ const Video = ({
         loop={loop}
         contain={contain}
       >
-        <source src={src} type={type} />
+        <source src={src} type={`video/${type}`} />
         Sorry, your browser doesn&#39;t support embedded videos.
       </VideoElement>
     </Container>
