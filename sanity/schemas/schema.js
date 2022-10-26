@@ -23,6 +23,7 @@ import linkGroup from "./objects/linkGroup";
 import media from "./objects/media";
 import seo from "./objects/seo";
 import socialLink from "./objects/socialLink";
+import video from "./objects/video";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -48,6 +49,7 @@ export default createSchema({
     linkGroup,
     media,
     seo,
-    socialLink
+    socialLink,
+    video
   ])
 });
