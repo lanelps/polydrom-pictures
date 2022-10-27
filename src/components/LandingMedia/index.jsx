@@ -1,41 +1,12 @@
 import React from "react";
 import tw from "twin.macro";
-import { Cloudinary } from "@cloudinary/url-gen";
-import {
-  quality,
-  format
-} from "@cloudinary/transformation-builder-sdk/actions/delivery";
-import { limitFit } from "@cloudinary/transformation-builder-sdk/actions/resize";
 
 import { Image, Grid, Video } from "~components";
 
-const cld = new Cloudinary({
-  cloud: {
-    cloudName: process.env.GATSBY_CLOUDINARY_NAME
-  },
-  url: {
-    secure: true
-  }
-});
+import { generateCloudinaryVideoURL } from "~utils/cloudinary";
 
 const MediaWrapper = tw.div`relative w-full h-full col-span-full flex items-center justify-center opacity-0 animate-appear animation-delay-1000`;
 const Figure = tw.figure`relative w-full h-full sm-t:(max-w-[70vw] max-h-[339px]) sm-d:(max-w-[45vw] max-h-[648px])`;
-
-const generateCloudinaryVideoURL = (publicId, options) => {
-  let myVideo = cld?.video(publicId);
-
-  if (options?.width) {
-    myVideo = myVideo.resize(limitFit().width(options.width));
-  }
-  if (options?.quality) {
-    myVideo = myVideo.delivery(quality(options.quality));
-  }
-  if (options?.format) {
-    myVideo = myVideo.delivery(format(options.format));
-  }
-
-  return myVideo?.toURL();
-};
 
 const LandingMedia = ({ media }) => {
   const videoSources = [];
