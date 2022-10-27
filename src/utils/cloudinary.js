@@ -9,7 +9,7 @@ import { limitFit } from "@cloudinary/transformation-builder-sdk/actions/resize"
 
 const cld = new Cloudinary({
   cloud: {
-    cloudName: process?.env?.GATSBY_CLOUDINARY_NAME
+    cloudName: process.env.GATSBY_CLOUDINARY_NAME
   },
   url: {
     secure: true
