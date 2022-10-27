@@ -5,7 +5,7 @@ import { Button, Go, Image } from "~components";
 import { useApp } from "~hooks";
 
 const Container = styled.div(({ position }) => [
-  tw`fixed w-auto max-w-[5.25rem] sm-t:max-w-[10.25rem] flex items-center justify-center z-20 opacity-0 animate-appear animation-delay-1000`,
+  tw`fixed w-auto max-w-[5.25rem] sm-t:max-w-[10.25rem] flex items-end justify-center z-20 opacity-0 animate-appear animation-delay-1000`,
   css`
     will-change: transform;
     transform: translate3d(${position.x}px, ${position.y}px, 0);
@@ -76,6 +76,7 @@ const DVD = ({ dvd }) => {
         </Go>
       ) : (
         <DVDButton
+          kind={2}
           css={[!image ? tw`relative` : tw`absolute`]}
           onClick={() => setContactActive(!contactActive)}
         >
