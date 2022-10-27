@@ -80,10 +80,11 @@ const Theme = ({ font }) => (
         }
 
         // font
-        @font-face {
-          font-family: "Custome";
-          src: url("${font?.asset?.url}") format("woff2");
-        }
+        ${font &&
+        `@font-face {
+  font-family: "Custome";
+  src: url("${font?.asset?.url}") format("woff2");
+}`}
       `}
     />
   </>
