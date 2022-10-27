@@ -91,8 +91,14 @@ export const query = graphql`
           altText
         }
         video {
-          format
-          public_id
+          source {
+            format
+            public_id
+          }
+          safariSource {
+            format
+            public_id
+          }
         }
       }
       navLinks {

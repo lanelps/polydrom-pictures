@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import tw, { styled, css } from "twin.macro";
+import { v4 as uuidv4 } from "uuid";
 
 const Container = styled.div`
   width: 100%;
@@ -29,8 +30,7 @@ const Video = ({
   id,
   isMuted = true,
   loop = true,
-  src,
-  type = `mp4`,
+  sources = [],
   contain = false
 }) => {
   const ref = useRef(null);
@@ -45,7 +45,7 @@ const Video = ({
       ref.current.defaultMuted = true;
       ref.current.muted = true;
     }
-  }, [src]);
+  }, [sources]);
 
   return (
     <Container className={className}>
@@ -57,7 +57,13 @@ const Video = ({
         loop={loop}
         contain={contain}
       >
-        <source src={src} type={`video/${type}`} />
+        {sources.map((src) => (
+          <source
+            key={uuidv4()}
+            src={src?.url}
+            type={src?.type && `video/${src?.type}`}
+          />
+        ))}
         Sorry, your browser doesn&#39;t support embedded videos.
       </VideoElement>
     </Container>
