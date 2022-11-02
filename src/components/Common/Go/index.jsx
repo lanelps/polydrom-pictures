@@ -9,7 +9,7 @@ import { Link } from "gatsby";
  * @param  {props} props Noted in PropTypes below
  * @return {node}        The resulting link node with mutated URLs
  */
-const Go = ({ children, className, debug, onClick, parameters, to }) => {
+const Go = ({ children, className, debug, label, onClick, parameters, to }) => {
   const [parameterString, setParameterString] = useState(``);
 
   /**
@@ -78,21 +78,24 @@ const Go = ({ children, className, debug, onClick, parameters, to }) => {
   ) {
     return (
       <a
+        aria-label={label}
         href={href}
-        onClick={onClick}
-        rel="noopener noreferrer"
-        target="_blank"
         className={className}
         css={css`
           display: inline-block;
         `}
+        onClick={onClick}
+        rel="noopener noreferrer"
+        target="_blank"
       >
         {children}
       </a>
     );
   }
+
   return (
     <Link
+      aria-label={label}
       to={href}
       className={className}
       css={css`

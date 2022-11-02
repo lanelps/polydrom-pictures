@@ -37,6 +37,7 @@ const ThemeToggle = () => {
   return (
     <Container>
       <ButtonWrapper
+        aria-label="Light theme"
         type="button"
         onClick={() => handleThemetoggle(`light`)}
         css={[tw`bg-offwhite`]}
@@ -47,6 +48,7 @@ const ThemeToggle = () => {
       </ButtonWrapper>
 
       <ButtonWrapper
+        aria-label="Dark theme"
         type="button"
         onClick={() => handleThemetoggle(`dark`)}
         css={[tw`bg-offblack`]}

@@ -71,7 +71,7 @@ const SocialButton = ({ type, to }) => {
 
   if (to) {
     return (
-      <Go to={to}>
+      <Go to={to} label={`${type} profile`}>
         <Container className="group" type="button">
           {iconJSX}
         </Container>
