@@ -15,6 +15,7 @@ const Button = ({
   children,
   className,
   disabled,
+  name = ``,
   onClick,
   to,
   kind = 1,
@@ -27,6 +28,7 @@ const Button = ({
           type={type}
           className={className}
           buttonType={kind}
+          aria-label={name}
           onClick={onClick}
           disabled={disabled ? `true` : ``}
         >
@@ -40,6 +42,7 @@ const Button = ({
       type={type}
       className={className}
       buttonType={kind}
+      aria-label={name}
       onClick={onClick}
       disabled={disabled ? `true` : ``}
     >

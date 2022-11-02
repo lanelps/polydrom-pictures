@@ -60,6 +60,7 @@ const Contact = ({ contact }) => {
           <LinksWrapper>
             <div tw="flex items-center gap-x-2">
               <Button
+                name="Email Us"
                 kind={3}
                 to={`mailto:${email}`}
                 css={[tw`text-offblack dark:text-offwhite transition-colors`]}

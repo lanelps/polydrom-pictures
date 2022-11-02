@@ -44,6 +44,7 @@ const Footer = ({ data: { title } }) => {
               <li>
                 <Button
                   type="button"
+                  name="Toggle About"
                   onClick={() => setAboutActive(!aboutActive)}
                   active={aboutActive}
                 >
@@ -53,6 +54,7 @@ const Footer = ({ data: { title } }) => {
               <li>
                 <Button
                   type="button"
+                  name="Toggle Jobs"
                   onClick={() => setJobsActive(!jobsActive)}
                   active={jobsActive}
                 >
@@ -62,6 +64,7 @@ const Footer = ({ data: { title } }) => {
               <li>
                 <Button
                   type="button"
+                  name="Toggle Contact Form"
                   onClick={() => setContactActive(!contactActive)}
                   active={contactActive}
                 >

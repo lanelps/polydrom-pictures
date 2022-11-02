@@ -108,10 +108,18 @@ const JobCard = ({ job }) => (
       <Description>{job?.description}</Description>
       <div tw="flex gap-x-5 items-center justify-between">
         <div tw="flex gap-x-2">
-          <Button css={[tw`uppercase`]} to={job?.jobFile?.asset?.url}>
+          <Button
+            css={[tw`uppercase`]}
+            name="Open description"
+            to={job?.jobFile?.asset?.url}
+          >
             Full Description
           </Button>
-          <Button css={[tw`uppercase`]} to="mailto:jobs@polydrom.tv">
+          <Button
+            css={[tw`uppercase`]}
+            name="Apply to"
+            to="mailto:jobs@polydrom.tv"
+          >
             Apply
           </Button>
         </div>
