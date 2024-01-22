@@ -58,6 +58,9 @@ export const Head = ({ data }) => {
 
       {/* Prevent indexing */}
       <meta name="robots" content="noindex" />
+
+      {/* Google site verification */}
+      <meta name="google-site-verification" content="Nj0RmwKjO-OtyJs2Ma_ayUUKviA8xFwiaIoPYzn1A34" />
     </>
   );
 };
