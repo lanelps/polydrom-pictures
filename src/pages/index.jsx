@@ -55,6 +55,9 @@ export const Head = ({ data }) => {
       <meta property="og:image" content={seo?.image?.asset?.url} />
       <meta property="og:url" content={seo?.domain} />
       <meta name="twitter:card" content="summary_large_image" />
+
+      {/* Prevent indexing */}
+      <meta name="robots" content="noindex" />
     </>
   );
 };
