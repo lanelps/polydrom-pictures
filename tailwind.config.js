@@ -44,6 +44,7 @@ module.exports = {
       orange: `#DF7100`,
       purple: `#610F72`,
       red: `#84212B`,
+      yellow: `#FFFF00`
     },
     fontFamily: {
       main: [`Custome`, `Helvetica Neue`, ...defaultTheme.fontFamily.sans]
