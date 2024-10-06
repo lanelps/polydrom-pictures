@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import tw, { css, styled } from "twin.macro";
+import React, { useEffect, useRef } from "react";
+import tw, { styled } from "twin.macro";
 
 import { Button, Go, Image } from "~components";
 import { useApp } from "~hooks";

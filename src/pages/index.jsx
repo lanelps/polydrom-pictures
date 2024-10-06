@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { graphql } from "gatsby";
-import tw from "twin.macro";
 
 import {
   Layout,
@@ -13,7 +12,7 @@ import {
   DVD
 } from "~components";
 
-const Index = ({ data, location }) => {
+const Index = ({ data }) => {
   const { allSanityJob, sanityAbout, sanityContact, sanityGlobals } = data;
 
   const jobs = allSanityJob?.edges.map(({ node }) => node);
