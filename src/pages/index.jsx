@@ -13,14 +13,14 @@ import {
 } from "~components";
 
 const Index = ({ data }) => {
-  const { allSanityJob, sanityAbout, sanityContact, sanityGlobals } = data;
+  const { allSanityJob, sanityAbout, sanityContact, sanityGlobals, sanitySettings } = data;
 
   const jobs = allSanityJob?.edges?.map(({ node }) => node) || [];
 
   return (
-    <Layout font={sanityGlobals?.font} footer={sanityGlobals?.footer}>
+    <Layout font={sanityGlobals?.font}>
       <DVD dvd={sanityGlobals?.dvd} />
-      <Nav navLinks={sanityGlobals?.navLinks} />
+      <Nav title={sanitySettings?.seo?.title} />
       <LandingMedia media={sanityGlobals?.landingMedia} />
       <About body={sanityAbout?._rawBody} />
       <Jobs jobs={jobs} />

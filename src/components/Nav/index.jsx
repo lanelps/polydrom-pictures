@@ -2,42 +2,82 @@
 import React from "react";
 import tw, { css, styled } from "twin.macro";
 
-import { Grid, Go, ThemeToggle } from "~components";
+import { Grid, ThemeToggle } from "~components";
+import { useApp } from "~hooks";
 
-const Container = styled.nav(() => [
-  tw`relative sm-t:absolute flex flex-col gap-y-4 top-0 sm-t:top-4 w-full mt-3 mb-10 sm-t:m-0 z-10 animate-appear-down animation-delay-1000 opacity-0`,
+const Container = styled.header(() => [
+  tw`relative sm-t:absolute flex flex-col gap-y-4 top-0 sm-t:top-4 w-full mt-3 mb-10 sm-t:m-0 z-[100] animate-appear-down animation-delay-1000 opacity-0 mix-blend-difference`,
   css`
     transform: translateY(calc(-100% - 1rem));
   `
 ]);
-const NavLink = tw.li`relative w-full col-span-full sm-t:first-of-type:col-span-full sm-t:col-span-2 sm-d:first-of-type:col-span-1 sm-d:col-span-1`;
-const NavTitle = tw.h3`relative font-main text-m-h4 sm-t:text-d-h4 text-grey`;
-const Links = tw.ul`relative w-full`;
-const Link = tw.li`font-main font-main text-m-h4 sm-t:text-d-h4 text-offblack dark:text-offwhite transition-colors`;
 
-const Nav = ({ navLinks }) => (
-  <Container>
-    <ThemeToggle />
-    <Grid node="ul">
-      {navLinks.map((navLink) => (
-        <NavLink key={navLink?._key}>
-          <NavTitle>{navLink?.title}</NavTitle>
-          <Links>
-            {navLink?.links.map((link) => (
-              <Link key={link?._key}>
-                <Go
-                  to={link?.url}
-                  css={[link?.url && tw`underline hover:no-underline`]}
+const Title = tw.h1`font-main text-m-h3 text-offblack dark:text-offwhite transition-colors`;
+
+const NavList = tw.ul`relative w-auto flex gap-x-2 justify-end`;
+const Button = styled.button(({ active }) => [
+  tw`font-main text-m-h3 text-offblack dark:text-offwhite transition-all`,
+  css`
+    &:hover {
+      -webkit-text-stroke: 2px black;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      &:hover {
+        -webkit-text-stroke: 2px white;
+      }
+    }
+
+    ${active && `
+      -webkit-text-stroke: 2px black;
+
+      @media (prefers-color-scheme: dark) {
+        -webkit-text-stroke: 2px white;
+      }
+      `}
+  `
+]);
+
+const Nav = ({ title }) => {
+  const { isWindowActive, toggleWindow } = useApp();
+
+  const aboutActive = isWindowActive('about');
+  const contactActive = isWindowActive('contact');
+
+  const toggleAboutActive = () => toggleWindow('about');
+  const toggleContactActive = () => toggleWindow('contact');
+
+  return (
+    <Container>
+      <ThemeToggle />
+      <Grid>
+        <Title>{title}</Title>
+          <nav css={css`grid-column-start: 4;`}>
+            <NavList>
+              <li>
+                <Button
+                  type="button"
+                  name="Toggle About"
+                  onClick={toggleAboutActive}
+                  active={aboutActive}
                 >
-                  {link?.name}
-                </Go>
-              </Link>
-            ))}
-          </Links>
-        </NavLink>
-      ))}
-    </Grid>
-  </Container>
-);
+                  About,
+                </Button>
+              </li>
+              <li>
+                <Button
+                  type="button"
+                  name="Toggle Contact Form"
+                  onClick={toggleContactActive}
+                  active={contactActive}
+                >
+                  Contact
+                </Button>
+              </li>
+            </NavList>
+          </nav>
+      </Grid>
+    </Container>
+)};
 
 export default Nav;

@@ -34,33 +34,35 @@ const ThemeToggle = () => {
     }
   };
 
-  return (
-    <Container>
-      <ButtonWrapper
-        aria-label="Light theme"
-        type="button"
-        onClick={() => handleThemetoggle(`light`)}
-        css={[tw`bg-offwhite`]}
-      >
-        <Light
-          css={[tw`w-5 h-5 sm-t:w-8 sm-t:h-8 text-offblack overflow-visible`]}
-        />
-      </ButtonWrapper>
+  return <></>
 
-      <ButtonWrapper
-        aria-label="Dark theme"
-        type="button"
-        onClick={() => handleThemetoggle(`dark`)}
-        css={[tw`bg-offblack`]}
-      >
-        <Dark
-          css={[
-            tw`w-[0.423rem] sm-t:w-[0.625rem] h-[0.423rem] sm-t:h-[0.625rem] text-offwhite overflow-visible`
-          ]}
-        />
-      </ButtonWrapper>
-    </Container>
-  );
+  // return (
+  //   <Container>
+  //     <ButtonWrapper
+  //       aria-label="Light theme"
+  //       type="button"
+  //       onClick={() => handleThemetoggle(`light`)}
+  //       css={[tw`bg-offwhite`]}
+  //     >
+  //       <Light
+  //         css={[tw`w-5 h-5 sm-t:w-8 sm-t:h-8 text-offblack overflow-visible`]}
+  //       />
+  //     </ButtonWrapper>
+
+  //     <ButtonWrapper
+  //       aria-label="Dark theme"
+  //       type="button"
+  //       onClick={() => handleThemetoggle(`dark`)}
+  //       css={[tw`bg-offblack`]}
+  //     >
+  //       <Dark
+  //         css={[
+  //           tw`w-[0.423rem] sm-t:w-[0.625rem] h-[0.423rem] sm-t:h-[0.625rem] text-offwhite overflow-visible`
+  //         ]}
+  //       />
+  //     </ButtonWrapper>
+  //   </Container>
+  // );
 };
 
 export default ThemeToggle;

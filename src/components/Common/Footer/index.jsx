@@ -2,7 +2,6 @@ import React from "react";
 import tw, { css, styled } from "twin.macro";
 
 import { Grid } from "~components";
-import { useApp } from "~hooks";
 
 const Container = styled.footer(() => [
   tw`fixed bottom-6 sm-t:bottom-4 w-full z-50 mix-blend-difference opacity-0 animate-appear-up animation-delay-1000`,
@@ -10,71 +9,15 @@ const Container = styled.footer(() => [
     transform: translateY(calc(100% + 1rem));
   `
 ]);
-const Wrapper = tw.div`relative w-full col-span-full flex flex-col sm-t:flex-row gap-y-2 justify-between`;
-const NavList = tw.ul`relative w-auto flex gap-x-2`;
-const Button = styled.button(({ active }) => [
-  tw`font-main text-m-h3 sm-t:text-d-h3 text-offwhite transition-all`,
-  css`
-    &:hover {
-      -webkit-text-stroke: 2px white;
-    }
+const Wrapper = tw.div`relative w-full col-span-full flex flex-col sm-t:flex-row gap-y-2 justify-end`;
+const Footnote = tw.p`font-main text-m-b3 text-offwhite uppercase`;
 
-    ${active && `-webkit-text-stroke: 2px white;`}
-  `
-]);
-const Title = tw.h1`font-main text-m-h3 sm-t:text-d-h3 text-offwhite`;
-
-const Footer = ({ data: { title } }) => {
-  // state
-  const { isWindowActive, toggleWindow } = useApp();
-
-  const aboutActive = isWindowActive('about');
-  const jobsActive = isWindowActive('jobs');
-  const contactActive = isWindowActive('contact');
-
-  const toggleAboutActive = () => toggleWindow('about');
-  const toggleJobsActive = () => toggleWindow('jobs');
-  const toggleContactActive = () => toggleWindow('contact');
-
+const Footer = () => {
   return (
     <Container>
       <Grid>
         <Wrapper>
-          <nav>
-            <NavList>
-              <li>
-                <Button
-                  type="button"
-                  name="Toggle About"
-                  onClick={toggleAboutActive}
-                  active={aboutActive}
-                >
-                  About Us,
-                </Button>
-              </li>
-              <li>
-                <Button
-                  type="button"
-                  name="Toggle Jobs"
-                  onClick={toggleJobsActive}
-                  active={jobsActive}
-                >
-                  Jobs,
-                </Button>
-              </li>
-              <li>
-                <Button
-                  type="button"
-                  name="Toggle Contact Form"
-                  onClick={toggleContactActive}
-                  active={contactActive}
-                >
-                  Contact
-                </Button>
-              </li>
-            </NavList>
-          </nav>
-          <Title>{title}</Title>
+          <Footnote>Full site in development</Footnote>
         </Wrapper>
       </Grid>
     </Container>

@@ -7,7 +7,7 @@ const Container = styled.form(({ disable }) => [
   tw`relative w-full mt-6 sm-t:mt-8 transition-opacity`,
   disable && tw`pointer-events-none opacity-50`
 ]);
-const Input = tw.input`relative w-full bg-transparent font-main text-m-h3 sm-t:text-d-h3 placeholder:text-grey dark:placeholder:text-offgrey`;
+const Input = tw.input`relative w-full bg-transparent font-main text-m-h3 sm-t:text-d-h3 text-offblack dark:text-offwhite placeholder:text-offblack/60 dark:placeholder:text-offwhite/60`;
 
 const ContactForm = ({ className, mailchimpID }) => {
   const [email, setEmail] = useState(``);
@@ -50,7 +50,7 @@ const ContactForm = ({ className, mailchimpID }) => {
       onSubmit={handleSubmit}
       disable={submitting}
     >
-      <div tw="relative w-full flex gap-x-2 border-b pb-1 sm-t:pb-4">
+      <div tw="relative w-full flex items-end gap-x-2 border-b dark:border-offwhite pb-1 sm-t:pb-4">
         <Input
           required
           type="email"
