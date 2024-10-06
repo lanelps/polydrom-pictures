@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useEffect } from "react";
 import tw from "twin.macro";
 
 import { ReactComponent as Dark } from "~assets/svg/dark.svg";
@@ -8,7 +8,7 @@ const Container = tw.article`relative sm-t:absolute sm-t:right-4 w-max flex gap-
 const ButtonWrapper = tw.button`relative w-[1.64rem] sm-t:w-10 h-[1.64rem] sm-t:h-10 flex items-center justify-center rounded`;
 
 const ThemeToggle = () => {
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (typeof window === `undefined`) return;
 
     if (
@@ -34,7 +34,7 @@ const ThemeToggle = () => {
     }
   };
 
-  return <></>
+  return <></>;
 
   // return (
   //   <Container>

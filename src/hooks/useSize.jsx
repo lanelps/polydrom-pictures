@@ -1,16 +1,27 @@
-import { useState, useLayoutEffect, useRef } from "react";
-import useResizeObserver from "@react-hook/resize-observer";
+import { useState, useEffect, useRef } from "react";
+import useResizeObserver from "./useResizeObserver"; // Adjust the path as needed
 
+/**
+ * Custom hook to get the size of a DOM element.
+ *
+ * @returns {[React.RefObject, DOMRectReadOnly | undefined]} - The ref and the size.
+ */
 const useSize = () => {
-  const ref = useRef();
+  const ref = useRef(null);
   const [size, setSize] = useState();
 
-  useLayoutEffect(() => {
-    setSize(ref.current.getBoundingClientRect());
+  // Set initial size
+  useEffect(() => {
+    if (ref.current) {
+      setSize(ref.current.getBoundingClientRect());
+    }
   }, [ref]);
 
-  // Where the magic happens
-  useResizeObserver(ref, (entry) => setSize(entry.contentRect));
+  // Update size on resize
+  useResizeObserver(ref, (entry) => {
+    setSize(entry.contentRect);
+  });
+
   return [ref, size];
 };
 
