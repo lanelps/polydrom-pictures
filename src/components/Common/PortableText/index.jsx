@@ -28,17 +28,17 @@ const ListItem = styled.li`
 
 const serializers = {
   block: {
-    normal: ({ children }) => <p className="b1-serif">{children}</p>,
+    normal: ({ children }) => <p className="h1-serif">{children}</p>,
     small: ({ children }) => (
       <>
         <br />
-        <p className="b1-serif">{children}</p>
+        <p className="h1-serif">{children}</p>
       </>
     )
   },
   marks: {
     strong: ({ children }) => (
-      <strong className="b1-sans" tw="uppercase">
+      <strong className="h1-sans" tw="uppercase">
         {children}
       </strong>
     ),
