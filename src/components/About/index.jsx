@@ -17,7 +17,7 @@ const TransformWrapper = styled.div(({ active }) => [
 ]);
 
 const Background = styled.div(() => [
-  tw`w-full h-full absolute p-3 sm-t:p-4 pb-24 sm-t:pb-16 sm-d:pb-[4.75rem] bg-green dark:bg-purple transition-colors z-[1]`,
+  tw`w-full h-full absolute p-3 sm-t:p-4 pb-24 sm-t:pb-16 sm-d:pb-[4.75rem] bg-green dark:bg-red transition-colors z-[1]`,
   css`
     clip-path: inset(0px 0px 0px 0px);
   `
@@ -30,7 +30,7 @@ const Content = styled.div(({ active }) => [
 
 const Circle = React.memo(
   styled.div(({ size }) => [
-    tw`hidden sm-t:block fixed bg-babyblue dark:bg-orange rounded-full z-[5] -translate-x-full -translate-y-full`,
+    tw`hidden sm-t:block fixed bg-babyblue dark:bg-offblack rounded-full z-[5] -translate-x-full -translate-y-full`,
     css`
       width: ${size}px;
       height: ${size}px;

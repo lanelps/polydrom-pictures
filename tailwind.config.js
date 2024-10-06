@@ -42,7 +42,8 @@ module.exports = {
       green: `#84D673`,
       lime: `#C7CD47`,
       orange: `#DF7100`,
-      purple: `#610F72`
+      purple: `#610F72`,
+      red: `#84212B`,
     },
     fontFamily: {
       main: [`Custome`, `Helvetica Neue`, ...defaultTheme.fontFamily.sans]
@@ -63,9 +64,9 @@ module.exports = {
         }
       ],
       "d-h3": [
-        `32px`,
+        `40px`,
         {
-          lineHeight: `30px`,
+          lineHeight: `37.6px`,
           letterSpacing: `-0.02em`
         }
       ],
