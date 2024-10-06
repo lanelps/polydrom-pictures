@@ -82,12 +82,14 @@ const Theme = ({ font }) => (
         .h1-serif,
         .b1-serif {
           font-family: "Times New Roman", Times, serif;
+          font-style: italic;
         }
 
         .h1-sans,
         .b1-sans,
         .button {
           font-family: "Helvetica", "Arial", sans-serif;
+          font-style: normal;
         }
 
         .h1-serif {
