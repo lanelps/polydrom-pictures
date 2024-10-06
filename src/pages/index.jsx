@@ -13,7 +13,13 @@ import {
 } from "~components";
 
 const Index = ({ data }) => {
-  const { allSanityJob, sanityAbout, sanityContact, sanityGlobals, sanitySettings } = data;
+  const {
+    allSanityJob,
+    sanityAbout,
+    sanityContact,
+    sanityGlobals,
+    sanitySettings
+  } = data;
 
   const jobs = allSanityJob?.edges?.map(({ node }) => node) || [];
 
@@ -59,7 +65,10 @@ export const Head = ({ data }) => {
       <meta name="robots" content="noindex" />
 
       {/* Google site verification */}
-      <meta name="google-site-verification" content="Nj0RmwKjO-OtyJs2Ma_ayUUKviA8xFwiaIoPYzn1A34" />
+      <meta
+        name="google-site-verification"
+        content="Nj0RmwKjO-OtyJs2Ma_ayUUKviA8xFwiaIoPYzn1A34"
+      />
     </>
   );
 };
