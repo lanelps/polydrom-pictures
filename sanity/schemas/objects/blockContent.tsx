@@ -1,11 +1,12 @@
-import React from "react";
+import {defineArrayMember, defineType} from 'sanity'
+import React from 'react'
 
-export default {
+export default defineType({
   title: `Block Content`,
   name: `blockContent`,
   type: `array`,
   of: [
-    {
+    defineArrayMember({
       title: `Block`,
       type: `block`,
       // Styles let you set what your user can mark up blocks with. These
@@ -13,25 +14,23 @@ export default {
       // you want and decide how you want to deal with it where you want to
       // use your content.
       styles: [
-        { title: `Normal`, value: `normal` },
+        {title: `Normal`, value: `normal`},
         {
           title: `Small`,
           value: `small`,
-          blockEditor: {
-            render: ({ children }) => (
-              <span style={{ fontSize: `12px` }}>{children}</span>
-            )
-          }
-        }
+          component: {
+            render: ({children}) => <span style={{fontSize: `12px`}}>{children}</span>,
+          },
+        },
       ],
-      lists: [{ title: `Bullet`, value: `bullet` }],
+      lists: [{title: `Bullet`, value: `bullet`}],
       // Marks let you mark up inline text in the block editor.
       marks: {
         // Decorators usually describe a single property – e.g. a typographic
         // preference or highlighting by editors.
         decorators: [
-          { title: `Strong`, value: `strong` },
-          { title: `Emphasis`, value: `em` }
+          {title: `Strong`, value: `strong`},
+          {title: `Emphasis`, value: `em`},
         ],
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
@@ -43,12 +42,12 @@ export default {
               {
                 title: `URL`,
                 name: `href`,
-                type: `url`
-              }
-            ]
-          }
-        ]
-      }
-    }
-  ]
-};
+                type: `url`,
+              },
+            ],
+          },
+        ],
+      },
+    }),
+  ],
+})

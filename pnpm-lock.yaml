@@ -13048,7 +13048,7 @@ snapshots:
 
   lower-case@2.0.2:
     dependencies:
-      tslib: 2.7.0
+      tslib: 2.4.1
 
   lowercase-keys@2.0.0: {}
 

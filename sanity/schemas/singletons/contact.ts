@@ -1,30 +1,32 @@
-export default {
+import {defineField, defineType} from 'sanity'
+
+export default defineType({
   name: `contact`,
   title: `Contact`,
   type: `document`,
   fields: [
-    {
+    defineField({
       name: `email`,
       title: `Email`,
-      type: `string`
-    },
-    {
+      type: `string`,
+    }),
+    defineField({
       name: `socialLinks`,
       title: `Social Links`,
       type: `array`,
-      of: [{ type: `socialLink` }]
-    },
-    {
+      of: [{type: `socialLink`}],
+    }),
+    defineField({
       name: `mailchimpID`,
       title: `Mailchimp List ID`,
-      type: `string`
-    }
+      type: `string`,
+    }),
   ],
   preview: {
     prepare() {
       return {
-        title: `Contact`
-      };
-    }
-  }
-};
+        title: `Contact`,
+      }
+    },
+  },
+})

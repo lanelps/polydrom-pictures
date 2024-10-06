@@ -1,52 +1,53 @@
-import React from "react";
+import {defineField, defineType} from 'sanity'
+import React from 'react'
 
-export default {
+export default defineType({
   name: `job`,
   title: `Jobs`,
   type: `document`,
   fields: [
-    {
+    defineField({
       name: `title`,
       title: `Title`,
-      type: `string`
-    },
-    {
+      type: `string`,
+    }),
+    defineField({
       name: `timeline`,
       title: `Timeline`,
-      type: `string`
-    },
-    {
+      type: `string`,
+    }),
+    defineField({
       name: `location`,
       title: `Location`,
-      type: `string`
-    },
-    {
+      type: `string`,
+    }),
+    defineField({
       name: `pay`,
       title: `Pay`,
-      type: `string`
-    },
-    {
+      type: `string`,
+    }),
+    defineField({
       name: `description`,
       title: `Description`,
-      type: `text`
-    },
-    {
+      type: `text`,
+    }),
+    defineField({
       name: `jobFile`,
       title: `PDF/ Full description`,
-      type: `file`
-    }
+      type: `file`,
+    }),
   ],
   preview: {
     select: {
       title: `title`,
       timeline: `timeline`,
       location: `location`,
-      pay: `pay`
+      pay: `pay`,
     },
-    prepare: ({ title, timeline, location, pay }) => ({
+    prepare: ({title, timeline, location, pay}) => ({
       title,
       subtitle: `${timeline}; ${location}; ${pay}`,
-      media: <span style={{ fontSize: `30px` }}>📄</span>
-    })
-  }
-};
+      media: <span style={{fontSize: `30px`}}>📄</span>,
+    }),
+  },
+})
