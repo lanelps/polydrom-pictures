@@ -24,7 +24,6 @@ const DVD = ({ dvd }) => {
   const speedRef = useRef({ x: 3, y: 2 });
   const speedScale = 1;
 
-  const requestRef = useRef();
   const previousTimeRef = useRef();
 
   const checkHitbox = (pos) => {
@@ -54,7 +53,7 @@ const DVD = ({ dvd }) => {
       });
     }
     previousTimeRef.current = time;
-    requestRef.current = requestAnimationFrame(animate);
+    requestAnimationFrame(animate);
   };
 
   useEffect(() => {
