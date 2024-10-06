@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 import tw, { css, styled } from "twin.macro";
 
 import { Grid, PortableText } from "~components";
@@ -6,12 +6,9 @@ import { useApp, useSize } from "~hooks";
 
 import { deviceType } from "~utils/helpers";
 
-const Conatiner = styled.section(({ zIndex, active }) => [
+const Container = styled.section(({ active }) => [
   tw`absolute top-0 bottom-0 left-0 right-0 py-4 pointer-events-none overflow-hidden opacity-100 transition-opacity delay-[300ms]`,
   active && tw`opacity-100 delay-[0ms]`,
-  css`
-    z-index: ${zIndex};
-  `
 ]);
 const TransformWrapper = styled.div(({ active }) => [
   tw`relative w-[calc(100% + 1.5rem)] sm-t:w-[calc(100% + 1rem)] h-[90%] sm-t:h-[85%] col-span-full sm-t:col-start-2 sm-t:col-span-3 self-end translate-x-full sm-t:translate-x-[calc(100% + (100%/3))] translate-y-4 transition-transform duration-[600ms] overflow-hidden`,
@@ -28,104 +25,120 @@ const Content = styled.div(({ active }) => [
   active && tw`pointer-events-auto`
 ]);
 
-const Circle = styled.div(({ offSet, position, size, show }) => [
-  tw`fixed hidden bg-babyblue dark:bg-orange rounded-full z-[5]`,
-  show && tw`block`,
-  css`
-    width: ${size}px;
-    height: ${size}px;
-  `,
-  css`
-    top: -${offSet.y}px;
-    left: -${offSet.x}px;
+const Circle = React.memo(
+  styled.div(({ size }) => [
+    tw`hidden sm-t:block fixed bg-babyblue dark:bg-orange rounded-full z-[5] -translate-x-full -translate-y-full`,
+    css`
+      width: ${size}px;
+      height: ${size}px;
+    `
+  ])
+);
 
-    transform: translate3d(
-      calc(${position.x}px - (${size / 2}px)),
-      calc(${position.y}px - (${size / 2}px)),
-      0
-    );
-  `
-]);
+// Utility: Throttle function
+const throttle = (func, limit) => {
+  let inThrottle;
+  return function (...args) {
+    if (!inThrottle) {
+      func.apply(this, args);
+      inThrottle = true;
+      requestAnimationFrame(() => (inThrottle = false));
+    }
+  };
+};
 
 const About = ({ body }) => {
   const { aboutActive, activeWindows } = useApp();
   const [backgroundRef, backgroundSize] = useSize();
 
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [offSet, setOffSet] = useState({ x: 0, y: 0 });
-  const [show, setShow] = useState(false);
-  const [zIndex, setZIndex] = useState();
+  // Refs for mutable values
+  const positionRef = useRef({ x: 0, y: 0 });
+  const offsetRef = useRef({ x: 0, y: 0 });
+  const circleRef = useRef(null);
+  const containerRef = useRef(null);
 
   const size = 718;
+  const showRef = useRef(deviceType() === "desktop");
 
-  const handleMouseMove = (e) => {
-    setPosition({ x: e.clientX, y: e.clientY });
-
-    const { top, left } = backgroundRef.current.getBoundingClientRect();
-    setOffSet({ x: left, y: top });
-  };
-
-  useEffect(() => {
-    if (typeof window === `undefined` || !aboutActive)
-      return () => {
-        window.removeEventListener(`mousemove`, handleMouseMove);
-      };
-
-    window.addEventListener(`mousemove`, handleMouseMove);
-
-    return () => {
-      window.removeEventListener(`mousemove`, handleMouseMove);
-    };
-  }, [aboutActive]);
-
-  useEffect(() => {
-    if (deviceType() !== `desktop`) {
-      setShow(false);
-    } else {
-      setShow(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!backgroundRef?.current || !aboutActive) return;
-
-    const { top, left } = backgroundRef.current.getBoundingClientRect();
-
-    setOffSet({ x: left, y: top });
-  }, [backgroundRef, backgroundSize, aboutActive]);
-
-  useEffect(() => {
-    const windowIndex = activeWindows.findIndex((el) => el === `about`);
-
+  const updateZIndex = useCallback(() => {
+    const windowIndex = activeWindows.findIndex((el) => el === "about");
+    let newZIndex;
+  
     switch (windowIndex) {
       case 0:
-        setZIndex(`30`);
+        newZIndex = 30;
         break;
-
       case 1:
-        setZIndex(`40`);
+        newZIndex = 40;
         break;
-
       case 2:
-        setZIndex(`50`);
+        newZIndex = 50;
         break;
-
       default:
+        newZIndex = 10;
         break;
+    }
+  
+    if (containerRef.current) {
+      containerRef.current.style.zIndex = newZIndex;
     }
   }, [activeWindows]);
 
+  // Handle mouse move with throttling
+  const handleMouseMove = useCallback(
+    throttle((e) => {
+      positionRef.current = { x: e.clientX, y: e.clientY };
+      if (backgroundRef.current) {
+        const { top, left } = backgroundRef.current.getBoundingClientRect();
+        offsetRef.current = { x: left, y: top };
+      }
+
+      // Update Circle position directly
+      if (circleRef.current) {
+        const { x, y } = positionRef.current;
+        const { x: offsetX, y: offsetY } = offsetRef.current;
+        circleRef.current.style.transform = `translate3d(${x - offsetX - size / 2}px, ${
+          y - offsetY - size / 2
+        }px, 0)`;
+      }
+    }, 16), // Approximately 60fps
+    [backgroundRef, size]
+  );
+
+  useEffect(() => {
+    updateZIndex();
+  }, [activeWindows, updateZIndex]);
+
+  // Add/remove mousemove event listener
+  useEffect(() => {
+    if (typeof window === "undefined" || !aboutActive) return;
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [aboutActive, handleMouseMove]);
+
+  // Update offset when backgroundRef or backgroundSize changes
+  useEffect(() => {
+    if (backgroundRef.current && aboutActive) {
+      const { top, left } = backgroundRef.current.getBoundingClientRect();
+      offsetRef.current = { x: left, y: top };
+    }
+  }, [backgroundRef, backgroundSize, aboutActive]);
+
   return (
-    <Conatiner active={aboutActive} zIndex={zIndex}>
-      <Grid css={[tw`h-full`]}>
+  <Container ref={containerRef} active={aboutActive}>
+    <Grid css={[tw`h-full`]}>
         <TransformWrapper active={aboutActive}>
           <Background ref={backgroundRef}>
-            <Circle
-              offSet={offSet}
-              position={position}
-              size={size}
-              show={show}
-            />
+            {showRef.current && (
+              <Circle
+                ref={circleRef}
+                size={size}
+              />
+            )}
           </Background>
 
           <Content active={aboutActive}>
@@ -133,7 +146,7 @@ const About = ({ body }) => {
           </Content>
         </TransformWrapper>
       </Grid>
-    </Conatiner>
+    </Container>
   );
 };
 
