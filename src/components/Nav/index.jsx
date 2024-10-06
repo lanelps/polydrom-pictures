@@ -12,11 +12,11 @@ const Container = styled.header(() => [
   `
 ]);
 
-const Title = tw.h1`font-main text-m-h3 text-offblack dark:text-offwhite transition-colors`;
+const Title = tw.h1`text-offblack dark:text-offwhite transition-colors uppercase`;
 
 const NavList = tw.ul`relative w-auto flex gap-x-2 justify-end`;
 const Button = styled.button(({ active }) => [
-  tw`font-main text-m-h3 text-offblack dark:text-offwhite transition-all`,
+  tw`text-offblack dark:text-offwhite transition-all`,
   css`
     &:hover {
       -webkit-text-stroke: 2px black;
@@ -28,7 +28,8 @@ const Button = styled.button(({ active }) => [
       }
     }
 
-    ${active && `
+    ${active &&
+    `
       -webkit-text-stroke: 2px black;
 
       @media (prefers-color-scheme: dark) {
@@ -41,43 +42,35 @@ const Button = styled.button(({ active }) => [
 const Nav = ({ title }) => {
   const { isWindowActive, toggleWindow } = useApp();
 
-  const aboutActive = isWindowActive('about');
-  const contactActive = isWindowActive('contact');
-
-  const toggleAboutActive = () => toggleWindow('about');
-  const toggleContactActive = () => toggleWindow('contact');
+  const aboutActive = isWindowActive("about");
+  const toggleAboutActive = () => toggleWindow("about");
 
   return (
     <Container>
       <ThemeToggle />
       <Grid>
         <Title>{title}</Title>
-          <nav css={css`grid-column-start: 4;`}>
-            <NavList>
-              <li>
-                <Button
-                  type="button"
-                  name="Toggle About"
-                  onClick={toggleAboutActive}
-                  active={aboutActive}
-                >
-                  About,
-                </Button>
-              </li>
-              <li>
-                <Button
-                  type="button"
-                  name="Toggle Contact Form"
-                  onClick={toggleContactActive}
-                  active={contactActive}
-                >
-                  Contact
-                </Button>
-              </li>
-            </NavList>
-          </nav>
+        <nav
+          css={css`
+            grid-column-start: 4;
+          `}
+        >
+          <NavList>
+            <li>
+              <Button
+                type="button"
+                name="Toggle About"
+                onClick={toggleAboutActive}
+                active={aboutActive}
+              >
+                About
+              </Button>
+            </li>
+          </NavList>
+        </nav>
       </Grid>
     </Container>
-)};
+  );
+};
 
 export default Nav;

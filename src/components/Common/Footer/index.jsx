@@ -10,7 +10,7 @@ const Container = styled.footer(() => [
   `
 ]);
 const Wrapper = tw.div`relative w-full col-span-full flex flex-col sm-t:flex-row gap-y-2 justify-end`;
-const Footnote = tw.p`font-main text-m-b3 text-offwhite uppercase`;
+const Footnote = tw.p`text-offwhite uppercase`;
 
 const Footer = () => {
   return (

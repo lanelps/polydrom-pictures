@@ -20,7 +20,7 @@ dayjs.extend(relativeTime);
 
 const Conatiner = styled.section(({ active }) => [
   tw`absolute top-0 bottom-0 left-0 right-0 py-4 bg-offwhite/60 backdrop-blur-[7px] opacity-0 pointer-events-none transition-opacity overflow-y-scroll`,
-  active && tw`opacity-100 pointer-events-auto`,
+  active && tw`opacity-100 pointer-events-auto`
 ]);
 const EmptyCard = tw.li`relative w-full col-span-full p-4 bg-offwhite/60 border rounded-[5px]`;
 
@@ -28,7 +28,7 @@ const EmptyCard = tw.li`relative w-full col-span-full p-4 bg-offwhite/60 border 
 
 const Jobs = ({ jobs }) => {
   const { isWindowActive, activeWindows } = useApp();
-  const jobsActive = isWindowActive('jobs');
+  const jobsActive = isWindowActive("jobs");
 
   const containerRef = useRef(null);
 
@@ -52,7 +52,7 @@ const Jobs = ({ jobs }) => {
           jobs?.map((job) => <JobCard key={job?._key} job={job} />)
         ) : (
           <EmptyCard>
-            <h3 tw="font-main text-m-h3 sm-t:text-d-h3">
+            <h3>
               No Job Listings.
               <br />
               Stay Tuned.
@@ -68,12 +68,12 @@ export default Jobs;
 
 const JobContainer = tw.li`relative w-full col-span-full sm-d:col-span-2`;
 const JobWrapper = tw.article`relative w-full flex flex-col gap-y-[1.125rem] sm-t:gap-y-6 p-4 bg-offwhite/60 border rounded-[5px]`;
-const Title = tw.h3`font-main text-m-h3 sm-t:text-d-h3`;
+const Title = tw.h3``;
 const InfoWrapper = tw.ul`flex flex-col gap-y-2`;
 const InfoItem = tw.li`relative flex items-center gap-x-2`;
-const Info = tw.h4`font-main text-m-b3 sm-t:text-d-b3 text-grey`;
-const Description = tw.p`font-main text-d-b2`;
-const Created = tw.p`font-main text-caption text-grey uppercase`;
+const Info = tw.h4`text-grey`;
+const Description = tw.p``;
+const Created = tw.p`text-caption text-grey uppercase`;
 
 const JobCard = ({ job }) => (
   <JobContainer>

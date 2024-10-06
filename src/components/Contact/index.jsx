@@ -17,7 +17,7 @@ const FormWrapper = styled.div(({ active }) => [
   tw`relative w-full pt-4 pb-8 sm-t:pb-16 bg-offblack/60 dark:bg-offwhite/60 backdrop-blur-[7px] border-b pointer-events-none`,
   active && tw`pointer-events-auto`
 ]);
-const FormHeading = tw.h3`col-span-full font-main text-m-h3 sm-t:text-d-h3 text-offblack dark:text-offwhite`;
+const FormHeading = tw.h3`col-span-full text-offblack dark:text-offwhite`;
 
 const Contact = ({ contact }) => {
   const { email, socialLinks, mailchimpID } = contact;
@@ -50,9 +50,7 @@ const Contact = ({ contact }) => {
                 name="Email Us"
                 kind={3}
                 to={`mailto:${email}`}
-                css={[
-                  tw`text-m-h3 sm-t:text-d-h3 text-offblack dark:text-offwhite transition-colors`
-                ]}
+                css={[tw`text-offblack dark:text-offwhite transition-colors`]}
               >
                 {email}
               </Button>

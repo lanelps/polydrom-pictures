@@ -79,12 +79,64 @@ const Theme = ({ font }) => (
           margin: 0;
         }
 
-        // font
-        ${font &&
-        `@font-face {
-  font-family: "Custome";
-  src: url("${font?.asset?.url}") format("woff2");
-}`}
+        .h1-serif,
+        .b1-serif {
+          font-family: "Times New Roman", Times, serif;
+        }
+
+        .h1-sans,
+        .b1-sans,
+        .button {
+          font-family: "Helvetica", "Arial", sans-serif;
+        }
+
+        .h1-serif {
+          font-size: 1.5rem;
+          line-height: 1.1;
+          letter-spacing: 0.05em;
+        }
+
+        .h1-sans {
+          font-size: 1.5rem;
+          line-height: 1.1;
+          letter-spacing: 0.05em;
+        }
+
+        .b1-serif,
+        .b1-sans {
+          font-size: 1rem;
+          line-height: 0.94;
+        }
+
+        .b1-serif {
+          letter-spacing: -0.02em;
+        }
+
+        .b1-sans {
+          letter-spacing: 0.02em;
+        }
+
+        .button {
+          font-size: 0.75rem;
+          line-height: 0.94;
+          letter-spacing: 0.02em;
+        }
+
+        @media (min-width: 768px) {
+          .h1-serif,
+          .h1-sans {
+            font-size: 1.125rem;
+          }
+
+          .b1-serif,
+          .b1-sans {
+            font-size: 0.875rem;
+          }
+
+          .button {
+            font-size: 0.625rem;
+          }
+        }
       `}
     />
   </>
