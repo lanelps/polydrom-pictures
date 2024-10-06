@@ -4,12 +4,8 @@ import tw, { css, styled } from "twin.macro";
 import { Button, Go, Image } from "~components";
 import { useApp } from "~hooks";
 
-const Container = styled.div(({ position }) => [
-  tw`fixed w-auto max-w-[5.25rem] sm-t:max-w-[10.25rem] flex items-end justify-center z-20 opacity-0 animate-appear animation-delay-1000`,
-  css`
-    will-change: transform;
-    transform: translate3d(${position.x}px, ${position.y}px, 0);
-  `
+const Container = styled.div(() => [
+  tw`fixed w-auto max-w-[5.25rem] sm-t:max-w-[10.25rem] flex items-end justify-center z-20 opacity-0 animate-appear animation-delay-1000 will-change-transform`,
 ]);
 const DVDButton = tw(
   Button
@@ -19,55 +15,70 @@ const DVD = ({ dvd }) => {
   const { image, linkText, linkUrl } = dvd;
   const { contactActive, setContactActive } = useApp();
 
-  const dvdRef = useRef();
-  const [position, setPosition] = useState({ x: 0, y: 100 });
+  const dvdRef = useRef(null);
+  const positionRef = useRef({ x: 0, y: 100 });
   const speedRef = useRef({ x: 3, y: 2 });
-  const speedScale = 1;
+  const animationFrameRef = useRef(null);
 
-  const previousTimeRef = useRef();
+  const checkHitbox = () => {
+    const { x, y } = positionRef.current;
+    const dvdElement = dvdRef.current;
 
-  const checkHitbox = (pos) => {
-    // x
-    if (pos.x + dvdRef.current.clientWidth >= window.innerWidth || pos.x < 0) {
+    if (!dvdElement) return;
+
+    const { clientWidth, clientHeight } = dvdElement;
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+
+    // Check X boundaries
+    if (x + clientWidth >= windowWidth || x <= 0) {
       speedRef.current.x *= -1;
     }
 
-    // y
-    if (
-      pos.y + dvdRef.current.clientHeight >= window.innerHeight ||
-      pos.y < 0
-    ) {
+    // Check Y boundaries
+    if (y + clientHeight >= windowHeight || y <= 0) {
       speedRef.current.y *= -1;
     }
   };
 
-  const animate = (time) => {
-    if (previousTimeRef.current !== undefined) {
-      setPosition((prevPosition) => {
-        checkHitbox(prevPosition);
+  const animate = () => {
+    const { x, y } = positionRef.current;
+    const { x: speedX, y: speedY } = speedRef.current;
+    const speedScale = 0.5;
 
-        return {
-          x: prevPosition.x + speedRef.current.x * speedScale,
-          y: prevPosition.y + speedRef.current.y * speedScale
-        };
-      });
+    // Update position
+    positionRef.current = {
+      x: x + speedX * speedScale,
+      y: y + speedY * speedScale,
+    };
+
+    checkHitbox();
+
+     // Apply transform directly to the DOM element to bypass React's render cycle
+     if (dvdRef.current) {
+      dvdRef.current.style.transform = `translate3d(${positionRef.current.x}px, ${positionRef.current.y}px, 0)`;
     }
-    previousTimeRef.current = time;
-    requestAnimationFrame(animate);
+
+    // Request the next frame
+    animationFrameRef.current = requestAnimationFrame(animate);
   };
 
   useEffect(() => {
-    if (typeof window === `undefined`) return () => {};
+    if (typeof window === "undefined") return;
 
-    const animationID = window.requestAnimationFrame(animate);
+    // Start the animation
+    animationFrameRef.current = requestAnimationFrame(animate);
 
+    // Cleanup on unmount
     return () => {
-      window.cancelAnimationFrame(animationID);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
     };
   }, []);
 
   return (
-    <Container ref={dvdRef} position={position}>
+    <Container ref={dvdRef}>
       {image && <Image image={image} />}
       {linkUrl ? (
         <Go to={linkUrl} css={[!image ? tw`relative` : tw`absolute`]}>
@@ -86,4 +97,4 @@ const DVD = ({ dvd }) => {
   );
 };
 
-export default DVD;
+export default React.memo(DVD);
