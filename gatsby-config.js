@@ -245,6 +245,9 @@ const sanityPlugins = () => {
 
 module.exports = {
   /* Your site config here */
+  flags: {
+    DEV_SSR: true
+  },
   siteMetadata: {
     author: `Lane Le Prevost-Smith`,
     description: ``,
