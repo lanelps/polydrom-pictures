@@ -7,9 +7,6 @@ import { useApp } from "~hooks";
 const Container = styled.div(() => [
   tw`fixed w-auto max-w-[5.25rem] sm-t:max-w-[10.25rem] flex items-end justify-center z-[100] opacity-0 animate-appear animation-delay-1000 will-change-transform mix-blend-difference`
 ]);
-const DVDButton = tw(
-  Button
-)`bg-offwhite border-offblack text-offblack hover:(bg-offblack text-offwhite) dark:(bg-transparent text-offwhite border-offwhite) uppercase`;
 
 const DVD = ({ dvd }) => {
   const { image, linkText, linkUrl } = dvd || {
@@ -88,16 +85,16 @@ const DVD = ({ dvd }) => {
       {image && <Image image={image} />}
       {linkUrl ? (
         <Go to={linkUrl} css={[!image ? tw`relative` : tw`absolute`]}>
-          <DVDButton>{linkText}</DVDButton>
+          <DVDButton kind={2}>{linkText}</DVDButton>
         </Go>
       ) : (
-        <DVDButton
+        <Button
           kind={2}
           css={[!image ? tw`relative` : tw`absolute`]}
           onClick={toggleContactActive}
         >
           {linkText}
-        </DVDButton>
+        </Button>
       )}
     </Container>
   );
