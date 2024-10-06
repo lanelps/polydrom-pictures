@@ -15,7 +15,7 @@ const Conatiner = styled.section(({ zIndex, active }) => [
 ]);
 const TransformWrapper = styled.div(({ active }) => [
   tw`relative w-[calc(100% + 1.5rem)] sm-t:w-[calc(100% + 1rem)] h-[90%] sm-t:h-[85%] col-span-full sm-t:col-start-2 sm-t:col-span-3 self-end translate-x-[100%] translate-y-4 transition-transform duration-[600ms] overflow-hidden`,
-  active && tw`translate-x--3 sm-t:translate-x-0`
+  active && tw`translate-x-3 sm-t:translate-x-0`
 ]);
 const Background = styled.div(() => [
   tw`w-full h-full absolute p-3 sm-t:p-4 pb-24 sm-t:pb-16 sm-d:pb-[4.75rem] bg-green dark:bg-purple transition-colors z-[1]`,
