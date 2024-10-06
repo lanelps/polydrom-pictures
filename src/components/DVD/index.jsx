@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 import tw, { styled } from "twin.macro";
 
 import { Button, Go, Image } from "~components";
@@ -43,7 +43,7 @@ const DVD = ({ dvd }) => {
     }
   };
 
-  const animate = () => {
+  const animate = useCallback(() => {
     const { x, y } = positionRef.current;
     const { x: speedX, y: speedY } = speedRef.current;
     const speedScale = 0.5;
@@ -63,7 +63,7 @@ const DVD = ({ dvd }) => {
 
     // Request the next frame
     animationFrameRef.current = requestAnimationFrame(animate);
-  };
+  }, [checkHitbox]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -77,7 +77,7 @@ const DVD = ({ dvd }) => {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, []);
+  }, [animate]);
 
   return (
     <Container ref={dvdRef}>
