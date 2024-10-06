@@ -7,15 +7,15 @@ import { useApp, useSize } from "~hooks";
 import { deviceType } from "~utils/helpers";
 
 const Conatiner = styled.section(({ zIndex, active }) => [
-  tw`absolute top-0 bottom-0 left-0 right-0 py-4 pointer-events-none overflow-hidden opacity-0 transition-opacity delay-[300ms]`,
+  tw`absolute top-0 bottom-0 left-0 right-0 py-4 pointer-events-none overflow-hidden opacity-100 transition-opacity delay-[300ms]`,
   active && tw`opacity-100 delay-[0ms]`,
   css`
     z-index: ${zIndex};
   `
 ]);
 const TransformWrapper = styled.div(({ active }) => [
-  tw`relative w-[calc(100% + 1.5rem)] sm-t:w-[calc(100% + 1rem)] h-[90%] sm-t:h-[85%] col-span-full sm-t:col-start-2 sm-t:col-span-3 self-end translate-x-[100%] translate-y-4 transition-transform duration-[600ms] overflow-hidden`,
-  active && tw`translate-x-3 sm-t:translate-x-0`
+  tw`relative w-[calc(100% + 1.5rem)] sm-t:w-[calc(100% + 1rem)] h-[90%] sm-t:h-[85%] col-span-full sm-t:col-start-2 sm-t:col-span-3 self-end translate-x-full sm-t:translate-x-[calc(100% + (100%/3))] translate-y-4 transition-transform duration-[600ms] overflow-hidden`,
+  active && tw`-translate-x-3 sm-t:translate-x-1/3`
 ]);
 const Background = styled.div(() => [
   tw`w-full h-full absolute p-3 sm-t:p-4 pb-24 sm-t:pb-16 sm-d:pb-[4.75rem] bg-green dark:bg-purple transition-colors z-[1]`,
