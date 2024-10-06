@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 import tw, { css, styled } from "twin.macro";
 import * as dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
 import { Grid, Button } from "~components";
-import { useApp } from "~hooks";
+import { useApp, useZIndex } from "~hooks";
 
 import { getColor } from "~utils/css";
 
@@ -18,45 +18,35 @@ dayjs.extend(relativeTime);
 
 //
 
-const Conatiner = styled.section(({ active, zIndex }) => [
+const Conatiner = styled.section(({ active }) => [
   tw`absolute top-0 bottom-0 left-0 right-0 py-4 bg-offwhite/60 backdrop-blur-[7px] opacity-0 pointer-events-none transition-opacity overflow-y-scroll`,
   active && tw`opacity-100 pointer-events-auto`,
-  css`
-    z-index: ${zIndex};
-  `
 ]);
 const EmptyCard = tw.li`relative w-full col-span-full p-4 bg-offwhite/60 border rounded-[5px]`;
 
 //
 
 const Jobs = ({ jobs }) => {
-  const { jobsActive, activeWindows } = useApp();
+  const { isWindowActive, activeWindows } = useApp();
+  const jobsActive = isWindowActive('jobs');
 
-  const [zIndex, setZIndex] = useState();
+  const containerRef = useRef(null);
+
+  const zIndex = useZIndex("jobs");
+
+  // Function to update z-index directly on the DOM element
+  const updateZIndex = useCallback(() => {
+    if (containerRef.current) {
+      containerRef.current.style.zIndex = zIndex;
+    }
+  }, [zIndex]);
 
   useEffect(() => {
-    const windowIndex = activeWindows.findIndex((el) => el === `jobs`);
-
-    switch (windowIndex) {
-      case 0:
-        setZIndex(`30`);
-        break;
-
-      case 1:
-        setZIndex(`40`);
-        break;
-
-      case 2:
-        setZIndex(`50`);
-        break;
-
-      default:
-        break;
-    }
-  }, [activeWindows]);
+    updateZIndex();
+  }, [activeWindows, updateZIndex]);
 
   return (
-    <Conatiner active={jobsActive} zIndex={zIndex}>
+    <Conatiner ref={containerRef} active={jobsActive}>
       <Grid node="ul">
         {jobs?.length > 0 ? (
           jobs?.map((job) => <JobCard key={job?._key} job={job} />)

@@ -26,14 +26,15 @@ const Title = tw.h1`font-main text-m-h3 sm-t:text-d-h3 text-offwhite`;
 
 const Footer = ({ data: { title } }) => {
   // state
-  const {
-    aboutActive,
-    setAboutActive,
-    jobsActive,
-    setJobsActive,
-    contactActive,
-    setContactActive
-  } = useApp();
+  const { isWindowActive, toggleWindow } = useApp();
+
+  const aboutActive = isWindowActive('about');
+  const jobsActive = isWindowActive('jobs');
+  const contactActive = isWindowActive('contact');
+
+  const toggleAboutActive = () => toggleWindow('about');
+  const toggleJobsActive = () => toggleWindow('jobs');
+  const toggleContactActive = () => toggleWindow('contact');
 
   return (
     <Container>
@@ -45,7 +46,7 @@ const Footer = ({ data: { title } }) => {
                 <Button
                   type="button"
                   name="Toggle About"
-                  onClick={() => setAboutActive(!aboutActive)}
+                  onClick={toggleAboutActive}
                   active={aboutActive}
                 >
                   About Us,
@@ -55,7 +56,7 @@ const Footer = ({ data: { title } }) => {
                 <Button
                   type="button"
                   name="Toggle Jobs"
-                  onClick={() => setJobsActive(!jobsActive)}
+                  onClick={toggleJobsActive}
                   active={jobsActive}
                 >
                   Jobs,
@@ -65,7 +66,7 @@ const Footer = ({ data: { title } }) => {
                 <Button
                   type="button"
                   name="Toggle Contact Form"
-                  onClick={() => setContactActive(!contactActive)}
+                  onClick={toggleContactActive}
                   active={contactActive}
                 >
                   Contact

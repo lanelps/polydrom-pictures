@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useCallback } from "react";
 import tw, { css, styled } from "twin.macro";
 
 import { Grid, PortableText } from "~components";
-import { useApp, useSize } from "~hooks";
+import { useApp, useSize, useZIndex } from "~hooks";
 
 import { deviceType } from "~utils/helpers";
 
@@ -48,8 +48,10 @@ const throttle = (func, limit) => {
 };
 
 const About = ({ body }) => {
-  const { aboutActive, activeWindows } = useApp();
+  const { isWindowActive, activeWindows } = useApp();
   const [backgroundRef, backgroundSize] = useSize();
+
+  const aboutActive = isWindowActive('about');
 
   // Refs for mutable values
   const positionRef = useRef({ x: 0, y: 0 });
@@ -60,29 +62,14 @@ const About = ({ body }) => {
   const size = 718;
   const showRef = useRef(deviceType() === "desktop");
 
-  const updateZIndex = useCallback(() => {
-    const windowIndex = activeWindows.findIndex((el) => el === "about");
-    let newZIndex;
-  
-    switch (windowIndex) {
-      case 0:
-        newZIndex = 30;
-        break;
-      case 1:
-        newZIndex = 40;
-        break;
-      case 2:
-        newZIndex = 50;
-        break;
-      default:
-        newZIndex = 10;
-        break;
-    }
-  
-    if (containerRef.current) {
-      containerRef.current.style.zIndex = newZIndex;
-    }
-  }, [activeWindows]);
+  const zIndex = useZIndex("about");
+
+ // Function to update z-index directly on the DOM element
+ const updateZIndex = useCallback(() => {
+  if (containerRef.current) {
+    containerRef.current.style.zIndex = zIndex;
+  }
+}, [zIndex]);
 
   // Handle mouse move with throttling
   const handleMouseMove = useCallback(

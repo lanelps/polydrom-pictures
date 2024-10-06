@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from "react";
-import tw, { css, styled } from "twin.macro";
+import React, { useEffect, useCallback, useRef } from "react";
+import tw, { styled } from "twin.macro";
 
 import { Grid, Button, SocialButton, ContactForm } from "~components";
-import { useApp } from "~hooks";
+import { useApp, useZIndex } from "~hooks";
 
-const Container = styled.section(({ active, zIndex }) => [
+const Container = styled.section(({ active }) => [
   tw`absolute top-0 left-0 right-0 z-30 translate-y-[-100%] pointer-events-none overflow-hidden transition-[opacity,transform]`,
   active && tw`translate-y-0`,
-  css`
-    z-index: ${zIndex};
-  `
 ]);
 const EmailWrapper = styled.div(({ active }) => [
   tw`relative w-full pt-4 pb-8 sm-t:pb-16 bg-lime dark:bg-cobalt transition-colors pointer-events-none`,
@@ -26,34 +23,26 @@ const FormHeading = tw.h3`col-span-full font-main text-m-h3 sm-t:text-d-h3`;
 const Contact = ({ contact }) => {
   const { email, socialLinks, mailchimpID } = contact;
 
-  const { contactActive, activeWindows } = useApp();
+  const { isWindowActive, activeWindows } = useApp();
+  const contactActive = isWindowActive('contact');
 
-  const [zIndex, setZIndex] = useState();
+  const containerRef = useRef(null);
+
+  const zIndex = useZIndex("contact");
+
+  // Function to update z-index directly on the DOM element
+  const updateZIndex = useCallback(() => {
+    if (containerRef.current) {
+      containerRef.current.style.zIndex = zIndex;
+    }
+  }, [zIndex]);
 
   useEffect(() => {
-    const windowIndex = activeWindows.findIndex((el) => el === `contact`);
-
-    switch (windowIndex) {
-      case 0:
-        setZIndex(`30`);
-        break;
-
-      case 1:
-        setZIndex(`40`);
-        break;
-
-      case 2:
-        setZIndex(`50`);
-        break;
-
-      default:
-        setZIndex(`auto`);
-        break;
-    }
-  }, [activeWindows]);
+    updateZIndex();
+  }, [activeWindows, updateZIndex]);
 
   return (
-    <Container active={contactActive} zIndex={zIndex}>
+    <Container ref={containerRef} active={contactActive}>
       <EmailWrapper active={contactActive}>
         <Grid css={[tw`gap-y-0 sm-t:gap-y-0`]}>
           <EmailHeading>General Enquiries:</EmailHeading>

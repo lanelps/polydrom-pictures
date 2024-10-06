@@ -13,7 +13,9 @@ const DVDButton = tw(
 
 const DVD = ({ dvd }) => {
   const { image, linkText, linkUrl } = dvd;
-  const { contactActive, setContactActive } = useApp();
+  const { toggleWindow } = useApp();
+
+  const toggleContactActive = () => toggleWindow('contact');
 
   const dvdRef = useRef(null);
   const positionRef = useRef({ x: 0, y: 100 });
@@ -88,7 +90,7 @@ const DVD = ({ dvd }) => {
         <DVDButton
           kind={2}
           css={[!image ? tw`relative` : tw`absolute`]}
-          onClick={() => setContactActive(!contactActive)}
+          onClick={toggleContactActive}
         >
           {linkText}
         </DVDButton>
