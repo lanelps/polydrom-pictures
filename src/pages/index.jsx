@@ -15,7 +15,7 @@ import {
 const Index = ({ data }) => {
   const { allSanityJob, sanityAbout, sanityContact, sanityGlobals } = data;
 
-  const jobs = allSanityJob?.edges.map(({ node }) => node);
+  const jobs = allSanityJob?.edges?.map(({ node }) => node) || [];
 
   return (
     <Layout font={sanityGlobals?.font} footer={sanityGlobals?.footer}>
