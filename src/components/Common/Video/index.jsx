@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import tw, { styled, css } from "twin.macro";
-import { v4 as uuidv4 } from "uuid";
 
 const Container = styled.div(() => [
   tw`relative w-full h-full overflow-hidden`,
@@ -45,6 +44,14 @@ const Video = ({
     }
   }, [sources]);
 
+  const handleLoadedData = () => {
+    if (ref.current) {
+      ref.current.play().catch((error) => {
+        console.error("Error attempting to play:", error);
+      });
+    }
+  };
+
   return (
     <Container className={className}>
       <VideoElement
@@ -54,10 +61,12 @@ const Video = ({
         playsInline
         loop={loop}
         contain={contain}
+        muted={isMuted}
+        onLoadedData={handleLoadedData}
       >
         {sources.map((src) => (
           <source
-            key={uuidv4()}
+            key={src.id || src.url}
             src={src?.url}
             type={src?.type && `video/${src?.type}`}
           />
