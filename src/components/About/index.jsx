@@ -15,7 +15,7 @@ const TransformWrapper = styled.div(({ active }) => [
 ]);
 
 const Background = styled.div(() => [
-  tw`w-full h-full absolute p-3 sm-t:p-4 pb-24 sm-t:pb-16 sm-d:pb-[4.75rem] bg-green dark:bg-yellow transition-colors z-[1]`,
+  tw`w-full h-full absolute p-3 sm-t:p-4 pb-24 sm-t:pb-16 sm-d:pb-[4.75rem] bg-yellow transition-colors z-[1]`,
   css`
     mask: url(#holeMask) no-repeat center;
     mask-size: cover;
@@ -27,11 +27,11 @@ const BaseContent = styled.div(() => [
 ]);
 
 const MaskedContent = styled(BaseContent)(() => [
-  tw`absolute inset-0 text-offblack dark:text-offwhite`
+  tw`absolute inset-0 text-offwhite`
 ]);
 
 const MainContent = styled(BaseContent)(() => [
-  tw`relative z-10 text-offwhite dark:text-offblack`,
+  tw`relative z-10 text-offblack`,
   css`
     mask: url(#holeMask) no-repeat center;
     mask-size: cover;
