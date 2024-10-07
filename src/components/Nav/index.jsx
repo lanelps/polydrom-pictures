@@ -23,26 +23,18 @@ const Nav = ({ title }) => {
   return (
     <Container>
       {/* <ThemeToggle /> */}
-      <Grid>
+      <Grid tw="items-center">
         <Title className="b1-sans">{title}</Title>
-        <nav
-          css={css`
-            grid-column-start: 4;
-          `}
-        >
-          <NavList>
-            <li>
-              <Button
-                type="button"
-                name="Toggle About"
-                onClick={toggleAboutActive}
-                kind={2}
-                invert
-              >
-                About
-              </Button>
-            </li>
-          </NavList>
+        <nav tw="col-start-[2] sm-t:col-start-[4] flex justify-end">
+          <Button
+            type="button"
+            name="Toggle About"
+            onClick={toggleAboutActive}
+            kind={2}
+            invert
+          >
+            About
+          </Button>
         </nav>
       </Grid>
     </Container>
