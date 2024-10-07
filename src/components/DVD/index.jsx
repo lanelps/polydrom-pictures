@@ -5,7 +5,7 @@ import { Button, Go, Image } from "~components";
 import { useApp } from "~hooks";
 
 const Container = styled.div(() => [
-  tw`fixed w-auto max-w-[5.25rem] sm-t:max-w-[10.25rem] flex items-end justify-center z-[100] opacity-0 animate-appear animation-delay-1000 will-change-transform mix-blend-difference`
+  tw`fixed w-auto max-w-[5.25rem] sm-t:max-w-[10.25rem] flex items-end justify-center z-[100] opacity-0 will-change-transform mix-blend-difference`
 ]);
 
 const DVD = ({ dvd }) => {
@@ -14,7 +14,7 @@ const DVD = ({ dvd }) => {
     linkText: "Newsletter",
     linkUrl: ""
   };
-  const { toggleWindow } = useApp();
+  const { toggleWindow, showText } = useApp();
 
   const toggleContactActive = () => toggleWindow("contact");
 
@@ -81,7 +81,7 @@ const DVD = ({ dvd }) => {
   }, [animate]);
 
   return (
-    <Container ref={dvdRef}>
+    <Container ref={dvdRef} css={showText && tw`animate-appear`}>
       {image && <Image image={image} />}
       {linkUrl ? (
         <Go to={linkUrl} css={[!image ? tw`relative` : tw`absolute`]}>

@@ -1,5 +1,11 @@
 /* eslint-disable camelcase */
-import React, { createContext, useEffect, useState, useMemo, useCallback } from "react";
+import React, {
+  createContext,
+  useEffect,
+  useState,
+  useMemo,
+  useCallback
+} from "react";
 import { globalHistory } from "@reach/router";
 
 export const AppContext = createContext({});
@@ -14,6 +20,7 @@ const AppProvider = ({ children }) => {
 
   const [pathname, setPathname] = useState("");
   const [activeWindows, setActiveWindows] = useState([]);
+  const [showText, setShowText] = useState(false);
 
   // ---------------------------------------------------------------------------
   // methods
@@ -47,7 +54,7 @@ const AppProvider = ({ children }) => {
       if (e.key === "Escape") {
         closeAllWindows();
       }
-    })
+    });
 
     setPathname(window.location.pathname);
 
@@ -69,12 +76,24 @@ const AppProvider = ({ children }) => {
       activeWindows,
       toggleWindow,
       isWindowActive,
-      closeAllWindows
+      closeAllWindows,
+      showText,
+      setShowText
     }),
-    [pathname, activeWindows, toggleWindow, isWindowActive, closeAllWindows]
+    [
+      pathname,
+      activeWindows,
+      toggleWindow,
+      isWindowActive,
+      closeAllWindows,
+      showText,
+      setShowText
+    ]
   );
 
-  return <AppContext.Provider value={providerProps}>{children}</AppContext.Provider>;
+  return (
+    <AppContext.Provider value={providerProps}>{children}</AppContext.Provider>
+  );
 };
 
 export default AppProvider;
