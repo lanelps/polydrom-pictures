@@ -102,7 +102,6 @@ const seoPlugins = () => {
       background_color: `#000000`,
       theme_color: `#000000`,
       display: `standalone`,
-      icon: `static/favicon.jpg`,
       include_favicon: false,
       icon_options: {
         purpose: `any maskable`
@@ -231,7 +230,6 @@ module.exports = {
     description: ``,
     facebook: ``,
     instagram: ``,
-    image: `/share.jpg`,
     keywords: ``,
     siteLanguage: `en`,
     siteUrl: GATSBY_SITE_URL + pathPrefix,
