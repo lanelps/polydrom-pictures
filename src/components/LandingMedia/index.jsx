@@ -22,12 +22,14 @@ const LandingMedia = ({ media }) => {
     }
 
     if (media?.video?.source) {
+      console.log(`media?.video?.source`, media?.video?.source);
       videoSources.push({
         url: generateCloudinaryVideoURL(media?.video?.source?.public_id, {
           quality: `auto`,
           width: 1440
         }),
-        type: `webm; codecs=vp9`
+        // type: `webm; codecs=vp9`
+        type: `mp4`
       });
     }
   }
