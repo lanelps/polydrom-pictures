@@ -81,7 +81,7 @@ const Theme = ({ font }) => (
 
         .h1-serif,
         .b1-serif {
-          font-family: "Times New Roman", Times, serif;
+          font-family: "Times", "Times New Roman", serif;
           font-style: italic;
         }
 
@@ -111,7 +111,7 @@ const Theme = ({ font }) => (
         }
 
         .b1-serif {
-          letter-spacing: -0.02em;
+          letter-spacing: 0.02em;
         }
 
         .b1-sans {
