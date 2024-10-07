@@ -12,7 +12,7 @@ const Grid = forwardRef((props, ref) => {
     gap = [`1rem`, `1rem`],
     padding = [`0 0.75rem`, `0 1rem`],
     margin = [`auto`, `auto`],
-    maxWidth = `1728px`
+    maxWidth = `auto`
   } = props;
 
   const G = `${node}`;
