@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import tw, { css, styled } from "twin.macro";
+import tw, { styled } from "twin.macro";
 
 import { Button } from "~components";
 
@@ -7,7 +7,7 @@ const Container = styled.form(({ disable }) => [
   tw`relative transition-opacity flex items-center gap-x-2`,
   disable && tw`pointer-events-none opacity-50`
 ]);
-const Input = tw.input`bg-transparent mt-[1px] w-[12ch] text-offblack dark:text-offwhite placeholder:text-offblack/60 dark:placeholder:text-offwhite/60`;
+const Input = tw.input`bg-transparent mt-[1px] w-[12ch] text-offwhite placeholder:text-offwhite/60`;
 
 const ContactForm = ({ className, mailchimpID }) => {
   const [email, setEmail] = useState(``);
@@ -65,7 +65,7 @@ const ContactForm = ({ className, mailchimpID }) => {
         className="b1-sans"
       />
 
-      <Button kind={2} type="submit" disabled={submitting || submitted}>
+      <Button kind={2} type="submit" disabled={submitting || submitted} invert>
         {submitted ? "SUCCESS" : "SUBMIT"}
       </Button>
     </Container>

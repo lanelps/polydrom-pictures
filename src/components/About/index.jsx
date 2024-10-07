@@ -31,7 +31,7 @@ const MaskedContent = styled(BaseContent)(() => [
 ]);
 
 const MainContent = styled(BaseContent)(() => [
-  tw`relative z-10 text-offblack`,
+  tw`relative z-10 text-offwhite dark:text-offblack`,
   css`
     mask: url(#holeMask) no-repeat center;
     mask-size: cover;

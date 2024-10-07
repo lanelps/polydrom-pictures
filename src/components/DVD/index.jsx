@@ -85,11 +85,14 @@ const DVD = ({ dvd }) => {
       {image && <Image image={image} />}
       {linkUrl ? (
         <Go to={linkUrl} css={[!image ? tw`relative` : tw`absolute`]}>
-          <DVDButton kind={2}>{linkText}</DVDButton>
+          <Button kind={2} invert>
+            {linkText}
+          </Button>
         </Go>
       ) : (
         <Button
           kind={2}
+          invert
           css={[!image ? tw`relative` : tw`absolute`]}
           onClick={toggleContactActive}
         >

@@ -8,7 +8,7 @@ const Container = styled.footer(() => [
 ]);
 const Wrapper = tw.div`relative w-full col-span-full flex flex-col sm-t:flex-row gap-y-2 justify-between`;
 const FormWrapper = tw.div`w-max flex items-center gap-x-2`;
-const FormHeading = tw.h3``;
+const FormHeading = tw.h3`text-offwhite`;
 const Enquiries = tw.div`flex items-center gap-x-3`;
 
 const Footer = ({ footer: { contact } }) => {
@@ -25,8 +25,8 @@ const Footer = ({ footer: { contact } }) => {
 
           {contact?.email && (
             <Enquiries>
-              <h3 className="b1-serif">Enquiries</h3>
-              <Button kind={2} to={`mailto:${contact.email}`}>
+              <h3 className="b1-serif" tw="text-offwhite">Enquiries</h3>
+              <Button kind={2} to={`mailto:${contact.email}`} invert>
                 {contact?.email}
               </Button>
             </Enquiries>

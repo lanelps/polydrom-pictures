@@ -12,7 +12,7 @@ const Container = styled.header(() => [
   `
 ]);
 
-const Title = tw.h1`text-offblack dark:text-offwhite transition-colors uppercase`;
+const Title = tw.h1`text-offwhite transition-colors uppercase`;
 
 const NavList = tw.ul`relative w-auto flex gap-x-2 justify-end`;
 
@@ -37,6 +37,7 @@ const Nav = ({ title }) => {
                 name="Toggle About"
                 onClick={toggleAboutActive}
                 kind={2}
+                invert
               >
                 About
               </Button>
