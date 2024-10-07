@@ -10,7 +10,7 @@ const Container = styled.section(({ active }) => [
 ]);
 
 const TransformWrapper = styled.div(({ active }) => [
-  tw`absolute bottom-0 w-full h-[90%] sm-t:h-[50vh] translate-y-full transition-transform duration-[600ms] overflow-hidden`,
+  tw`absolute bottom-0 w-full h-auto sm-t:h-[50vh] translate-y-full transition-transform duration-[600ms] overflow-hidden`,
   active && tw`translate-y-0`
 ]);
 
