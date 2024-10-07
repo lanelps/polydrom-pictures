@@ -8,6 +8,8 @@ const Container = styled.div(() => [
   tw`fixed w-auto max-w-[5.25rem] sm-t:max-w-[10.25rem] flex items-end justify-center z-[100] opacity-0 will-change-transform mix-blend-difference`
 ]);
 
+const DVDButton = styled(Button)(() => [tw`break-words text-center`]);
+
 const DVD = ({ dvd }) => {
   const { image, linkText, linkUrl } = dvd || {
     image: null,
@@ -83,14 +85,14 @@ const DVD = ({ dvd }) => {
       {image && <Image image={image} />}
       {linkUrl ? (
         <Go to={linkUrl} css={[!image ? tw`relative` : tw`absolute`]}>
-          <Button kind={2} invert>
+          <DVDButton kind={2} invert>
             {linkText}
-          </Button>
+          </DVDButton>
         </Go>
       ) : (
-        <Button kind={2} invert css={[!image ? tw`relative` : tw`absolute`]}>
+        <DVDButton kind={2} invert css={[!image ? tw`relative` : tw`absolute`]}>
           {linkText}
-        </Button>
+        </DVDButton>
       )}
     </Container>
   );
