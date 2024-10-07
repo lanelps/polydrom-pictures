@@ -63,7 +63,7 @@ const Go = ({ children, className, debug, label, onClick, parameters, to }) => {
 
   const href =
     to &&
-    `${to.slice(-1) === `/` ? to : `${to}/`}${
+    `${to.slice(-1) === `/` ? to : `${to}`}${
       parameterString !== `` ? parameterString : ``
     }`;
 
