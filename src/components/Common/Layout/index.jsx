@@ -6,14 +6,12 @@ import { Theme, Footer } from "~components";
 const Container = tw.div`relative h-screen flex bg-offwhite dark:bg-offblack transition-colors overflow-hidden`;
 const Main = tw.main`flex-grow w-full`;
 
-const Layout = ({ children, className, font }) => (
+const Layout = ({ children, className, font, footer }) => (
   <>
     <Theme font={font} />
     <Container>
-      <Main className={className}>
-        {children}
-      </Main>
-      <Footer />
+      <Main className={className}>{children}</Main>
+      <Footer footer={footer} />
     </Container>
   </>
 );

@@ -24,7 +24,7 @@ const Index = ({ data }) => {
   const jobs = allSanityJob?.edges?.map(({ node }) => node) || [];
 
   return (
-    <Layout font={sanityGlobals?.font}>
+    <Layout font={sanityGlobals?.font} footer={{ contact: sanityContact }}>
       <DVD dvd={sanityGlobals?.dvd} />
       <Nav title={sanitySettings?.seo?.title} />
       <LandingMedia media={sanityGlobals?.landingMedia} />
