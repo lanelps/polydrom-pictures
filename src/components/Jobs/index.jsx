@@ -73,7 +73,7 @@ const InfoWrapper = tw.ul`flex flex-col gap-y-2`;
 const InfoItem = tw.li`relative flex items-center gap-x-2`;
 const Info = tw.h4`text-grey`;
 const Description = tw.p``;
-const Created = tw.p`text-caption text-grey uppercase`;
+const Created = tw.p`text-grey uppercase`;
 
 const JobCard = ({ job }) => (
   <JobContainer>
