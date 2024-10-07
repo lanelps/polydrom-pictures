@@ -88,12 +88,21 @@ export const query = graphql`
         image {
           asset {
             gatsbyImageData(
-              width: 720
+              width: 1440
               placeholder: BLURRED
               formats: [AUTO, WEBP, AVIF]
             )
           }
           altText
+          mobileImage {
+            asset {
+              gatsbyImageData(
+                width: 720
+                placeholder: BLURRED
+                formats: [AUTO, WEBP, AVIF]
+              )
+            }
+          }
         }
         video {
           source {

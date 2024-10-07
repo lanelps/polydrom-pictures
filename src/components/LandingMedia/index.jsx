@@ -5,8 +5,9 @@ import { Image, Grid, Video } from "~components";
 
 import { generateCloudinaryVideoURL } from "~utils/cloudinary";
 
-const MediaWrapper = tw.div`relative w-full h-full col-span-full flex items-center justify-center opacity-0 animate-appear animation-delay-1000`;
-const Figure = tw.figure`relative w-full h-full sm-t:(max-w-[70vw] max-h-[339px]) sm-d:(max-w-[45vw] max-h-[648px])`;
+const MediaWrapper = tw.div`fixed inset-0 w-screen h-screen flex items-center justify-center opacity-0 animate-appear animation-delay-1000`;
+// const Figure = tw.figure`relative w-full h-full sm-t:(max-w-[70vw] max-h-[339px]) sm-d:(max-w-[45vw] max-h-[648px])`;
+const Figure = tw.figure`w-full h-full`;
 
 const LandingMedia = ({ media }) => {
   const videoSources = [];
@@ -36,11 +37,11 @@ const LandingMedia = ({ media }) => {
       <MediaWrapper>
         <Figure>
           {media?.type === `image` && media?.image && (
-            <Image image={media.image} css={[tw`w-auto`]} />
+            <Image image={media.image} tw="w-full h-full" contain />
           )}
 
           {media?.type === `video` && videoSources?.length > 0 && (
-            <Video sources={videoSources} css={[tw`w-auto`]} contain />
+            <Video sources={videoSources} tw="w-auto" contain />
           )}
         </Figure>
       </MediaWrapper>
