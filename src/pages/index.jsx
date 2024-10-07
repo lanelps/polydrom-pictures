@@ -2,15 +2,7 @@
 import React from "react";
 import { graphql } from "gatsby";
 
-import {
-  Layout,
-  Nav,
-  LandingMedia,
-  Jobs,
-  About,
-  Contact,
-  DVD
-} from "~components";
+import { Layout, Nav, LandingMedia, Jobs, About, DVD } from "~components";
 
 const Index = ({ data }) => {
   const {
@@ -30,7 +22,6 @@ const Index = ({ data }) => {
       <LandingMedia media={sanityGlobals?.landingMedia} />
       <About body={sanityAbout?._rawBody} />
       <Jobs jobs={jobs} />
-      <Contact contact={sanityContact} />
     </Layout>
   );
 };
