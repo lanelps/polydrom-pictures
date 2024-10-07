@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import tw, { css, styled } from "twin.macro";
 
 import { PortableText } from "~components";
-import { useApp, useSize } from "~hooks";
+import { useApp } from "~hooks";
 
 const Container = styled.section(({ active }) => [
   tw`absolute top-0 bottom-0 left-0 right-0 pointer-events-none overflow-hidden opacity-100 transition-opacity delay-[300ms]`,
@@ -74,7 +74,7 @@ const ClipPathSVG = ({ holePosition, holeRadius, size }) => {
     <svg
       width={size.width}
       height={size.height}
-      style={{ position: "absolute", width: 0, height: 0 }}
+      tw="absolute hidden sm-t:block"
     >
       <defs>
         <clipPath id="holeClip" clipPathUnits="userSpaceOnUse">
