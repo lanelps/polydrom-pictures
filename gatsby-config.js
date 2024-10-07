@@ -178,37 +178,15 @@ const hostingPlugins = () => {
     ]
   };
 
-  switch (HOST) {
-    case `gatsby-cloud`:
-      plugins.push({
-        resolve: `gatsby-plugin-gatsby-cloud`,
-        options: {
-          headers: securityHeaders,
-          allPageHeaders: [],
-          mergeSecurityHeaders: true,
-          mergeLinkHeaders: true,
-          mergeCachingHeaders: true
-        }
-      });
-
-      break;
-
-    case `netlify`:
-      plugins.push({
-        resolve: `gatsby-plugin-netlify`,
-        options: {
-          headers: securityHeaders,
-          allPageHeaders: [],
-          mergeSecurityHeaders: true,
-          mergeCachingHeaders: true
-        }
-      });
-
-      break;
-
-    default:
-      break;
-  }
+  plugins.push({
+    resolve: `gatsby-plugin-netlify`,
+    options: {
+      headers: securityHeaders,
+      allPageHeaders: [],
+      mergeSecurityHeaders: true,
+      mergeCachingHeaders: true
+    }
+  });
 
   return plugins;
 };
