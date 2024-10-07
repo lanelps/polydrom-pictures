@@ -5,7 +5,7 @@ import { Image, Grid, Video } from "~components";
 
 import { generateCloudinaryVideoURL } from "~utils/cloudinary";
 
-const MediaWrapper = tw.div`fixed inset-0 w-screen h-screen flex items-center justify-center opacity-0 animate-appear animation-delay-1000`;
+const MediaWrapper = tw.div`fixed inset-0 w-screen h-[100dvh] flex items-center justify-center opacity-0 animate-appear animation-delay-1000`;
 // const Figure = tw.figure`relative w-full h-full sm-t:(max-w-[70vw] max-h-[339px]) sm-d:(max-w-[45vw] max-h-[648px])`;
 const Figure = tw.figure`w-full h-full`;
 
