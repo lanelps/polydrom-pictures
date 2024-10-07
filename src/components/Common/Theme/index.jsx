@@ -124,7 +124,7 @@ const Theme = ({ font }) => (
           letter-spacing: 0.02em;
         }
 
-        @media (min-width: 768px) {
+        @media (max-width: 768px) {
           .h1-serif,
           .h1-sans {
             font-size: 1.125rem;
