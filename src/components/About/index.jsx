@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import tw, { css, styled } from "twin.macro";
 
 import { PortableText } from "~components";
-import { useApp, useSize, useZIndex } from "~hooks";
+import { useApp, useSize } from "~hooks";
 
 const Container = styled.section(({ active }) => [
   tw`absolute top-0 bottom-0 left-0 right-0 pointer-events-none overflow-hidden opacity-100 transition-opacity delay-[300ms]`,
@@ -15,10 +15,10 @@ const TransformWrapper = styled.div(({ active }) => [
 ]);
 
 const Background = styled.div(() => [
-  tw`w-full h-full absolute p-3 sm-t:p-4 pb-24 sm-t:pb-16 sm-d:pb-[4.75rem] bg-yellow transition-colors z-[1]`,
+  tw`w-full h-full absolute p-3 sm-t:p-4 pb-24 sm-t:pb-16 sm-d:pb-[4.75rem] bg-yellow dark:bg-yellow transition-colors z-10`,
   css`
-    mask: url(#holeMask) no-repeat center;
-    mask-size: cover;
+    clip-path: url(#holeClip);
+    -webkit-clip-path: url(#holeClip);
   `
 ]);
 
@@ -27,14 +27,14 @@ const BaseContent = styled.div(() => [
 ]);
 
 const MaskedContent = styled(BaseContent)(() => [
-  tw`absolute inset-0 text-offwhite`
+  tw`absolute inset-0 text-offwhite z-[-1]`
 ]);
 
 const MainContent = styled(BaseContent)(() => [
   tw`relative z-10 text-offblack`,
   css`
-    mask: url(#holeMask) no-repeat center;
-    mask-size: cover;
+    clip-path: url(#holeClip);
+    -webkit-clip-path: url(#holeClip);
   `
 ]);
 
@@ -50,100 +50,105 @@ const throttle = (func, limit) => {
   };
 };
 
-const SvgMask = React.memo(
-  React.forwardRef(({ size }, ref) => (
-    <svg tw="absolute w-full h-full">
+const ClipPathSVG = ({ holePosition, holeRadius, size }) => {
+  const pathRef = useRef(null);
+
+  useEffect(() => {
+    if (pathRef.current && size.width > 0 && size.height > 0) {
+      const { x, y } = holePosition; // Absolute coordinates in pixels
+      const r = holeRadius; // Radius in pixels
+
+      // Define the path with evenodd
+      const newPath = `
+        M0,0 H${size.width} V${size.height} H0 Z 
+        M${x},${y} 
+        m-${r},0 
+        a${r},${r} 0 1,0 ${2 * r},0 
+        a${r},${r} 0 1,0 -${2 * r},0
+      `;
+      pathRef.current.setAttribute("d", newPath);
+    }
+  }, [holePosition, holeRadius, size]);
+
+  return (
+    <svg
+      width={size.width}
+      height={size.height}
+      style={{ position: "absolute", width: 0, height: 0 }}
+    >
       <defs>
-        <mask id="holeMask">
-          <rect width="100%" height="100%" fill="white" />
-          <circle
-            ref={ref}
-            cx="0"
-            cy="0"
-            r={size / 2}
-            fill="black"
-            tw="hidden sm-t:block"
+        <clipPath id="holeClip" clipPathUnits="userSpaceOnUse">
+          <path
+            ref={pathRef}
+            d={`M0,0 H${size.width} V${size.height} H0 Z M${holePosition.x},${holePosition.y} m-${holeRadius},0 a${holeRadius},${holeRadius} 0 1,0 ${2 * holeRadius},0 a${holeRadius},${holeRadius} 0 1,0 -${2 * holeRadius},0`}
           />
-        </mask>
+        </clipPath>
       </defs>
     </svg>
-  ))
-);
+  );
+};
 
 const About = ({ body }) => {
-  const { isWindowActive, activeWindows } = useApp();
+  const { isWindowActive } = useApp();
   const aboutActive = isWindowActive("about");
 
-  const [backgroundRef, backgroundSize] = useSize();
+  const backgroundRef = useRef();
+  const [backgroundSize, setBackgroundSize] = useState({ width: 0, height: 0 });
 
-  // Refs for mutable values
-  const positionRef = useRef({ x: 0, y: 0 });
-  const offsetRef = useRef({ x: 0, y: 0 });
-  const maskCircleRef = useRef(null);
-  const containerRef = useRef(null);
-
-  const size = 388;
-
-  const zIndex = useZIndex("about");
-
-  // Function to update z-index directly on the DOM element
-  const updateZIndex = useCallback(() => {
-    if (containerRef.current) {
-      containerRef.current.style.zIndex = zIndex;
-    }
-  }, [zIndex]);
+  // State for hole position
+  const [holePosition, setHolePosition] = useState({ x: 0, y: 0 }); // Will be set to center on mount
+  const [holeRadius, setHoleRadius] = useState(194);
 
   // Handle mouse move with throttling and requestAnimationFrame
   const handleMouseMove = useCallback(
     throttle((e) => {
-      positionRef.current = { x: e.clientX, y: e.clientY };
-      if (backgroundRef.current) {
-        const { top, left } = backgroundRef.current.getBoundingClientRect();
-        offsetRef.current = { x: left, y: top };
-      }
+      if (!backgroundRef.current) return;
 
-      const { x, y } = positionRef.current;
-      const { x: offsetX, y: offsetY } = offsetRef.current;
+      const { top, left } = backgroundRef.current.getBoundingClientRect();
 
-      const relativeX = x - offsetX;
-      const relativeY = y - offsetY;
+      // Calculate mouse position relative to Background in pixels
+      const relativeX = e.clientX - left;
+      const relativeY = e.clientY - top;
 
-      if (maskCircleRef.current) {
-        requestAnimationFrame(() => {
-          maskCircleRef.current.setAttribute("cx", relativeX);
-          maskCircleRef.current.setAttribute("cy", relativeY);
-        });
-      }
-    }, 16), // Approximately 60fps, adjust as needed
-    [backgroundRef, size]
+      setHolePosition({ x: relativeX, y: relativeY });
+    }, 16), // Approximately 60fps
+    [backgroundRef]
   );
 
-  useEffect(() => {
-    updateZIndex();
-  }, [activeWindows, updateZIndex]);
+  const handleResize = useCallback(() => {
+    const { width, height } = backgroundRef.current.getBoundingClientRect();
+    setBackgroundSize({ width, height });
+  }, [backgroundRef]);
 
   // Add/remove mousemove event listener
   useEffect(() => {
     if (!aboutActive) return;
 
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      window.addEventListener("resize", handleResize);
     };
   }, [aboutActive, handleMouseMove]);
 
-  // Update offset when backgroundRef or backgroundSize changes
   useEffect(() => {
-    if (backgroundRef.current && aboutActive) {
-      const { top, left } = backgroundRef.current.getBoundingClientRect();
-      offsetRef.current = { x: left, y: top };
-    }
-  }, [backgroundRef, backgroundSize, aboutActive]);
+    if (!backgroundRef.current) return;
+
+    const { width, height } = backgroundRef.current.getBoundingClientRect();
+
+    setBackgroundSize({ width, height });
+  }, [backgroundRef]);
 
   return (
-    <Container ref={containerRef} active={aboutActive}>
-      <SvgMask ref={maskCircleRef} size={size} />
+    <Container active={aboutActive}>
+      <ClipPathSVG
+        holePosition={holePosition}
+        holeRadius={holeRadius}
+        size={{ width: backgroundSize.width, height: backgroundSize.height }}
+      />
+
       <TransformWrapper active={aboutActive}>
         <MaskedContent active={aboutActive} aria-hidden="true">
           <PortableText blocks={body} />
