@@ -13,10 +13,10 @@ const Container = styled.button(({ buttonType, invert }) => [
     tw`text-white/60 hover:(text-offblack) active:(text-offwhite)`,
   buttonType === 2 &&
     !invert &&
-    tw`p-1 pt-1.5 sm-t:pt-2 sm-t:p-2 sm-t:pb-1.5 bg-transparent rounded-[3.5rem] uppercase text-offwhite border border-offwhite hover:(bg-offwhite text-offblack border-offblack) active:(bg-offwhite/60) disabled:border-grey`,
+    tw`py-1 px-2 sm-t:p-2 sm-t:pb-1.5 bg-transparent rounded-[3.5rem] uppercase text-offwhite border border-offwhite hover:(bg-offwhite text-offblack border-offblack) active:(bg-offwhite/60) disabled:border-grey`,
   buttonType === 2 &&
     invert &&
-    tw`p-1 pt-1.5 sm-t:pt-2 sm-t:p-2 sm-t:pb-1.5 bg-transparent rounded-[3.5rem] uppercase text-offwhite border border-offwhite hover:(bg-offwhite text-offblack border-offblack) active:(bg-offwhite/60) disabled:border-grey`
+    tw`py-1 px-2 sm-t:p-2 sm-t:pb-1.5 bg-transparent rounded-[3.5rem] uppercase text-offwhite border border-offwhite hover:(bg-offwhite text-offblack border-offblack) active:(bg-offwhite/60) disabled:border-grey`
 ]);
 
 const Button = ({
