@@ -4,10 +4,10 @@ import tw, { css, styled } from "twin.macro";
 import { Button } from "~components";
 
 const Container = styled.form(({ disable }) => [
-  tw`relative w-full mt-6 sm-t:mt-8 transition-opacity`,
+  tw`relative transition-opacity flex items-center gap-x-2`,
   disable && tw`pointer-events-none opacity-50`
 ]);
-const Input = tw.input`relative w-full bg-transparent text-offblack dark:text-offwhite placeholder:text-offblack/60 dark:placeholder:text-offwhite/60`;
+const Input = tw.input`bg-transparent mt-[1px] w-[12ch] text-offblack dark:text-offwhite placeholder:text-offblack/60 dark:placeholder:text-offwhite/60`;
 
 const ContactForm = ({ className, mailchimpID }) => {
   const [email, setEmail] = useState(``);
@@ -36,6 +36,10 @@ const ContactForm = ({ className, mailchimpID }) => {
       setSubmitting(false);
       setEmail(``);
       setSubmitted(true);
+
+      await setTimeout(() => {
+        setSubmitted(false);
+      }, 3000);
     } catch (error) {
       console.error(error);
       setSubmitting(false);
@@ -50,21 +54,20 @@ const ContactForm = ({ className, mailchimpID }) => {
       onSubmit={handleSubmit}
       disable={submitting}
     >
-      <div tw="relative w-full flex items-end gap-x-2 border-b dark:border-offwhite pb-1 sm-t:pb-4">
-        <Input
-          required
-          type="email"
-          name="email"
-          value={email}
-          onChange={handleChange}
-          placeholder={submitted ? `Subscribed!` : `Email Address`}
-          disabled={submitting || submitted}
-        />
+      <Input
+        required
+        type="email"
+        name="email"
+        value={email}
+        onChange={handleChange}
+        placeholder="Email Address"
+        disabled={submitting || submitted}
+        className="b1-sans"
+      />
 
-        <Button type="submit" disabled={submitting || submitted}>
-          SUBMIT
-        </Button>
-      </div>
+      <Button kind={2} type="submit" disabled={submitting || submitted}>
+        {submitted ? "SUCCESS" : "SUBMIT"}
+      </Button>
     </Container>
   );
 };
