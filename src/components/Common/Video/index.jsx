@@ -17,10 +17,7 @@ const Container = styled.div(() => [
 ]);
 
 const VideoElement = styled.video(({ contain }) => [
-  tw`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100dvh] sm-t:w-screen h-[100vw] sm-t:h-[100dvh] transition-opacity duration-1000 -rotate-90 sm-t:rotate-0 max-w-none`,
-  css`
-    object-fit: ${contain ? `contain` : `cover`};
-  `
+  tw`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-[1.5] sm-t:scale-100 object-contain object-[65%_50%] sm-t:object-[50%_50] sm-t:object-cover w-[100dvh] sm-t:w-screen h-[100vw] sm-t:h-[100dvh] transition-opacity duration-1000 -rotate-90 sm-t:rotate-0 max-w-none`
 ]);
 
 const TIMEOUT_LENGTH = 5000;
