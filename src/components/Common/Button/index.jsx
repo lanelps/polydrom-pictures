@@ -4,7 +4,7 @@ import tw, { css, styled } from "twin.macro";
 import { Go } from "~components";
 
 const Container = styled.button(({ buttonType, invert }) => [
-  tw`relative w-max disabled:text-grey disabled:pointer-events-none disabled:opacity-50 transition-colors`,
+  tw`relative w-max disabled:text-grey disabled:pointer-events-none disabled:opacity-50 transition-colors cursor-default`,
   buttonType === 1 &&
     !invert &&
     tw`text-offwhite/60 hover:(text-offwhite) active:(text-offwhite)`,
@@ -36,6 +36,7 @@ const Button = ({
         <Container
           type={type}
           className={className ? `${className} button` : `button`}
+          css={onClick && tw`cursor-pointer`}
           buttonType={kind}
           aria-label={name}
           onClick={onClick}
@@ -51,6 +52,7 @@ const Button = ({
     <Container
       type={type}
       className={className ? `${className} button` : `button`}
+      css={onClick && tw`cursor-pointer`}
       buttonType={kind}
       aria-label={name}
       onClick={onClick}

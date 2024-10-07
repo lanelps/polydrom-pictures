@@ -14,9 +14,7 @@ const DVD = ({ dvd }) => {
     linkText: "Newsletter",
     linkUrl: ""
   };
-  const { toggleWindow, showText } = useApp();
-
-  const toggleContactActive = () => toggleWindow("contact");
+  const { showText } = useApp();
 
   const dvdRef = useRef(null);
   const positionRef = useRef({ x: 0, y: 100 });
@@ -90,12 +88,7 @@ const DVD = ({ dvd }) => {
           </Button>
         </Go>
       ) : (
-        <Button
-          kind={2}
-          invert
-          css={[!image ? tw`relative` : tw`absolute`]}
-          onClick={toggleContactActive}
-        >
+        <Button kind={2} invert css={[!image ? tw`relative` : tw`absolute`]}>
           {linkText}
         </Button>
       )}
