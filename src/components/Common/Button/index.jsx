@@ -8,7 +8,7 @@ const Container = styled.button(({ buttonType }) => [
   buttonType === 1 &&
     tw`text-offblack/60 dark:(text-offwhite/60) hover:(text-offwhite) dark:hover:(text-offwhite) active:(text-offblack) dark:active:(text-offwhite)`,
   buttonType === 2 &&
-    tw`p-1 sm-t:p-2 sm-t:pb-1.5 bg-transparent rounded-[3.5rem] uppercase text-offblack border border-offblack dark:(text-offwhite border-offwhite) hover:(bg-offblack text-offwhite border-offwhite) dark:hover:(bg-offwhite text-offblack border-offblack) active:(bg-offblack/60) dark:active:(bg-offwhite/60) disabled:border-grey`
+    tw`p-1 pt-1.5 sm-t:pt-2 sm-t:p-2 sm-t:pb-1.5 bg-transparent rounded-[3.5rem] uppercase text-offblack border border-offblack dark:(text-offwhite border-offwhite) hover:(bg-offblack text-offwhite border-offwhite) dark:hover:(bg-offwhite text-offblack border-offblack) active:(bg-offblack/60) dark:active:(bg-offwhite/60) disabled:border-grey`
 ]);
 
 const Button = ({
