@@ -22,7 +22,7 @@ const Nav = ({ title }) => {
 
   return (
     <Container>
-      <ThemeToggle />
+      {/* <ThemeToggle /> */}
       <Grid>
         <Title className="b1-sans">{title}</Title>
         <nav
