@@ -22,7 +22,6 @@ const LandingMedia = ({ media }) => {
     }
 
     if (media?.video?.source) {
-      console.log(`media?.video?.source`, media?.video?.source);
       videoSources.push({
         url: generateCloudinaryVideoURL(media?.video?.source?.public_id, {
           quality: `auto`,
