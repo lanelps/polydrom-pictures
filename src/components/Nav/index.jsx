@@ -2,7 +2,7 @@
 import React from "react";
 import tw, { css, styled } from "twin.macro";
 
-import { Grid, ThemeToggle, Button } from "~components";
+import { Grid, Button } from "~components";
 import { useApp } from "~hooks";
 
 const Container = styled.header(() => [
@@ -14,15 +14,12 @@ const Container = styled.header(() => [
 
 const Title = tw.h1`text-offwhite transition-colors uppercase`;
 
-const NavList = tw.ul`relative w-auto flex gap-x-2 justify-end`;
-
 const Nav = ({ title }) => {
   const { toggleWindow } = useApp();
   const toggleAboutActive = () => toggleWindow("about");
 
   return (
     <Container>
-      {/* <ThemeToggle /> */}
       <Grid tw="items-center">
         <Title className="b1-sans">{title}</Title>
         <nav tw="col-start-[2] sm-t:col-start-[4] flex justify-end">
