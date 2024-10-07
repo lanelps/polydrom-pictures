@@ -37,11 +37,11 @@ const LandingMedia = ({ media }) => {
       <MediaWrapper>
         <Figure>
           {media?.type === `image` && media?.image && (
-            <Image image={media.image} tw="w-full h-full" contain />
+            <Image image={media.image} tw="w-full h-full" />
           )}
 
           {media?.type === `video` && videoSources?.length > 0 && (
-            <Video sources={videoSources} tw="w-auto" contain />
+            <Video sources={videoSources} />
           )}
         </Figure>
       </MediaWrapper>

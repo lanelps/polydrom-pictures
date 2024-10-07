@@ -2,25 +2,23 @@ import React, { useEffect, useRef } from "react";
 import tw, { styled, css } from "twin.macro";
 import { v4 as uuidv4 } from "uuid";
 
-const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  position: relative;
-  > div,
-  iframe {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    transition: opacity 1s;
-  }
-`;
+const Container = styled.div(() => [
+  tw`relative w-full h-full overflow-hidden`,
+  css`
+    > div,
+    iframe {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      transition: opacity 1s;
+    }
+  `
+]);
 
 const VideoElement = styled.video(({ contain }) => [
+  tw`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vh] sm-t:w-screen h-[100vw] sm-t:h-screen transition-opacity duration-1000 -rotate-90 sm-t:rotate-0 max-w-none`,
   css`
     object-fit: ${contain ? `contain` : `cover`};
-    width: 100%;
-    height: 100%;
-    transition: opacity 1s;
   `
 ]);
 
