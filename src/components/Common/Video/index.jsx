@@ -37,9 +37,10 @@ const Video = ({
   const timeout = useRef(null);
 
   const handleLoadedData = () => {
-    if (!ref.current) return;
+    const videoElement = ref.current;
+    if (!videoElement) return;
 
-    ref.current.play().catch((error) => {
+    videoElement.play().catch((error) => {
       console.error("Error attempting to play:", error);
     });
   };
