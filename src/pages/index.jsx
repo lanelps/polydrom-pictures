@@ -52,9 +52,6 @@ export const Head = ({ data }) => {
       <meta property="og:url" content={seo?.domain} />
       <meta name="twitter:card" content="summary_large_image" />
 
-      {/* Prevent indexing */}
-      <meta name="robots" content="noindex" />
-
       {/* Google site verification */}
       <meta
         name="google-site-verification"
