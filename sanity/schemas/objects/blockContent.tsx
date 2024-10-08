@@ -5,6 +5,7 @@ export default defineType({
   title: `Block Content`,
   name: `blockContent`,
   type: `array`,
+  description: `Use Strong for sans-serif text.`,
   of: [
     defineArrayMember({
       title: `Block`,
@@ -13,25 +14,13 @@ export default defineType({
       // correspond with HTML tags, but you can set any title or value
       // you want and decide how you want to deal with it where you want to
       // use your content.
-      styles: [
-        {title: `Normal`, value: `normal`},
-        {
-          title: `Small`,
-          value: `small`,
-          component: {
-            render: ({children}) => <span style={{fontSize: `12px`}}>{children}</span>,
-          },
-        },
-      ],
-      lists: [{title: `Bullet`, value: `bullet`}],
+      styles: [{title: `Normal`, value: `normal`}],
+      lists: [],
       // Marks let you mark up inline text in the block editor.
       marks: {
         // Decorators usually describe a single property – e.g. a typographic
         // preference or highlighting by editors.
-        decorators: [
-          {title: `Strong`, value: `strong`},
-          {title: `Emphasis`, value: `em`},
-        ],
+        decorators: [{title: `Strong`, value: `strong`}],
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
           {
