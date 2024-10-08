@@ -15,6 +15,7 @@ export default defineType({
       title: `Social Links`,
       type: `array`,
       of: [{type: `socialLink`}],
+      hidden: true,
     }),
     defineField({
       name: `mailchimpID`,

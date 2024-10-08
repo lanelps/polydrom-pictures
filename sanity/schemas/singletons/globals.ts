@@ -26,21 +26,7 @@ export default defineType({
       title: `Nav Links`,
       type: `array`,
       of: [{type: `linkGroup`}],
-    }),
-    // Footer
-    defineField({
-      name: `footer`,
-      title: `Footer`,
-      type: `footer`,
-    }),
-    defineField({
-      name: `font`,
-      title: `Font`,
-      type: `file`,
-      description: `Global font for the website. Ideally upload a woff2 or woff file. Defaults to Helvetica Neue.`,
-      options: {
-        accept: `font/woff, font/woff2`,
-      },
+      hidden: true,
     }),
   ],
   preview: {

@@ -22,11 +22,11 @@ export default (S) =>
         .schemaType(`about`)
         .icon(() => '📖')
         .child(S.editor().title(`About`).schemaType(`about`).documentId(`about`)),
-      S.listItem()
-        .title(`Jobs`)
-        .schemaType(`job`)
-        .icon(() => '💼')
-        .child(S.documentTypeList(`job`).defaultOrdering([{field: `title`, direction: `asc`}])),
+      // S.listItem()
+      //   .title(`Jobs`)
+      //   .schemaType(`job`)
+      //   .icon(() => '💼')
+      //   .child(S.documentTypeList(`job`).defaultOrdering([{field: `title`, direction: `asc`}])),
       S.listItem()
         .title(`Contact`)
         .schemaType(`contact`)
