@@ -2,18 +2,16 @@
 import React from "react";
 import { graphql } from "gatsby";
 
-import { Layout, Nav, LandingMedia, Jobs, About, DVD } from "~components";
+import { Layout, Nav, LandingMedia, About, DVD } from "~components";
 
 const Index = ({ data }) => {
   const {
-    allSanityJob,
+    // allSanityJob,
     sanityAbout,
     sanityContact,
     sanityGlobals,
     sanitySettings
   } = data;
-
-  const jobs = allSanityJob?.edges?.map(({ node }) => node) || [];
 
   return (
     <Layout font={sanityGlobals?.font} footer={{ contact: sanityContact }}>
@@ -21,7 +19,6 @@ const Index = ({ data }) => {
       <Nav title={sanitySettings?.seo?.title} />
       <LandingMedia media={sanityGlobals?.landingMedia} />
       <About body={sanityAbout?._rawBody} />
-      <Jobs jobs={jobs} />
     </Layout>
   );
 };
@@ -112,15 +109,6 @@ export const query = graphql`
           }
         }
       }
-      navLinks {
-        _key
-        title
-        links {
-          _key
-          name
-          url
-        }
-      }
       footer {
         title
       }
@@ -133,25 +121,6 @@ export const query = graphql`
     # About
     sanityAbout {
       _rawBody
-    }
-    # Jobs
-    allSanityJob {
-      edges {
-        node {
-          _createdAt
-          _key
-          title
-          timeline
-          location
-          pay
-          description
-          jobFile {
-            asset {
-              url
-            }
-          }
-        }
-      }
     }
     # Contact
     sanityContact {
