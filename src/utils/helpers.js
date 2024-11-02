@@ -133,3 +133,27 @@ export const deviceType = () => {
   }
   return `desktop`;
 };
+
+export const getTransparentvideoSources = (video) => {
+  const sources = [];
+  // safari source needs to be first
+  if (video?.safariSource) {
+    sources.push({
+      url: generateCloudinaryVideoURL(video?.safariSource?.public_id),
+      type: `mp4; codecs=hvc1`
+    });
+  }
+
+  if (video?.source) {
+    sources.push({
+      url: generateCloudinaryVideoURL(video?.source?.public_id, {
+        quality: `auto`,
+        width: 1440
+      }),
+      // type: `webm; codecs=vp9`
+      type: `mp4`
+    });
+  }
+
+  return sources;
+};
