@@ -3,7 +3,7 @@ import tw from "twin.macro";
 
 import { Theme, Footer } from "~components";
 
-const Container = tw.div`relative h-[100dvh] flex bg-offblack transition-colors overflow-hidden`;
+const Container = tw.div`relative h-[100dvh] flex bg-[#110f0d] transition-colors overflow-hidden`;
 const Main = tw.main`flex-grow w-full`;
 
 const Layout = ({ children, className, font, footer }) => (
