@@ -23,6 +23,7 @@
     "@portabletext/react": "^3.1.0",
     "@react-hook/resize-observer": "^2.0.2",
     "@svgr/webpack": "^8.1.0",
+    "@vimeo/player": "^2.24.0",
     "dayjs": "^1.11.13",
     "dotenv": "^16.4.5",
     "embla-carousel-react": "^8.3.0",

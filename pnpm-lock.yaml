@@ -32,6 +32,9 @@ importers:
       '@svgr/webpack':
         specifier: ^8.1.0
         version: 8.1.0(typescript@5.6.2)
+      '@vimeo/player':
+        specifier: ^2.24.0
+        version: 2.24.0
       dayjs:
         specifier: ^1.11.13
         version: 1.11.13
@@ -1920,6 +1923,9 @@ packages:
 
   '@vercel/webpack-asset-relocator-loader@1.7.3':
     resolution: {integrity: sha512-vizrI18v8Lcb1PmNNUBz7yxPxxXoOeuaVEjTG9MjvDrphjiSxFZrRJ5tIghk+qdLFRCXI5HBCshgobftbmrC5g==}
+
+  '@vimeo/player@2.24.0':
+    resolution: {integrity: sha512-oIpucg40ijdV1hGvAwHZitgbzSB/FFl1NbU82IHasG9e4EHNRYqJLetQjPk9oxMgeR06Pt/xB2wne/3jqKtLUg==}
 
   '@webassemblyjs/ast@1.12.1':
     resolution: {integrity: sha512-EKfMUOPRRUTy5UII4qJDGPpqfwjOmZ5jeGFwid9mnoqIFK+e0vqoi1qH56JpmZSzEL53jKnNzScdmftJyG5xWg==}
@@ -4997,6 +5003,9 @@ packages:
   napi-build-utils@1.0.2:
     resolution: {integrity: sha512-ONmRUqK7zj7DWX0D9ADe03wbwOBZxNAfF20PlGfCWQcD3+/MakShIHrMqx9YwPTfxDdF1zLeL+RGZiR9kGMLdg==}
 
+  native-promise-only@0.8.1:
+    resolution: {integrity: sha512-zkVhZUA3y8mbz652WrL5x0fB0ehrBkulWT3TomAQ9iDtyXZvzKeEA6GPxAItBYeNYl5yngKRX612qHOhvMkDeg==}
+
   natural-compare-lite@1.4.0:
     resolution: {integrity: sha512-Tj+HTDSJJKaZnfiuw+iaF9skdPpTo2GtEly5JHnWV/hfv2Qj/9RKsGISQtLh2ox3l5EAGw487hnBee0sIJ6v2g==}
 
@@ -6816,6 +6825,10 @@ packages:
 
   weak-lru-cache@1.2.2:
     resolution: {integrity: sha512-DEAoo25RfSYMuTGc9vPJzZcZullwIqRDSI9LOy+fkCJPi6hykCnfKaXTuPBDuXAUcqHXyOgFtHNp/kB2FjYHbw==}
+
+  weakmap-polyfill@2.0.4:
+    resolution: {integrity: sha512-ZzxBf288iALJseijWelmECm/1x7ZwQn3sMYIkDr2VvZp7r6SEKuT8D0O9Wiq6L9Nl5mazrOMcmiZE/2NCenaxw==}
+    engines: {node: '>=8.10.0'}
 
   web-vitals@1.1.2:
     resolution: {integrity: sha512-PFMKIY+bRSXlMxVAQ+m2aw9c/ioUYfDgrYot0YUa+/xa0sakubWhSDyxAKwzymvXVdF4CZI71g06W+mqhzu6ig==}
@@ -9229,6 +9242,11 @@ snapshots:
   '@vercel/webpack-asset-relocator-loader@1.7.3':
     dependencies:
       resolve: 1.22.8
+
+  '@vimeo/player@2.24.0':
+    dependencies:
+      native-promise-only: 0.8.1
+      weakmap-polyfill: 2.0.4
 
   '@webassemblyjs/ast@1.12.1':
     dependencies:
@@ -13263,6 +13281,8 @@ snapshots:
 
   napi-build-utils@1.0.2: {}
 
+  native-promise-only@0.8.1: {}
+
   natural-compare-lite@1.4.0: {}
 
   natural-compare@1.4.0: {}
@@ -15216,6 +15236,8 @@ snapshots:
       graceful-fs: 4.2.11
 
   weak-lru-cache@1.2.2: {}
+
+  weakmap-polyfill@2.0.4: {}
 
   web-vitals@1.1.2: {}
 
