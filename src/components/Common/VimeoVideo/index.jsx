@@ -10,7 +10,7 @@ const Container = styled.div(({ active }) => [
 ]);
 
 const VideoElement = styled.div(() => [
-  tw`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-[1.5] sm-t:scale-100 object-contain object-[65%_50%] sm-t:object-[50%_50] sm-t:object-cover w-[100dvh] sm-t:w-screen h-[100vw] sm-t:h-[100dvh] transition-opacity duration-1000 -rotate-90 sm-t:rotate-0 max-w-none pointer-events-none select-none`,
+  tw`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ml-[5vw] sm-t:ml-0 scale-[1.5] sm-t:scale-100 object-contain object-[65%_50%] sm-t:object-[50%_50] sm-t:object-cover w-[100dvh] sm-t:w-screen h-[100vw] sm-t:h-[100dvh] transition-opacity duration-1000 -rotate-90 sm-t:rotate-0 max-w-none pointer-events-none select-none`,
   css`
     & iframe {
       width: 100%;
@@ -52,7 +52,6 @@ const VimeoVideo = ({ source }) => {
 
   useEffect(() => {
     playerRef.current.on(`playing`, () => {
-      console.log(`Playing`);
       setIsPlaying(true);
     });
   }, [playerRef]);
