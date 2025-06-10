@@ -80,5 +80,10 @@
     "eslint-plugin-react": "^7.37.1",
     "prettier": "^3.3.3",
     "webpack": "^5.95.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "sharp": "^0.34.2"
+    }
   }
 }
