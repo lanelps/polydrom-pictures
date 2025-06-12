@@ -82,7 +82,7 @@ const DVD = ({ dvd }) => {
 
   return (
     <Container ref={dvdRef} css={showText && tw`animate-appear`}>
-      {image && <Image image={image} />}
+      {image?.asset && <Image image={image} />}
       {linkUrl ? (
         <Go to={linkUrl} css={[!image ? tw`relative` : tw`absolute`]}>
           <DVDButton kind={2} invert>
